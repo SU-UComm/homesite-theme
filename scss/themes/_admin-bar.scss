@@ -1,0 +1,77 @@
+@charset "UTF-8";
+
+html.admin-bar {
+  // !important overrides !important from injected CSS from WP admin
+  margin-top: 0 !important;
+}
+
+#wpadminbar {
+  top: auto;
+  bottom: 0;
+  background: rgba(35,40,45,1);
+
+  @media screen and (max-width: 600px) {
+    position: fixed;
+  }
+
+  &.ie7 {
+    .menupop .ab-sub-wrapper,
+    .shortlink-input {
+      bottom: 32 px;
+    }
+  }
+
+  .ab-top-menu {
+    > .menupop {
+      > .ab-sub-wrapper {
+        top: auto;
+        bottom: 32px;
+
+        @media screen and ( max-width: 782px ) {
+          top: auto;
+          bottom: 46px;
+        }
+      }
+    }
+  }
+
+  .ab-top-secondary {
+    .menupop {
+      .ab-sub-wrapper {
+        top: auto;
+        bottom: 32px;
+
+        @media screen and ( max-width: 782px ) {
+          top: auto;
+          bottom: 46px;
+        }
+      }
+    }
+  }
+
+  .menupop li {
+    &.hover,
+    &:hover {
+      > .ab-sub-wrapper {
+        margin-bottom: -32px;
+
+        @media screen and ( max-width: 782px ) {
+          top: auto;
+          bottom: 46px;
+        }
+      }
+    }
+
+    > .ab-sub-wrapper {
+
+      @media screen and ( max-width: 782px ) {
+        top: auto;
+        bottom: 46px;
+      }
+    }
+  }
+}
+
+body.home.page-template-homepage #wp-admin-bar-edit {
+  display: none;
+}

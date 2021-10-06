@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+.quick-link {
+  max-width: $min-device-width;
+  margin: 0 auto;
+  -moz-osx-font-smoothing: grayscale;
+
+  > div {
+    text-align: center;
+
+    @include grid-media($media-xs-only) {
+      float: left;
+      min-height: 3.3em; //for when description wrap to 2nd line
+      margin-right: modular-scale(1);
+      width: 2em;
+    }
+  }
+
+  .fa-2x {
+    font-size: modular-scale(2); //custom overriding FA font size
+  }
+
+  > p {
+      margin-bottom: modular-scale(-6);
+
+    a {
+      font-size: modular-scale(1);
+      font-weight: 700;
+    }
+
+    @include grid-media($media-xs-only) {
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        line-height: 1;
+      }
+    }
+  }
+
+  @include grid-media($media-sm) {
+    text-align: center;
+
+    a {
+      font-size: modular-scale(1);
+      font-weight: 600;
+    }
+  }
+}

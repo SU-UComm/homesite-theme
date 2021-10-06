@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+body.post-php {
+  #copy-buttons .inside {
+    text-align: center;
+
+    a {
+      display: block;
+      margin: 1em 0;
+      color: white;
+      height: 3em;
+      padding: .4em 0;
+
+      &#copyl2p {
+        background-color: color(green);
+        #{$hocus} {
+          background-color: shade( color(green), 30% );
+        }
+      }
+      &#copyp2l {
+        background-color: color(brand--bright);
+        #{$hocus} {
+          background-color: color(brand--dark);
+        }
+      }
+    }
+  }
+
+  #hp-warning,
+  #dont-edit {
+    $alert-color: red !default;
+    h2.hndle {
+      background-color: $alert-color;
+      color: white;
+    }
+
+    .inside {
+      border: 3px solid $alert-color;
+      h2 {
+        padding: 1em 0 0;
+        font-size: 1.25em;
+        font-weight: 600;
+        color: $alert-color;
+      }
+    }
+  }
+}

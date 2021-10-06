@@ -1,0 +1,143 @@
+$pre-footer__background-color: color(silver) !default;
+
+
+
+#footer__pre-footer {
+  $full-container: (
+          md:     ( columns: 12,  grid-media: $media-md-max,  v-space: 20px, max-width: false, grid-collapse: false ),
+          lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: 20px, max-width: false, grid-collapse: false ),
+          xl:     ( columns: 12,  grid-media: $media-xl,      v-space: 20px, max-width: true,  grid-collapse: false ),
+          print:  ( columns: 12,  grid-media: $media-print,   v-space: 20px, max-width: false, grid-collapse: false ),
+  );
+  $_bg-color: $pre-footer__background-color;
+  @include responsive-container($full-container);
+  @include grid-container;
+  @include grid-collapse;
+  @include grid-media($media-lg) {
+    @include grid-collapse;
+  }
+  @include grid-media($media-xl) {
+    @include grid-collapse;
+  }
+
+  background-color: color(background--alt);
+  font-size: modular-scale(3);
+  padding: {
+    top: 20px;
+    bottom: 20px;
+  }
+
+  .weather {
+    line-height: 1;
+    min-height: .9em;
+    .awesome-weather-current-temp{
+      position: relative;
+      top: em(-4px);
+      font-size: modular-scale(-2);
+      font-weight:600;
+      padding-right: 10px;
+    }
+    .awesome-weather-description{
+      position: relative;
+      top: em(-4px);
+      text-transform: capitalize;
+      font-size: modular-scale(-2);
+      font-weight: 300;
+    }
+    @include grid-media($media-xs) {
+      @include grid-column(1 of 1);
+      text-align: center;
+      font-size: modular-scale(-1);
+    }
+    @include grid-media($media-md) {
+      @include grid-column(6);
+      @include grid-shift(-6);
+      text-align: left;
+      font-size: modular-scale(0);
+    }
+    @include grid-media($media-lg) {
+      @include grid-column(6);
+    }
+    @include grid-media($media-xl) {
+      @include grid-column(6);
+    }
+  }
+
+  .social {
+    line-height: 1;
+    ul {
+      margin: 0;
+    }
+    li {
+      list-style: none;
+      display: inline-block;
+      padding-right: 10px;
+      margin-bottom: 0;
+      &:last-of-type{
+        padding-right: 0;
+      }
+    }
+    a {
+      color: color(choco);
+      .fa {
+        transition: color .25s ease-in-out;
+      }
+
+      &[title="Facebook"],
+      .fa-facebook,
+      .fa-facebook-official,
+      .fa-facebook-square {
+        #{$hocus} {
+         color: color(facebook);
+        }
+      }
+      &[title="Twitter"],
+      .fa-twitter,
+      .fa-twitter-square {
+        #{$hocus} {
+          color: color(twitter);
+        }
+      }
+      &[title="Instagram"],
+      .fa-instagram {
+        #{$hocus} {
+          color: color(instagram);
+        }
+      }
+      &[title="YouTube"],
+      .fa-youtube,
+      .fa-youtube-square,
+      .fa-youtube-play {
+        #{$hocus} {
+          color: color(youtube);
+        }
+      }
+      &[title="iTunes U"],
+      .fa-apple {
+        #{$hocus} {
+          color: color(itunesu);
+        }
+      }
+    }
+
+    @include grid-media($media-xs) {
+      @include grid-column(1 of 1);
+      text-align: center;
+      margin-left: 0;
+      padding-bottom: 20px;
+    }
+
+    @include grid-media($media-md) {
+      @include grid-column(6);
+      @include grid-shift(6);
+      text-align: right;
+      padding-bottom: 0;
+    }
+    @include grid-media($media-lg) {
+      @include grid-column(6);
+    }
+    @include grid-media($media-xl) {
+      @include grid-column(6);
+    }
+  }
+}

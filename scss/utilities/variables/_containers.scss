@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+// Homesite containers
+$base-padding: modular-scale(1);
+
+$content-container: (
+    xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: null, max-width: false, grid-collapse: false ),
+    sm:     ( columns: 9,   grid-media: $media-sm-only, v-space: null, max-width: false, grid-collapse: false ),
+    md:     ( columns: 8,   grid-media: $media-md-only, v-space: null, max-width: false, grid-collapse: false ),
+    lg:     ( columns: 7.5, grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: false ),
+    xl:     ( columns: 7,   grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: false ),
+    print:  ( columns: 9,   grid-media: $media-print,   v-space: null, max-width: false,  grid-collapse: false ),
+);
+
+$content-container--collapsed: (
+    xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: null, max-width: false, grid-collapse: true ),
+    sm:     ( columns: 9,   grid-media: $media-sm-only, v-space: null, max-width: false, grid-collapse: true ),
+    md:     ( columns: 8,   grid-media: $media-md-only, v-space: null, max-width: false, grid-collapse: true ),
+    lg:     ( columns: 7.5, grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: true ),
+    xl:     ( columns: 7,   grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: true ),
+    print:  ( columns: 9,   grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: true ),
+);
+
+$full-container: (
+    md:     ( columns: 12,  grid-media: $media-md-max,  v-space: null, max-width: false, grid-collapse: false ),
+    lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: false ),
+    xl:     ( columns: 12,  grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: false ),
+    print:  ( columns: 12,  grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: false ),
+);
+
+$full-container--collapsed: (
+    md:     ( columns: 12,  grid-media: $media-md-max,  v-space: null, max-width: false, grid-collapse: true ),
+    lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: true ),
+    xl:     ( columns: 12,  grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: true ),
+    print:  ( columns: 12,  grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: true ),
+);
+
+$edge-to-edge-container: (
+md:     ( columns: 12,  grid-media: $media-md-max,  v-space: null, max-width: false, grid-collapse: false ),
+lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: false ),
+xl:     ( columns: 12,  grid-media: $media-xl,      v-space: null, max-width: false, grid-collapse: false ),
+print:  ( columns: 12,  grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: false ),
+);
+
+$edge-to-edge-container--collapsed: (
+md:     ( columns: 12,  grid-media: $media-md-max,  v-space: null, max-width: false, grid-collapse: true ),
+lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: true ),
+xl:     ( columns: 12,  grid-media: $media-xl,      v-space: null, max-width: false, grid-collapse: true ),
+print:  ( columns: 12,  grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: true ),
+);
+
+$default-container: $content-container;
+$default-container--collapsed: $content-container--collapsed;

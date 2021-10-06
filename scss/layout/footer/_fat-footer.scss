@@ -1,0 +1,157 @@
+@charset "UTF-8";
+
+// Spacing
+$text-line-height: 1.5 !default;
+$base-spacing: $text-line-height * 1em !default;
+$small-spacing: $base-spacing / 2 !default;
+
+// Borders
+$base-border-radius: 3px !default;
+
+// Transitions
+$base-property: all !default;
+$base-delay: null !default;
+
+#footer__content {
+  // Set up the fat footer container & properties
+  @include responsive-container($full-container);
+  @include grid-container;
+  @include grid-collapse;
+
+  @include grid-media($media-lg, $media-xl, $media-print) {
+    @include grid-collapse;
+  }
+
+  @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+    padding-top: _retrieve-neat-setting($neat-grid, gutter);
+  }
+
+
+  a {
+    color: color(text);
+    text-decoration: none;
+
+    #{$hocus} {
+      color: color(link);
+      text-decoration: underline;
+    }
+  }
+
+  // Fat footer buttons
+  > ul {
+    margin: 0;
+    padding: 0;
+    display: block;
+    float: left;
+    width: 100%;
+
+    @include grid-media($media-sm-only) {
+      @include flex-container((children: 'li'));
+    }
+
+    @include grid-media($media-md-only) {
+      @include grid-container;
+    }
+
+    @include grid-media($media-lg-only, $media-xl, $media-print) {
+      @include grid-column(1 of 6);
+    }
+
+    li {
+      display: block;
+      @include grid-media($media-xs, $media-print) {
+        margin-bottom: _retrieve-neat-setting($neat-grid, gutter);
+      }
+
+      @include grid-media($media-xs-only) {
+        @include grid-column(1 of 1);
+      }
+      @include grid-media($media-sm-only) {
+        @include grid-column(1 of 2);
+        @include nth-omega(2n);
+      }
+      @include grid-media($media-md-only){
+        @include grid-column(1 of 5);
+      }
+
+      a {
+        @include hs_button($hs_secondary-button);
+        display: block;
+      }
+    }
+  }
+
+  h3 {
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: color(brand--dark);
+    margin-bottom: $small-spacing / 1.5;
+
+    &:first-of-type {
+      margin-top: .75em;
+    }
+  }
+
+  // Set up First level div responsive behavior (These are mostly presentational)
+  > div {
+    @include grid-media($media-sm-max) {
+      @include grid-column(1 of 2);
+    }
+
+    &:nth-of-type(2n + 1) {
+      @include grid-media($media-md-only) {
+        @include grid-column(2 of 5);
+      }
+
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        @include grid-column(2 of 6);
+      }
+      > div {
+        @include grid-media($media-md-only, $media-lg-only, $media-xl, $media-print) {
+          @include grid-collapse;
+        }
+        > div {
+          @include grid-media($media-md-only, $media-lg-only, $media-xl, $media-print) {
+            @include grid-column(1 of 2)
+          }
+        }
+      }
+    }
+    &:nth-of-type(2n + 2) {
+      @include grid-media($media-md-only) {
+        @include grid-column(3 of 5);
+      }
+
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        @include grid-column(3 of 6);
+      }
+
+      > div {
+        @include grid-media($media-md-only, $media-lg-only, $media-xl, $media-print) {
+          @include grid-collapse;
+        }
+        > div {
+          @include grid-media($media-md-only, $media-lg-only, $media-xl, $media-print) {
+            @include grid-column(1 of 3)
+          }
+        }
+      }
+    }
+
+    ul {
+      @extend %plain;
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        margin-bottom: _retrieve-neat-setting($neat-grid, gutter);
+      }
+
+      li {
+        display: block;
+        line-height: $text-line-height * .8125;
+        margin-left: 0;
+        margin-bottom: modular-scale(-1);
+        padding-left: 0;
+      }
+    }
+  }
+}

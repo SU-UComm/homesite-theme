@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+
+$default-theme-group: (
+    default:  ( palette: $colors, selector: '&' ),
+) !default;
+
+@mixin render-themes($theme-group: $default-theme-group) {
+  $_theme-group: map_merge($default-theme-group, $theme-group);
+
+  @each $_theme, $_map in $_theme-group {
+
+    $_palette: map_get($_map, palette);
+    $_selector: map_get($_map, selector);
+
+    @include render-theme($_palette, $_selector) {
+      @content
+    }
+  }
+}

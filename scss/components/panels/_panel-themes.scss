@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.panel {
+  @include color-themes($panel-themes) {
+    background-color: color(background);
+    color: color(text);
+
+    a {
+      color: color(link);
+      #{$hocus} {
+        color: color(link--active);
+      }
+    }
+
+    [data-hover="true"] {
+      .title a {
+        color: color(text);
+      }
+      a.jump-link {
+        color: color(link--active);
+      }
+      #{$all-headlines} {
+        a {
+          color: color(link);
+        }
+      }
+    }
+
+    #{$all-headlines},
+    .title {
+      &,
+      a {
+        color: color(text);
+      }
+    }
+
+    .post-meta,
+    .tag {
+      color: color(link--active);
+    }
+
+  }
+}
+
+.panel.theme--stone, .panel.theme--choco {
+  // Resolution dependent hack to fix some font flickering issues in Chrome & Safari, as well as visual weight issues the text is over an image
+  @supports (-webkit-font-smoothing: antialiased) {
+    @media screen and (max-resolution: 119dpi) {
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+}

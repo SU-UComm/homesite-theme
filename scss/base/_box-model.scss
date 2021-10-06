@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  font-size: 62.5%; // 1rem = 10px;
+  box-sizing: border-box;
+}
+
+/**
+ * Make all elements from the DOM inherit from the parent box-sizing
+ * Since `*` has a specificity of 0, it does not override the `html` value
+ * making all elements inheriting from the root box-sizing value
+ * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+ */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+
+  //(We base the body EM font sized on the HTML root element font size of 62.5%, or 10px
+  @include font-size($base-font-size, $root-font-size);
+
+  // Responsive font sizes:
+  @include grid-media($media-sm-max) {
+    @include font-size(16px, $root-font-size)
+  }
+
+  @include grid-media($media-xl) {
+    @include font-size(19px, $root-font-size)
+  }
+
+  @include grid-media($media-print) {
+    @include font-size(12px, $root-font-size)
+  }
+
+}

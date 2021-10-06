@@ -1,0 +1,53 @@
+.sticky {
+  display: block;
+}
+
+.byline,
+.updated:not(.published){
+  display: none;
+}
+
+.single .byline,
+.group-blog .byline {
+  display: inline;
+}
+
+.page {
+  main {
+    > header {
+      @include responsive-container($chrome-container);
+
+      h1,
+      .page-title {
+        font-weight: 900;
+        line-height: $heading-line-height;
+        letter-spacing: -.5px;
+        margin: 0;
+        margin-top: modular-scale(-2);
+        @include font-size(modular-scale(3));
+
+        @include grid-media($media-sm) {
+          @include font-size(modular-scale(4));
+          text-align: center;
+          letter-spacing: -1px;
+        }
+        @include grid-media($media-lg) {
+          @include font-size(modular-scale(5));
+          letter-spacing: -1.5px;
+        }
+      }
+    }
+    .page-content,
+    .entry-content,
+    .entry-summary {
+      @include responsive-container($content-container);
+    }
+  }
+
+  
+}
+
+.page-links {
+  clear: both;
+  margin: 0 0 1.5em;
+}

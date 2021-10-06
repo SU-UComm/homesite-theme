@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+$lists__lists: (
+  margin: 0 0 modular-scale(-1) modular-scale(0),
+  padding-left: modular-scale(2),
+  li: (
+    margin-bottom: modular-scale(-1),
+  ),
+);
+
+$lists__ul: (
+  list-style: disc,
+  ul: (
+    padding-left: em(4.25px),
+    list-style: circle,
+    ul: (
+      list-style: square,
+    ),
+  ),
+);

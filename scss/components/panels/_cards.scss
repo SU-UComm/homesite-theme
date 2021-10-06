@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.panel {
+  $_spacing: $base-spacing;
+  .card {
+    background-color: color(background);
+    padding: $_spacing;
+    @include material-shadow(shallow);
+
+    > a:first-of-type,
+    > img {
+      display: block;
+      line-height: 0; // <- fixes a display bug where the link margins don't match the image height
+      display: block;
+      margin-left: -$_spacing;
+      margin-right: -$_spacing;
+      margin-top: -$_spacing;
+      margin-bottom: $_spacing;
+      width: calc(#{100% + (#{$_spacing * 2})});
+    }
+
+    @at-root .card.hover,
+    &:hover {
+      transition: box-shadow ease .5s;
+      @include material-shadow(medium);
+    }
+  }
+}

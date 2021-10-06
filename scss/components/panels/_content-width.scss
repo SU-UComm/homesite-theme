@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.panel {
+  &[data-width="full"] {
+    /*!*/
+    @include responsive-container($full-container);
+  }
+  &[data-width="content"] {
+    /*!*/
+    @include responsive-container($content-container);
+  }
+  &[data-width="edges"] {
+    /*!*/
+    @include responsive-container($edge-to-edge-container);
+  }
+}

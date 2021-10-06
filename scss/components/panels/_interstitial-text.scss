@@ -1,0 +1,54 @@
+@charset "UTF-8";
+
+.panel[data-type="interstitial-text"]
+{
+  $base-padding: 3em;
+
+  $content-container: (
+      xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      sm:     ( columns: 9,   grid-media: $media-sm-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      md:     ( columns: 8,   grid-media: $media-md-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      lg:     ( columns: 7.5, grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      xl:     ( columns: 7,   grid-media: $media-xl,      v-space: $base-padding, max-width: true,  grid-collapse: false ),
+      print:  ( columns: 9,  grid-media: $media-print,   v-space: $base-padding, max-width: false,  grid-collapse: false ),
+  );
+
+  $full-container: (
+      md:     ( columns: 12,  grid-media: $media-md-max,  v-space: $base-padding, max-width: false, grid-collapse: false ),
+      lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      xl:     ( columns: 12,  grid-media: $media-xl,      v-space: $base-padding, max-width: true,  grid-collapse: false ),
+      print:  ( columns: 12,  grid-media: $media-print,   v-space: $base-padding, max-width: false,  grid-collapse: false ),
+  );
+
+  $edge-to-edge-container: (
+      md:     ( columns: 12,  grid-media: $media-md-max,  v-space: $base-padding, max-width: false, grid-collapse: false ),
+      lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+      xl:     ( columns: 12,  grid-media: $media-xl,      v-space: $base-padding, max-width: false, grid-collapse: false ),
+      print:  ( columns: 12,  grid-media: $media-print,   v-space: $base-padding, max-width: false, grid-collapse: false ),
+  );
+
+  &[data-width="edges"] {
+    @include responsive-container($edge-to-edge-container);
+  }
+
+  &[data-width="full"] {
+    @include responsive-container($full-container);
+  }
+
+  &[data-width="content"] {
+    @include responsive-container($content-container);
+  }
+
+  font-size: modular-scale(2, $ratio: 1.175);
+  @include grid-media($media-sm) {
+    text-align: center;
+  }
+
+  :first-child {
+    margin-top: 0;
+  }
+  :last-child {
+    margin-bottom: 0;
+  }
+
+}

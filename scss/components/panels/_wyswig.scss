@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+.panel[data-type="wysiwyg"] {
+  $_max-container-width: _retrieve-decanter-setting(max-container-width);
+  @include clearfix;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+
+  img.bg-img {
+    @include bg-img;
+    z-index: -1;
+    @include grid-media($media-xs-only) {
+      min-width: $screen-xs-min;
+      max-width: $_max-container-width;
+    }
+    @include grid-media($media-sm-only) {
+      min-width: 100%;
+      max-width: $_max-container-width;
+    }
+    @include grid-media($media-md-only) {
+      min-width: 100%;
+      max-width: $_max-container-width;
+    }
+    @include grid-media($media-lg-only) {
+      min-width: 100%;
+      max-width: $_max-container-width;
+    }
+    @include grid-media($media-xl) {
+      min-width: 100%;
+      max-width: 100%;
+    }
+
+    &[data-align-background="top"] {
+      top: 0;
+      transform: translateX(-50%);
+    }
+  }
+}

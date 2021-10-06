@@ -1,0 +1,78 @@
+@mixin column-framework($grid-modifier: null, $column: '.col', $grid: $neat-grid) {
+  @function _return-modifier($grid-modifier) {
+    @if $grid-modifier == null {
+      @return null;
+    } @else {
+      @return unquote('-#{$grid-modifier}');
+    }
+  }
+
+  $_modifier: _return-modifier($grid-modifier);
+  $_grid-columns: _retrieve-neat-setting($grid, columns);
+
+  @for $_cols from 1 through $_grid-columns {
+    #{$column}#{$_modifier}--#{$_cols} {
+      @include grid-column($_cols);
+    }
+  }
+
+  // Fractional cols
+  @for $_cols from 1 through $_grid-columns {
+    @for $_fraction from 1 through $_cols {
+      #{$column}#{$_modifier}--#{$_fraction}-of-#{$_cols} {
+        @include grid-column($_fraction of $_cols);
+      }
+    }
+  }
+
+  @for $_cols from 1 through $_grid-columns {
+    .push#{$_modifier}--#{$_cols} {
+      @include grid-push($_cols);
+    }
+    .pull#{$_modifier}--#{$_cols} {
+      @include grid-push(-$_cols);
+    }
+    .shift#{$_modifier}--#{$_cols} {
+      @include grid-shift($_cols);
+    }
+    .shift-opposite#{$_modifier}--#{$_cols} {
+      @include grid-shift(-$_cols);
+    }
+  }
+
+  #{$grid-modifier}-omega {
+    @include omega-flex;
+  }
+}
+
+.grid {
+  @include grid-container;
+
+  &.collapse,
+  .collapse {
+    @include grid-collapse;
+  }
+
+  &.grid-visual,
+  .grid-visual {
+    @include grid-visual;
+  }
+
+  @include column-framework();
+
+  @include grid-media($media-xs-only) {
+    @include column-framework('xs');
+  }
+  @include grid-media($media-sm-only) {
+    @include column-framework('sm');
+  }
+  @include grid-media($media-md-only) {
+    @include column-framework('md');
+  }
+  @include grid-media($media-lg-only) {
+    @include column-framework('lg');
+  }
+  @include grid-media($media-xl) {
+    @include column-framework('xl');
+  }
+}

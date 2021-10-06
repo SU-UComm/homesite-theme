@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+////
+/// Colors
+/// @group Variables|Buttons
+////
+
+/// This variable is a sass map that overrides our generic button map.
+///
+/// @name Base button
+///
+/// @property {Color} bg-color [color(link)] - Background color
+/// @property {Color} color [color(reverse-text)] - Text Color
+/// @property {length(with unit) | string} border ['none'] - Border properties. Accepts shorthand.
+
+// these maps are intended for homesite's hs_button() mixin
+// TODO: rename these maps to $hs-*
+$base-button: (
+    bg-color: color(button-background),
+    color: color(button-text),
+    border: none,
+    cursor: pointer,
+    display: inline-block,
+    material-shadow: flat,
+    font-family: $base-font-family,
+    line-height: $base-line-height,
+    font-weight: inherit,
+    font-size: inherit,
+    text-decoration: none,
+    transition: $base-transition,
+    padding: '#{em(6px)} #{em($base-spacing)} #{em(7px)}',
+    text-align: center,
+    spacing: $small-spacing,
+    bg-color--active: color(button-background--active),
+    color--active: color(button-text--active),
+    border--active: null,
+    material-shadow--active: null,
+    text-decoration--active: none,
+);
+
+$primary-button: (
+    bg-color: color(button-background),
+    color: color(button-text),
+    font-weight: 600,
+    padding: '#{em(8px)} #{em($base-spacing)} #{em(10px)}',
+    bg-color--active: color(button-background--active),
+    color--active: color(button-text--active),
+    material-shadow--active: null,
+    text-decoration--active: none,
+);
+
+$hs_secondary-button: (
+    bg-color: inherit,
+    border: 1px solid color(stone),
+    border--active: 1px solid color(bright-red),
+    color: color(stone),
+    font-weight: 600,
+    padding: '#{em(9px)} #{em($base-spacing)} #{em(9px)}',
+    bg-color--active: inherit,
+    color--active: color(bright-red),
+    material-shadow--active: null,
+    text-decoration--active: none,
+);
+
+$form-button: (
+    bg-color: color(choco),
+    color: color(reverse-text),
+    display: block,
+    font-weight: 600,
+    padding: '#{em(6px)} #{em($base-spacing)} #{em(8px)}',
+    bg-color--active: tint(color(choco), 20%),
+    color--active: color(button-text--active),
+    material-shadow--active: null,
+    text-decoration--active: none,
+    transition: background-color .5s ease,
+);
+
+// this map is intended for decanter's button() mixin
+$dismiss-button--default: (
+  box-shadow: none,
+  appearance: none,
+  border: none,
+  background-color: transparent,
+  color: color(text),
+  cursor: pointer,
+  display: inline-block,
+  line-height: $base-line-height,
+  padding: 0,
+  text-align: center,
+  text-decoration: none,
+  user-select: none,
+  vertical-align: middle,
+  transition: $base-transition,
+
+  '#{$hocus}': (
+    color: color(link),
+    text-decoration: none,
+  ),
+);

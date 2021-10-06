@@ -1,0 +1,73 @@
+@charset "UTF-8";
+
+// 0. Decanter vendors
+@import 'vendors/decanter-vendors';
+
+/*! -----------------------------------------------------------------------------
+// Home Site 2017 Theme
+// University Communications, Stanford University
+// http://ucomm.stanford.edu/webteam/
+// -----------------------------------------------------------------------------
+*/
+
+// 1. Configuration and helpers
+@import
+  'utilities/variables/global-settings'
+, 'utilities/decanter-utilities'
+, 'utilities/variables/variables'
+, 'utilities/mixins/bg-img'
+, 'utilities/mixins/img-effects'
+, 'utilities/mixins/ar-container'
+, 'utilities/mixins/list-style'
+, 'utilities/mixins/button'
+, 'utilities/mixins/anti-aliasing'
+, 'utilities/mixins/responsive-fontsize'
+, 'utilities/mixins/header-icon'
+;
+
+// 2. Base
+@import
+  'base/decanter-base'
+, 'base/buttons'          //  local override
+, 'base/fonts'            //  local override
+, 'base/typography'       //  local override
+, 'base/lists'            //  local override
+, 'base/media-elements'   //  local override
+, 'base/forms'            //  local override
+, 'base/tables'
+, 'base/placeholders'
+, 'base/helpers'
+;
+
+// 3. Components
+@import
+  'components/decanter-components'
+, 'components/panels'
+, 'components/breakpoint-detect'
+, 'components/flex-grid'
+, 'components/site-search'
+, 'components/alert'
+, 'components/info-box'
+, 'components/quick-link'
+, 'components/feedback-link'
+;
+
+// 4. Layout-related sections
+@import
+  'layout/layout'
+, 'layout/header/header'
+, 'layout/footer/footer'
+;
+
+// 5. Page-specific styles
+@import
+ 'pages/pages'
+;
+
+// 6. Themes
+@import
+  'themes/default'
+, 'themes/homesite17'
+, 'themes/admin-bar'
+;
+

@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+$all-headlines: "h1, h2, h3, h4, h5, h6";
+
+.sr-only-text {
+  @extend %hide-text;
+}
+
+.sr-only-element {
+  @extend %hide-element;
+}
+
+.centered {
+  @include center-block;
+}
+
+.center {
+  text-align: center;
+}
+
+.keep-together {
+  white-space: nowrap;
+}

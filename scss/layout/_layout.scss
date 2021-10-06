@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+// ---------------------------------------------------------------------------------------------------------------------
+// z-index
+// ---------------------------------------------------------------------------------------------------------------------
+#splash--wordmark, #splash--scroller, #splash--pause      {   z-index: 50;    }
+#search-overlay, #menu-overlay                            {   z-index: 80;    }
+#site-navigation                                          {   z-index: 80;    }
+#site-search                                              {   z-index: 90;    }
+body > header > section#alert, .widget_alert              {   z-index: 90;    }
+#brand-bar                                                {   z-index: 100;   }
+body > header > nav                                       {   z-index: 100;   }
+#search-toggle, #menu-toggle {
+                                                      z-index: 100;
+  #{$hocus}                                       {   z-index: 110;   }
+}
+#site-navigation                                  {   z-index: 110;   }
+#wpadminbar                                       {   z-index: 190;   }
+#skiplinks                                        {   z-index: 200;   }
+.widget_alert                                     {   z-index: 300;   }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Flexbox visual order
+// --------------------------------------------------------------------------------------------------------------------
+#skiplinks                                        {   order: -51;     }
+body > header                                     {   order: -50;     }
+body > #main, body > main                         {   order: 1;       }
+body > footer                                     {   order: 50;      }
+
+// ---------------------------------------------------------------------------------------------------------------------
+// High level layout
+// ---------------------------------------------------------------------------------------------------------------------
+#main,
+main {
+  position: relative;
+  background-color: color(background);
+  flex: 1;
+  width: 100%;
+
+  &.fixed {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    z-index: 1;
+  }
+
+  @media print {
+    background: transparent;
+  }
+
+  > header,
+  > footer,
+  .page-content,
+  .entry-content {
+    @include responsive-container($content-container);
+    padding-bottom: modular-scale(2);
+  }
+
+  > header {
+    > section {
+    }
+  }
+
+  > article {
+    > header,
+    > footer {
+      @include responsive-container($content-container);
+    }
+  }
+}
+
+aside {
+  position: relative;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Remove outline around things that are not user-focusable.
+// ---------------------------------------------------------------------------------------------------------------------
+[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Edge case styling for old browsers that don't support the main element
+// ---------------------------------------------------------------------------------------------------------------------
+.no-main {
+  #skiplinks {
+    display: block;
+    flex: none;
+  }
+  body > header {
+    display: block;
+    flex: none;
+  }
+  body > nav {
+    display: block;
+    flex: none;
+  }
+  body > #main {
+    display: block;
+    flex: none;
+  }
+  body > footer {
+    display: block;
+    flex: none;
+  }
+}

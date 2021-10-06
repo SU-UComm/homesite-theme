@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+@mixin _render-theme($palette) {
+  $_default-color-palette: $colors;
+  $colors: map-merge($colors, $palette) !global;
+  @content;
+  $colors: $_default-color-palette !global;
+}
+
+$default-theme-group: (
+    default:  (selector: '&', palette: $colors),
+);
+
+@mixin render-themes($theme-group: $default-theme-group) {
+  $_theme-group: map_merge($default-theme-group, $theme-group);
+
+  @each $_theme, $_map in $_theme-group {
+
+    $_palette: map_get($_map, palette);
+    $_selector: map_get($_map, selector);
+
+    #{$_selector} {
+      @include _render-theme($_palette) {
+        @content
+      }
+    }
+  }
+}

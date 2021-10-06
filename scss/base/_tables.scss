@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+// -----------------------------------------------------------------------------
+// This file contains basic styles for tables
+// -----------------------------------------------------------------------------
+
+table {
+  $cell-padding: .5em;
+
+  table-layout: fixed;
+  tr {
+    th, td {
+      padding-left: $cell-padding;
+      padding-right: $cell-padding;
+      &:first-of-type {
+        padding-left: 0;
+      }
+      &:last-of-type {
+        padding-right: 0;
+      }
+
+      code {
+        background-color: inherit;
+        border: none;
+      }
+    }
+    th {
+      font-size: 1.1em;
+      vertical-align: bottom;
+    }
+    td {
+      vertical-align: top;
+    }
+  }
+
+  thead.fixed {
+    position: fixed;
+    top: 100px;
+    background-color: color(background);
+    z-index: 10;
+    padding-bottom: 1em;
+  }
+
+  &#cookies {
+    tr {
+      th, td {
+        &:nth-child(1) {
+          width: 40%;
+        }
+        &:nth-child(2) {
+          width: 40%;
+        }
+        &:nth-child(3) {
+          width: 20%;
+        }
+      }
+    }
+  }
+  @include grid-media($media-lg) {
+    &#cookies {
+      tr {
+        th, td {
+          &:nth-child(1) {
+            width: 50%;
+          }
+          &:nth-child(2) {
+            width: 35%;
+          }
+          &:nth-child(3) {
+            width: 15%;
+          }
+        }
+      }
+    }
+  }
+}

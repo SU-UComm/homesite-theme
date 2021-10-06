@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+@mixin header-icon() {
+  display: block;
+  margin-bottom: em(.25);
+  font-size: modular-scale(3);
+
+  &.center {
+    text-align: center;
+  }
+}

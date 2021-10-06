@@ -1,0 +1,171 @@
+@charset "UTF-8";
+
+.panel[data-type="splash-image"] {
+  background-color: color(choco);
+  overflow: hidden;
+  width: 100%;
+  height: calc(100vh - #{em($brand-bar__height - 1px)});
+  position: relative;
+  transition: height .1s ease;
+
+  .bg-img {
+    @include bg-img;
+  }
+
+  #splash--wordmark,
+  #splash--scroller {
+    margin-left: 0;
+    height: auto;
+    position: absolute;
+    display: block;
+    backface-visibility: hidden;
+    padding: 0;
+  }
+
+  #splash--wordmark {
+    transition: font-size ease .5s;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include grid-media($media-xs-only) {
+      font-size: modular-scale(6);
+    }
+
+    @include grid-media($media-sm-only) {
+      font-size: modular-scale(7);
+    }
+
+    @include grid-media($media-md-only) {
+      font-size: modular-scale(8);
+    }
+
+    @include grid-media($media-lg-only) {
+      font-size: modular-scale(9);
+    }
+    @include grid-media($media-xl) {
+      font-size: modular-scale(9);
+    }
+  }
+
+  .watermark {
+    opacity: 0.5;
+  }
+
+  #splash--pause{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(201, 76, 76, 0.0);
+    box-shadow: none;
+
+    &:focus {
+      outline: 1px dotted white;
+    }
+
+    i {
+      font-size: 2em;
+    }
+  }
+
+  #splash--scroller {
+    bottom: .25em;
+    width: 100%;
+    text-align: center;
+    font-size: modular-scale(1);
+    line-height: 1.4;
+    margin: 0;
+    padding: 3em 0 0;
+    @include grid-media($media-md) {
+      padding-top: 2.2em;
+    }
+
+    &::before {
+      display: block;
+      z-index: -1;
+      content: "";
+      position: absolute;
+      top: -1em;
+      bottom: -.5em;
+      left: 0;
+      right: 0;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 0 1em 0;
+
+      &:after {
+        font-family: FontAwesome;
+        content: "\f078";
+        display: block;
+        padding-top: 0;
+        padding-bottom: 0.25em;
+        transition: all 0.2s ease-out;
+      }
+
+      #{$hocus} {
+        &:after {
+          padding-top: 0.25em;
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+
+  // -----------------
+  // colors
+  // -----------------
+  #splash--wordmark {
+    color: color(reverse-text);
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+  }
+  #splash--scroller {
+    text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.3);
+
+    a {
+      color: color(reverse-text);
+    }
+
+    &::before {
+      background: linear-gradient(
+          to bottom,
+          transparent 0%,
+          rgba(2, 2, 2, 1) 75%);
+      opacity: .75;
+    }
+  }
+  @include color-themes($splash-themes) { // scroller should mirror the nav
+    #splash--wordmark {
+      color: color(text--wordmark);
+      text-shadow: 0px 0px 30px color(text--shadow);
+    }
+    #splash--scroller {
+      text-shadow: 0px 0px 30px color(text--shadow);
+
+      a {
+        color: color(text);
+      }
+
+      &::before {
+        $gradient-1: color(scroller-bg-color-1) color(scroller-bg-pct-1);
+        $gradient-2: color(scroller-bg-color-2) color(scroller-bg-pct-2);
+        background: linear-gradient(
+            to bottom,
+            $gradient-1,
+            $gradient-2
+        );
+        opacity: color(scroller-bg-opacity);
+      }
+    }
+  }
+  &.theme--choco {
+    #splash--scroller {
+      /*!*/
+      @include anti-aliasing;
+    }
+  }
+}

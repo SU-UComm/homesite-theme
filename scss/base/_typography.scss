@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+// -----------------------------------------------------------------------------
+// This file contains site-wide typography overrides. To modify Decanter's base
+// typography, you can do so via utilities/variables/_typography.scss
+// -----------------------------------------------------------------------------
+
+// Responsive Typography
+body {
+  $_root-font-size: _retrieve-decanter-setting(root-font-size);
+  @include grid-media($media-sm-max) {
+    font-size: em(16px, $_root-font-size);
+  }
+
+  @include grid-media($media-xl) {
+    font-size: em(19px, $_root-font-size);
+    line-height: $base-line-height * 1.0625;
+  }
+
+  @include grid-media($media-print) {
+    font-size: em(12px, $_root-font-size);
+  }
+}
+
+h1 {
+  @include grid-media($media-md-max) {
+    font-size: modular-scale(4);
+    letter-spacing: -.75px;
+  }
+  @include grid-media($media-xs-only) {
+    letter-spacing: -.5px;
+  }
+  @include grid-media($media-lg) {
+    letter-spacing: -1.45px;
+  }
+}
+
+h2 {
+  @include grid-media($media-xs-only) {
+    font-size: modular-scale(3);
+  }
+
+  letter-spacing: -.15px;
+
+  @include grid-media($media-sm) {
+    letter-spacing: -.45px;
+  }
+  @include grid-media($media-lg) {
+    letter-spacing: -.55px;
+  }
+}
+
+h4 {
+  @include grid-media($media-xs-only) {
+    font-size: modular-scale(1);
+  }
+}
+
+h5 {
+  @include grid-media($media-xs-only) {
+    font-size: modular-scale(0);
+  }
+}
+
+.lead{
+  @include font-size(modular-scale(1));
+  font-weight: 300;
+}
+
+.media-credit {
+  font-style: italic;
+  @extend small;
+}
+
+a.jump-link {
+  font-weight: 600;
+  span.fa {
+    margin-left: .25em;
+    margin-right: .15em;
+    transition: margin .25s ease;
+  }
+
+  @at-root [data-hover] a.jump-link,
+  #{$hocus} {
+    text-decoration: underline;
+    color: color(link--active);
+
+    span.fa {
+      margin-left: .4em;
+      margin-right: 0;
+    }
+  }
+}
+
+hr {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: $base-border;
+  border-left: 0;
+  margin: modular-scale(1) 0;
+}
+
+table {
+  font-size: .85em;
+  code {
+    font-size: .75em;
+  }
+  @include grid-media($media-md) {
+    font-size: .9em;
+  }
+}
+
+%fancyhover {
+  text-decoration: none;
+  color: color(link);
+  position: relative;
+  padding-bottom: 8px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 0px;
+    left: 0;
+    background-color: color(link--active);
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.15s ease-in;
+    z-index: 1;
+  }
+
+  #{$pocus} {
+    text-decoration: none;
+    &::after {
+      visibility: visible;
+      transform: scaleX(1);
+      transition: all 0.25s ease-out;
+    }
+  }
+  &:active {
+    text-decoration: none;
+    &::after {
+      visibility: visible;
+      transform: scaleX(1);
+      transition: all 0.05s ease-out;
+      bottom: -3px;
+    }
+  }
+}
+
+// Stanford University Brand Icon Font
+// ---------------------------------------------------------------------------------------------------------------------
+$su-brand-University: "\1f57e";
+$su-brand-Stanford-University: "\1f57c";
+$su-brand-Stanford: "\1f57d";
+
+[class^="su-brand"], [class*=" su-brand"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: #{$brand-font-family}, #{$serif-font-family} !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  transform: translateZ(0); //enables hardware acceleration. Makes performance much smoother on resize.
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

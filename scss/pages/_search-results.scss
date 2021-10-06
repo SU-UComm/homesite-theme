@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+.page-template-search {
+  #main, main {
+    header {
+      $_gutter: em(_retrieve-neat-setting($neat-grid, gutter));
+      padding-bottom: $_gutter;
+      padding-top: $_gutter;
+    }
+    h1 { margin-top: 0; }
+  }
+
+  #search-toggle {
+    cursor: auto;
+  }
+  .search-results {
+    @include responsive-container($content-container);
+
+    table {
+      font-size: inherit;
+    }
+
+    .gsc-above-wrapper-area {
+      border-bottom: none;
+    }
+
+    .gsc-resultsHeader {
+      display: none;
+    }
+
+    .gsc-results {
+      font-size: inherit;
+
+      .gcsc-branding {
+        display: none;
+        .gsc-branding-text,
+        .gcsc-branding-text{
+          font-size: em(14px);
+        }
+
+        // Visually align image to text
+        div.gsc-branding-img,
+        div.gsc-branding-img-noclear,
+        img.gsc-branding-img,
+        img.gsc-branding-img-noclear,
+        div.gcsc-branding-img,
+        div.gcsc-branding-img-noclear,
+        img.gcsc-branding-img,
+        img.gcsc-branding-img-noclear {
+          top: em(-6px, 14px);
+        }
+      }
+
+      .gsc-promotion {
+        margin: 0;
+        padding-top: 0;
+        .gs-promotion-text-cell{
+          padding-top: 0;
+        }
+      }
+      .gs-title {
+        font-size: inherit;
+        height: auto;
+        text-decoration: none;
+        a {
+          text-decoration: none;
+
+          #{$hocus} {
+            text-decoration: underline;
+          }
+
+          * {
+            color: inherit;
+            font-size: inherit;
+            text-decoration: inherit;
+          }
+        }
+      }
+
+      .gs-visibleUrl{
+        font-size: modular-scale(-1);
+      }
+
+      .gs-snippet {
+        font-size: modular-scale(-1);
+      }
+    }
+
+    .gsc-control-cse {
+      padding: 0;
+      font-size: inherit;
+
+      .gsc-table-result,
+      .gsc-thumbnail-inside,
+      .gsc-url-top {
+        padding: 0;
+      }
+
+      .gsc-table-result {
+        margin: 0;
+        font-size: inherit;
+      }
+    }
+  }
+}

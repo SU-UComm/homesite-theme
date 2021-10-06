@@ -1,0 +1,56 @@
+@charset "UTF-8";
+
+// Behavior
+.panel[data-type="call-to-action"] {
+  display: block;
+  @include responsive-container($full-container);
+  text-align: center;
+  padding-top: 1em;
+
+  a {
+    @include hs_button($primary-button);
+    font-size: modular-scale(1);
+
+    @include grid-media($media-sm) {
+      min-width: 42.5rem;
+    }
+
+    @include grid-media($media-lg) {
+      min-width: 43.5rem;
+    }
+  }
+}
+
+// Color overrides
+// Inherit the correct color when the section has a parent theme and the current panel does NOT have a theme.
+.panel[data-type="section"] {
+  @include color-themes($panel-themes) {
+    .panel[data-type="call-to-action"] {
+      a {
+        color: color(button-text);
+        background-color: color(button-background);
+        box-shadow: material-shadow(flat);
+
+        #{$hocus} {
+          color: color(button-text--active);
+          background-color: color(button-background--active);
+        }
+      }
+    }
+  }
+}
+
+// But, when the parent theme has a theme, and the current panel ALSO has a theme, then we want the current panel to win
+.panel[data-type="section"] .panel[data-type="call-to-action"] {
+  @include color-themes($panel-themes) {
+    a {
+      color: color(button-text);
+      background-color: color(button-background);
+
+      #{$hocus} {
+        color: color(button-text--active);
+        background-color: color(button-background--active);
+      }
+    }
+  }
+}

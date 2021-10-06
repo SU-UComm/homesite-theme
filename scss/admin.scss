@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+// -----------------------------------------------------------------------------
+// Home Site 2017 Theme
+// University Communications, Stanford University
+// http://ucomm.stanford.edu/webteam/
+// -----------------------------------------------------------------------------
+
+// 1. Configuration and helpers
+@import
+  // Decanter Vendors:
+  // 'normalize'
+  'font-awesome'
+  // ---
+, 'utilities/variables/global-settings'
+, 'utilities/decanter-utilities'
+, 'utilities/variables/variables'
+, 'utilities/mixins/bg-img'
+, 'utilities/mixins/img-effects'
+, 'utilities/mixins/ar-container'
+, 'utilities/mixins/list-style'
+, 'utilities/mixins/button'
+;
+
+// 2. Admin styles
+@import
+  'admin/preview_homepage'
+, 'admin/post_list'
+;

@@ -1,0 +1,346 @@
+@charset "UTF-8";
+
+#site-navigation {
+  // Map local variables to global names (makes it easier to read)
+  $_font-family: $heading-font-family;
+  $_font-size: modular-scale(1);
+
+  $full-container: (
+    md:     ( columns: 12,  grid-media: $media-md-max,  v-space: null, max-width: false, grid-collapse: true   ),
+    lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: false  ),
+    xl:     ( columns: 12,  grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: false  ),
+    print:  ( columns: 12,  grid-media: $media-print,   v-space: null, max-width: false, grid-collapse: false  ),
+  );
+  @include responsive-container($full-container);
+
+  // -----------------
+  // desktop nav
+  // -----------------
+  position: fixed;
+  top: em($brand-bar__height, $_font-size);
+  bottom: initial;
+  width: 100%;
+  line-height: 1.8;
+  font-family: $heading-font-family;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 0;
+
+  ul {
+    padding-top: .5rem;
+    @extend ul.plain;
+
+    li {
+      display: inline-block;
+      margin-right: modular-scale(1);
+      margin-bottom: 0;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        position: relative;
+        transition: color .3s ease-in, background-color .3s ease-in;
+        @extend %fancyhover;
+
+      }
+
+      &.current-menu-item a,
+      &.current-page-ancestor a {
+        font-weight: 600;
+      }
+    }
+  }
+
+  // .shadow is added dynamically when the user scrolls down
+  transition: box-shadow .3s ease;
+  &.shadow {
+    @include material-shadow(shallow);
+
+    @include grid-media($media-lg) {
+      border-bottom: 1px solid tint(color(border), 50%);
+    }
+
+    @include grid-media($media-print) {
+      box-shadow: none;
+    }
+  }
+
+  // -----------------
+  // media queries
+  // -----------------
+
+  // -----------------
+  // basic mobile nav
+  // -----------------
+  @include grid-media($media-xs-only) {
+    top: em($brand-bar__height);
+  }
+  @include grid-media($media-xs-portrait) {
+    font-size: $_font-size;
+    top: em($brand-bar__height, $_font-size);
+  }
+  @include grid-media($media-sm) {
+    font-size: $_font-size;
+  }
+  @include grid-media($media-mobile-nav) {
+    box-shadow: material-shadow(shallow);
+
+    .menu-primary-nav-container {
+      // Resolution dependent hack to fix some font flickering issues in Chrome & Safari
+      @supports (-webkit-font-smoothing: subpixel-antialiased) and (-webkit-font-smoothing: antialiased)  {
+        @media screen and (min-resolution: 120dpi) {
+          -webkit-font-smoothing: subpixel-antialiased;
+        }
+      }
+      backface-visibility: hidden;
+      clear: both;
+      display: none;
+      overflow: hidden;
+      &[aria-expanded="true"] {
+        display: block;
+        @include grid-container;
+        @include grid-collapse;
+      }
+
+      ul {
+        overflow: hidden;
+        display: block;
+        padding: 0;
+        li {
+          @include grid-column (1 of 4);
+          margin: 0;
+          border-bottom: 1px solid color(border);
+          border-left: 1px solid color(border);
+
+          @include grid-media($media-xs-portrait) {
+            @include grid-column (1 of 2);
+            &:nth-of-type(odd) {
+              border-right: 1px solid color(border);
+              border-left: 1px solid transparent;
+            }
+            &:nth-of-type(even) {
+              border-right: 1px solid transparent;
+              border-left: 1px solid transparent;
+            }
+          }
+
+          &:nth-of-type(4n + 1) {
+            border-left: none;
+          }
+
+          a {
+            display: block;
+            outline-offset: -4px;
+            padding: {
+              top: .725em;
+              bottom: .725em;
+            }
+
+            @include on-event {
+              background-color: color(background--alt);
+              &::after {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    #gateway {
+      padding: 0;
+      background-color: color(background--alt);
+      border-bottom: 1px solid color(border);
+      font-size: em(18px, $_font-size);
+      font-weight: 600;
+      display: none;
+
+      @include grid-media($media-xs-only) {
+        font-size: em(16px);
+      }
+
+      @include grid-media($media-xs-mobile-nav) {
+        font-size: em(16px, $_font-size);
+      }
+
+      &[aria-expanded="true"] {
+        display: block;
+      }
+
+      ul {
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0 auto;
+        flex-wrap: wrap;
+        min-width: 320px;
+        max-width: 100%;
+        text-align: center;
+
+        @include grid-media($media-xs-only) {
+          @include responsive-fontsize(12px, 16px, $min-device-width, $screen-xs-max);
+        }
+      }
+
+      li {
+        margin: 0;
+      }
+
+      a {
+        color: color(text);
+        padding: .625em 1em;
+        outline-offset: -4px;
+        @include on-event {
+          color: color(bright-red);
+          background-color: color(background);
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  // -----------------
+  // colors
+  // -----------------
+  background-color: color(background);
+  ul {
+    li {
+      a {
+        color: color(text);
+
+        #{$hocus} {
+          color: color(bright-red);
+        }
+        &::after {
+          background-color: color(bright-red);
+        }
+      }
+      &.current-menu-item a,
+      &.current-page-ancestor a {
+        color: color(dark-red);
+      }
+    }
+  }
+  // splash screen (mostly) colors
+  @include color-themes($splash-themes) {
+    @include grid-media($media-lg) {
+      background-color: transparent;
+
+      &::before {
+        display: block;
+        background: linear-gradient(
+            to top,
+            color(nav-bg-gradient-1),
+            color(nav-bg-gradient-2));
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: -1.25em;
+        left: 0;
+        right: 0;
+        opacity: color(nav-bg-opacity);
+      }
+      ul {
+        li {
+          a {
+            color: color(text);
+            &::after {
+              background-color: color(text);
+            }
+          }
+        }
+      }
+    }
+  }
+  &.theme--choco {
+    @include anti-aliasing;
+  }
+
+}
+
+// element that sits over the page content and under the nav on mobile devices
+#menu-overlay {
+  @extend %modal-overlay;
+
+  @include grid-media($media-lg) {
+    display: none;
+    &[aria-expanded="true"] {
+      display: none;
+    }
+  }
+}
+
+// styles specific for splash-parallax panel
+.splash-parallax {
+
+  @include grid-media($media-lg) {
+
+     #site-navigation {
+
+       ul li a {
+         font-weight: 400;
+       }
+
+       &.theme--choco, &.theme--white {
+
+         &:before {
+           bottom: -2.6em;
+         }
+
+       }
+
+       &.theme--choco {
+
+         ul li {
+
+           @include grid-media($media-lg) {
+
+             margin-right: 1.16em; // make spacing between nav links a bit smaller to compensate for the width increase caused by the font weight increase
+
+             a {
+               font-weight: 600;
+             }
+
+           }
+
+           a {
+             text-shadow: rgba(0, 0, 0, .6) 0 1px 8px;
+           }
+
+           &:last-child {
+             margin-right: 0;
+           }
+         }
+
+         &:before {
+           background: linear-gradient(0deg, transparent, rgba(0, 0, 0, .99)),
+           linear-gradient(0deg, transparent 20%, rgba(0, 0, 0, .6));
+         }
+
+       }
+
+       &.theme--white {
+
+         ul li a {
+           text-shadow: none;
+         }
+
+         &:before {
+           background: linear-gradient(0deg, transparent, #fff),
+           linear-gradient(0deg, transparent 30%, rgba(255, 255, 255, .8));
+         }
+
+       }
+
+     }
+  }
+
+}

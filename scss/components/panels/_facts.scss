@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+.panel[data-type="facts"] {
+
+  hr {
+    &:first-child {
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        margin-bottom: $_gutter;
+        margin-top: 0;
+      }
+    }
+    &:last-child {
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        margin-bottom: 0;
+        margin-top: $_gutter;
+      }
+    }
+  }
+
+  .grid-container {
+    @include grid-container;
+
+    // 1. Mobile first, common element properties
+    figure {
+      font-size: modular-scale(1);
+      text-align: center;
+      font-weight: 400;
+
+      strong {
+        display: block;
+        font-weight: 900;
+        font-size: modular-scale(1);
+        line-height: $heading-line-height;
+
+      }
+    }
+
+    // Mobile-first, cascading responsive properties
+
+    @include grid-media($media-sm) {
+      figure {
+        strong {
+          font-size: modular-scale(2);
+          letter-spacing: -.5px;
+        }
+      }
+    }
+
+    @include grid-media($media-lg) {
+      figure {
+        strong {
+          font-size: modular-scale(2);
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  // Media Scoped Responsive properties.
+  // These are primarily responsive behavior and choreography, where we don't want
+  // media queries to stack with each other.
+
+  // Responsive Choreography
+  $_max-posts-per-row: 6;
+  @for $_num from 1 through $_max-posts-per-row {
+    &[data-posts-per-row="#{$_num}"] {
+
+      .grid-container {
+        @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+          margin-bottom: _retrieve-neat-setting($neat-grid, gutter) * -1;
+        }
+
+        @include grid-media($media-xs-only) {
+          @include grid-collapse;
+          @include items-per-row(1, 'figure');
+        }
+
+        @include grid-media($media-sm-only) {
+          @include grid-collapse;
+          @if ($_num == 1) {
+            @include items-per-row(1, 'figure');
+          } @else if ($_num == 3) {
+            @include items-per-row(2, 'figure', $clear: false);
+            @include items-per-row(1, 'figure:first-of-type');
+            @include alpha('figure:nth-of-type(2n+2)');
+          } @else {
+            @include flex-items-per-row(2, $children: 'figure', $center-grid: true);
+          }
+        }
+
+        @include grid-media($media-md-only) {
+          @include grid-collapse;
+          @if $_num == 1 {
+            @include items-per-row(1, 'figure');
+          } @else if ($_num == 2) {
+            @include flex-items-per-row(2, $children: 'figure');
+          } @else if ($_num == 3) {
+            @include flex-items-per-row(3, $children: 'figure');
+          } @else if ($_num == 4) {
+            @include flex-items-per-row(2, $children: 'figure');
+            @include adjust-container-width(-3, $grid-collapse: true);
+          } @else {
+            @include flex-items-per-row(3, $children: 'figure');
+            @include adjust-container-width(-3, $grid-collapse: true);
+          }
+        }
+
+        @include grid-media($media-lg) {
+          @include grid-collapse;
+          @include flex-items-per-row($_num, $children: 'figure');
+        }
+        @include grid-media($media-xl) {
+          @include grid-collapse;
+          @include flex-items-per-row($_num, $children: 'figure');
+        }
+
+        @include grid-media($media-print) {
+          @include grid-collapse;
+          @include flex-items-per-row($_num, $children: 'figure');
+        }
+      }
+    }
+  }
+}

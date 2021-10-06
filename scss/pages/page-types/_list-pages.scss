@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+.archive.tax-list,
+.post-type-archive-atoz {
+	main, #main {
+		.entry-content {
+			$list-container: (
+					xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+					sm:     ( columns: 9,   grid-media: $media-sm-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+					md:     ( columns: 8,   grid-media: $media-md-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+					lg:     ( columns: 10,  grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+					xl:     ( columns: 10,  grid-media: $media-xl,      v-space: $base-padding, max-width: true,  grid-collapse: false ),
+					print:  ( columns: 12,  grid-media: $media-print,   v-space: $base-padding, max-width: false, grid-collapse: false ),
+			);
+			@include responsive-container($list-container);
+
+			// anything on list pages that's hidden from screen-readers should be hidden from everyone
+			[aria-hidden="true"] {
+				display: none;
+			}
+
+			ul {
+				@extend ul.plain;
+
+				&#list-filters {
+					@extend ul.inline-links;
+					font-size: modular-scale(1);
+					text-align: center;
+					margin: {
+						bottom: modular-scale(4);
+					}
+					li {
+						> a.current {
+							font-weight: 600;
+							text-decoration: none;
+							color: color(link--active);
+							&::after {
+								visibility: visible;
+								transform: scaleX(1);
+							}
+						}
+
+						// Reset inline-links on xs
+						@include grid-media($media-xs-only) {
+							display: inline-block;
+
+							&::before {
+								display: none;
+							}
+							&::after {
+								display: block;
+							}
+						}
+					}
+				}
+			}
+
+			> section {
+				column: {
+					count: 1;
+					fill: balance;
+					gap: _retrieve-neat-setting($neat-grid, gutter);
+				}
+				@include grid-media($media-lg-only, $media-xl) {
+					column: {
+						gap: _retrieve-neat-setting($neat-grid, gutter);
+					}
+				}
+				> * {
+					break-inside: avoid-column;
+					width: 100%;
+					border-top: {
+						color: color(border);
+						style: solid;
+						width: 1px;
+					}
+					padding: {
+						top: modular-scale(0);
+						bottom: modular-scale(5);
+					}
+
+					display: table;
+					> * {
+						display: table-cell;
+					}
+
+					h3 {
+						$_width: 2.75em;
+						min-width: $_width;
+						max-width: $_width;
+						width: $_width;
+						color: color(brand);
+					}
+					ul {
+						li {
+							margin-bottom: 1em;
+						}
+					}
+
+					&.keep-together {
+						white-space: normal;
+					}
+				}
+
+				@include grid-media($media-lg) {
+					column-count: 2;
+				}
+			}
+		}
+
+		footer {
+			*:last-child {
+				margin-bottom: .75em;
+			}
+		}
+	}
+}

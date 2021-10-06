@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.page-template-landing-page {
+	#main,
+  main {
+		> header {
+			$base-padding: modular-scale(-4);
+			$content-container: (
+							xs: (columns: 12, grid-media: $media-xs-only, v-space: $base-padding, max-width: false, grid-collapse: true),
+							sm: (columns: 12, grid-media: $media-sm-only, v-space: $base-padding, max-width: false, grid-collapse: true),
+							md: (columns: 10, grid-media: $media-md-only, v-space: $base-padding, max-width: false, grid-collapse: true),
+							lg: (columns: 10, grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: true),
+							xl: (columns: 10, grid-media: $media-xl, v-space: $base-padding, max-width: true, grid-collapse: true),
+							print: (columns: 9, grid-media: $media-print, v-space: $base-padding, max-width: false, grid-collapse: true),
+			);
+			@include responsive-container($content-container);
+
+			> section {
+				font-size: modular-scale(2);
+				@include grid-media($media-sm) {
+					text-align: center;
+				}
+			}
+		}
+	}
+}

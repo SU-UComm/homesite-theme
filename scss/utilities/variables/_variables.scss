@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+@import
+  'breakpoints'
+, 'containers'
+, 'colors'
+, 'typography'
+, 'lists'
+, 'buttons'
+, 'vertical-rhythm'
+;
+
+// -----------------------------------------------------------------------------
+// Site & Layout
+// -----------------------------------------------------------------------------
+
+/// Base border radius.
+$base-border-radius: 0px;
+
+// WP Admin Bar
+$adminbar__height: 32px;
+$adminbar__mobile-height: 46px;
+
+// Brand bar
+$brand-bar__height: 48px;
+$brand-bar__font-family: $heading-font-family;
+
+// Nav
+$site-nav__font-family: $heading-font-family;
+$site-nav__height: 54px;
+
+// -----------------------------------------------------------------------------
+// 7. Components
+// -----------------------------------------------------------------------------
+$breakpoint-helper: true;

@@ -1,0 +1,207 @@
+@charset "UTF-8";
+
+////
+/// Button
+/// @group mixins
+////
+
+/// Generic Button Styles
+///
+/// @example scss - SCSS
+///   .button--primary {
+///     @include button($primary-button);
+///   }
+///
+/// @example css - CSS
+///   .button--primary {
+///     background-color: #004fdc;
+///     border: none;
+///     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+///     color: #ffffff;
+///     cursor: pointer;
+///     display: inline-block;
+///     font-family: "Noto Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+///     font-weight: inherit
+///     font-size: inherit;
+///     line-height: 1.5;
+///     padding: .333333333em 1em 3888888889em);
+///     text-align: center;
+///     text-decoration:none;
+///     transition: all 250ms ease-in-out;
+///     appearance: none;
+///     -webkit-font-smoothing: antialiased;
+///     user-select: none;
+///     vertical-align: middle;
+///
+///     &:hover,
+///     &:active,
+///     &:focus {
+///       background-color: #005ddc;
+///       text-decoration: none;
+///     }
+///     &:disabled,
+///     &.disabled {
+///       background-color: #004fdc;
+///       color: #ffffff;
+///       cursor: not-allowed;
+///       opacity: .5;
+///       border: none;
+///
+///       &:hover,
+///       &:active,
+///       &:focus {
+///         cursor: not-allowed;
+///       }
+///     }
+///
+/// @require {mixin} material-shadow adds a shadow
+/// @require {mixin} on-event returns active states
+/// @require {function} color Returns a color from the color map
+/// @require {function} em normalized relative values
+/// @require {variable} $base-font-family The default base font styles
+/// @require {variable} $base-line-height Base line height setting
+/// @require {variable} $base-transition Base transition setting
+/// @require {variable} $small-spacing Base small space setting
+/// @require {map} $base-button
+///
+@mixin hs_button($settings: $base-button, $colors: $colors) {
+  $_default-settings: map-merge(
+      (       bg-color: color(button-background, $colors),
+              color: color(button-text),
+              border: none,
+              cursor: pointer,
+              display: inline-block,
+              material-shadow: flat,
+              font-family: $base-font-family,
+              line-height: $base-line-height,
+              font-weight: inherit,
+              font-size: inherit,
+              text-decoration: none,
+              transition: $base-transition,
+              padding: '#{em(6px)} #{em($base-spacing)} #{em(7px)}',
+              text-align: center,
+              spacing: $small-spacing,
+              bg-color--active: color(button-background--active, $colors),
+              color--active: color(button-text--active, $colors),
+              border--active: null,
+              material-shadow--active: null,
+              text-decoration--active: none,
+          ), $base-button);
+
+  $_settings: map-merge($_default-settings, $settings);
+
+  $_bg-color: map_get($_settings, bg-color);
+  $_bg-color--active: map-get($_settings, bg-color--active);
+  $_color: map_get($_settings, color);
+  $_color--active: map-get($_settings, color--active);
+  $_border: map_get($_settings, border);
+  $_border--active: map-get($_settings, border--active);
+  $_cursor: map_get($_settings, cursor);
+  $_display: map_get($_settings, display);
+  $_material-shadow: map_get($_settings, material-shadow);
+  $_border: map_get($_settings, border);
+  $_font-family: map_get($_settings, font-family);
+  $_font-weight: map_get($_settings, font-weight);
+  $_font-size: map_get($_settings, font-size);
+  $_line-height: map_get($_settings, line-height);
+  $_padding: map_get($_settings, padding);
+  $_text-align: map_get($_settings, text-align);
+  $_text-decoration: map_get($_settings, text-decoration);
+  $_text-decoration--active: map_get($_settings, text-decoration--active);
+  $_transition: map_get($_settings, transition);
+
+  // Configurable properties
+
+  @if $_bg-color {
+    background-color: $_bg-color;
+  }
+
+  @if $_border {
+    border: $_border;
+  }
+
+  @if $_material-shadow {
+    @include material-shadow($_material-shadow);
+  }
+
+  @if $_color {
+    color: $_color;
+  }
+
+  @if $_cursor {
+    cursor: $_cursor;
+  }
+
+  @if $_display {
+    display: $_display;
+  }
+
+  @if $_font-family {
+    font-family: $_font-family;
+  }
+
+  @if $_font-weight {
+    font-weight: $_font-weight;
+  }
+
+  @if $_font-size {
+    font-size: $_font-size;
+  }
+
+  @if $_line-height {
+    line-height: $_line-height;
+  }
+
+  @if $_padding {
+    padding: unquote($_padding);
+  }
+
+  @if $_text-align {
+    text-align: $_text-align;
+  }
+
+  @if $_text-decoration {
+    text-decoration: $_text-decoration;
+  }
+
+  @if $_transition {
+    transition: $_transition;
+  }
+
+  // Shared properties
+  appearance: none;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+  vertical-align: middle;
+
+
+  @include on-event {
+    @if $_bg-color--active {
+      background-color: $_bg-color--active;
+    }
+    @if $_color--active {
+      color: $_color--active;
+    }
+    @if $_border--active {
+      border: $_border--active;
+    }
+    @if $_text-decoration--active {
+      text-decoration: $_text-decoration--active;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: $_bg-color;
+    color: $_color;
+    cursor: not-allowed;
+    opacity: .5;
+    @if $_border != null {
+      border: $_border;
+    }
+
+    @include on-event {
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+.panel[data-type="well"] {
+  background-color: color(white);
+  margin-left: auto;
+  margin-right: auto;
+
+  header {
+    padding-top: modular-scale(1);
+    padding-bottom: modular-scale(3);
+  }
+
+  h2 {
+    font-size: modular-scale(1);
+    text-transform: uppercase;
+  }
+
+  .jump-link {
+    display: block;
+    text-align: center;
+  }
+
+  // Styles for panels inside wells
+  .panel[data-type="posts"],
+  .panel[data-type="events"],
+  .panel[data-type="wysiwyg"] {
+    padding-top: 0;
+
+    &[data-width="full"] {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .content {
+      padding: 0;
+
+      h3 {
+        font-size: modular-scale(1);
+      }
+    }
+  }
+
+  .panel[data-type="posts"],
+  .panel[data-type="events"] {
+    padding-bottom: modular-scale(0);
+  }
+
+  .panel[data-type="wysiwyg"] {
+    margin-top: em(-8px); // visual finetuning
+    padding-bottom: 0;
+
+    .content h3 a {
+      font-weight: 700;
+    }
+  }
+
+  .panel[data-type="posts"] article,
+  .panel[data-type="events"] figure {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    box-shadow: none;
+
+    > .content {
+      width: calc(100% - 75px - #{1em});
+      margin-top: 0;
+    }
+  }
+
+  .panel[data-type="posts"] article figure,
+  .panel[data-type="events"] figure .date {
+    width: 75px;
+    height: 75px;
+    margin-right: modular-scale(0);
+  }
+
+  .panel[data-type="posts"] article > .content .post-date,
+  .panel[data-type="posts"] article > .content .post-category,
+  .panel[data-type="events"] figure > .content .tag {
+    line-height: 1;
+    margin-bottom: modular-scale(-4);
+    margin-top: -2px; //fine adjustment to compensate for extra spacing caused by line height
+  }
+
+  // Styles for posts inside wells
+  .panel[data-type="posts"] {
+    article {
+      figure {
+        picture {
+          @include ar-container(1, 1, horizontal, $hover-scale: 1.07);
+        }
+      }
+
+      > .content {
+        .post-meta {
+          margin-bottom: 0;
+        }
+
+        .post-date {
+          text-transform: uppercase;
+          color: color(dark-red);
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  // Styles for events inside wells
+  .panel[data-type="events"] {
+    figure {
+      .img-wrapper {
+        display: none;
+      }
+
+      .date {
+        position: relative;
+        top: 0;
+        min-width: 75px;
+        margin-left: 0;
+        margin-bottom: 0;
+        transform: none;
+        box-shadow: none;
+
+        .month {
+          width: 75px;
+        }
+      }
+
+      > .content {
+        margin-left: 0;
+
+        > * {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+aside {
+  .panel[data-type="well"] {
+    .panel[data-type="wysiwyg"],
+    .panel[data-type="posts"] article,
+    .panel[data-type="events"] figure {
+      .content {
+        font-size: 14px; // make base font size smaller for sidebar
+
+        @include grid-media($media-sm) {
+          font-size: 15px;
+        }
+
+        @include grid-media($media-lg) {
+          @include responsive-fontsize(15px, 16px, $screen-lg-min, $screen-lg-max);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,433 @@
+@charset "UTF-8";
+
+// Some colors in panel posts are hard-set.
+.panel[data-type="posts"] {
+  .grid-container {
+    h3 {
+      @include font-size(modular-scale(1, $ratio: 1.125));
+      margin-top: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        text-decoration: none;
+        transition: color ease-in .25s;
+      }
+    }
+
+    .post-meta {
+      .post-category {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: modular-scale(0);
+        line-height: 1.2;
+      }
+      :last-child {
+        margin-bottom: 0;
+      }
+      margin-bottom: .333333em;
+    }
+
+    p {
+      margin-bottom: modular-scale(-3);
+    }
+
+    > header {
+      @include grid-column(12);
+    }
+
+    > article {
+      background-color: color(item-background);
+      transition: box-shadow ease-in .3s;
+      overflow: hidden;
+
+      .content {
+        @include grid-media($media-md-max, $media-lg-only, $media-xl) {
+          padding: _retrieve-neat-setting($neat-grid, gutter) / 1.25;
+        }
+      }
+      &[data-type="social-embed"] {
+        .content {
+          padding: 0;
+        }
+      }
+
+      //By default, all the images in non-featured posts have an aspect ratio of 3:2
+      picture {
+        @include ar-container(3, 2, horizontal, $hover-scale: 1.025);
+
+        img {
+          transition: all ease-in .3s;
+          object-fit: cover;
+          font-family: 'object-fit: cover;';
+        }
+
+      }
+
+      /* Hides image for xs for no-featured option, and hides all but first image for featured=first or first-last options */
+      @at-root {
+        .panel[data-type="posts"] article:nth-child(n+2), .panel[data-type="posts"][data-featured-post="none"] article {
+          picture {
+            @include grid-media($media-xs-only) {
+              display: none;
+            }
+          }
+        }
+      }
+
+      /* Display last item only in lg and xl when featuring first and last posts */
+      @at-root .panel[data-type="posts"][data-featured-post="first-last"] article:last-child {
+        display: none;
+
+        @include grid-media($media-lg,$media-print) {
+          display: block;
+        }
+      }
+
+      @at-root .panel[data-type="posts"][data-featured-post="first"] article:first-child {
+        picture {
+          backface-visibility: hidden;
+          @include ar-container(5, 2, horizontal);
+
+          @include grid-media($media-sm-only) {
+            @include ar-container(5, 2, horizontal, $hover-scale: 1.015);
+          }
+
+          @include grid-media($media-md-only) {
+            @include ar-container(5, 2, horizontal, $hover-scale: 1.02);
+          }
+
+          @include grid-media($media-lg) {
+            @include ar-container(5, 2, horizontal, $hover-scale: 1.01);
+          }
+        }
+        .content {
+          transition: box-shadow ease-out .3s;
+          @include grid-media($media-lg) {
+            @include material-shadow(flat);
+          }
+        }
+      }
+
+
+      @at-root .panel[data-type="posts"][data-featured-post="first-last"] {
+        article:first-child, article:last-child {
+          @include grid-media($media-sm) {
+            padding: 0;
+            position: relative;
+
+            > div.content {
+              position: absolute;
+              bottom: -2px; //compensate for gradient rendering glitch
+              display: block;
+              box-shadow: none;
+              width: calc(100% + 2px); //compensate for gradient rendering glitch
+              padding-bottom: 0;
+
+              h3 a {
+                font-size: em(26px);
+                letter-spacing: .03em;
+                font-weight: 600;
+                line-height: 1.2;
+                display: block;
+                padding-bottom: (_retrieve-neat-setting($media-sm-only, gutter) / 1.25) + 2px;
+              }
+            }
+
+            figure {
+              height:100%;
+
+              picture {
+                height:100%;
+
+                img {
+                  object-fit: cover;
+                  object-position: center; // background image vertically-centered by default in featured container
+                  font-family: 'object-fit: cover; object-position: center;';
+                }
+
+                &[data-anchor-v="top"] {
+                  img {
+                    object-position: top;
+                    font-family: 'object-fit: cover; object-position: top;';
+                  }
+                }
+
+                &[data-anchor-v="bottom"] {
+                  img {
+                    object-position: bottom;
+                    font-family: 'object-fit: cover; object-position: bottom;';
+                  }
+                }
+              }
+
+            }
+          }
+        }
+      }
+
+      @at-root .panel[data-type="posts"][data-featured-post="first-last"] {
+        article:first-child, article:last-child {
+
+          picture {
+            @include grid-media($media-sm-only) {
+              @include ar-container(16, 9, horizontal, $hover-scale:1 /*, $hover-scale: 1.015 */);
+            }
+
+            @include grid-media($media-md-only) {
+              @include ar-container(2, 1, horizontal, $hover-scale:1 /*, $hover-scale: 1.02 */);
+            }
+
+            @include grid-media($media-lg) {
+              @include ar-container(2, 1, horizontal, $hover-scale:1 /*, $hover-scale: 1.01 */);
+            }
+          }
+
+
+          // bg image is enlarged slightly when one hovers over featured posts, override hover-scale in ar-container so it works when title padding is hovered over
+          &:hover, &[data-hover="true"] {
+
+            @include material-shadow(medium);
+
+            picture img {
+              @include grid-media($media-sm) {
+                transform: translate3d(-50%,-50%,0) scale(1.015);
+              }
+
+              @include grid-media($media-md) {
+                transform: translate3d(-50%,-50%,0) scale(1.02);
+              }
+
+              @include grid-media($media-lg) {
+                transform: translate3d(-50%,-50%,0) scale(1.01);
+              }
+
+            }
+          }
+
+        }
+      }
+
+      @at-root .panel[data-type="posts"][data-featured-post="first"] article:first-child[data-hover="true"] {
+        .content {
+          @include grid-media($media-lg) {
+            @include material-shadow(medium);
+          }
+        }
+      }
+
+      // Fluid typography and color themes for when first AND last posts are featured
+      @at-root .panel[data-type="posts"][data-featured-post="first-last"] .grid-container {
+
+        article {
+
+          &:first-child, &:last-child {
+
+            @include color-themes($post-themes) {
+
+              @include grid-media($media-sm) {
+
+                > div {
+                  background: color(content-gradient);
+
+                  .post-category {
+                    color: color(post-category);
+                    text-shadow: color(category-shadow);
+                  }
+
+                  h3 a {
+                    color: color(post-title);
+                  }
+
+                }
+              }
+            }
+            // font-weight fine-tuning for theme--white due to black text on white looks thinner than the reverse
+            &.theme--white {
+              > div {
+                h3 a {
+                  font-weight: 700;
+                  letter-spacing: .01em;
+                }
+              }
+            }
+          }
+
+          @include grid-media($media-md-only) {
+
+            > div {
+              .post-category {
+                @include responsive-fontsize(15px, 17px, $screen-md-min, $screen-md-max);
+              }
+
+              h3 a {
+                @include responsive-fontsize(18px, 21px, $screen-md-min, $screen-md-max);
+              }
+            }
+
+            &:first-child, &:last-child {
+              > div.content {
+
+                h3 a {
+                  @include responsive-fontsize(20px, 26px, $screen-md-min, $screen-md-max);
+                  padding-bottom: (_retrieve-neat-setting($media-md-only, gutter) / 1.25) + 2px;
+                }
+              }
+            }
+          }
+
+            @include grid-media($media-lg-only) {
+
+              > div {
+
+                .post-category {
+                  @include responsive-fontsize(15px, 18px, $screen-lg-min, $screen-lg-max);
+                }
+
+                h3 a {
+                  @include responsive-fontsize(18px, 21px, $screen-lg-min, $screen-lg-max);
+                }
+              }
+
+              &:first-child, &:last-child {
+
+                > div.content {
+
+                  h3 a {
+                    @include responsive-fontsize(21px, 27px, $screen-lg-min, $screen-lg-max);
+                    padding-bottom: (_retrieve-neat-setting($media-lg-only, gutter) / 1.25) + 2px;
+                  }
+                }
+              }
+            }
+
+            @include grid-media($media-xl) {
+
+              &:first-child, &:last-child {
+                > div.content {
+
+                  h3 a {
+                    font-size: em(25px);
+                    padding-bottom: (_retrieve-neat-setting($media-xl, gutter) / 1.25) + 2px;
+                  }
+                }
+              }
+            }
+
+        }
+      }
+
+      // text is enlarged slightly when one hovers over featured posts
+      @at-root .panel[data-type="posts"][data-featured-post="first-last"] {
+
+        article:first-child, article:last-child {
+
+          .content {
+            will-change: transform;
+            transition: all .3s ease-in;
+
+          }
+
+          &:hover {
+            overflow: hidden;
+
+            .content {
+              @include grid-media($media-sm) {
+                transform: scale(1.015);
+              }
+              @include grid-media($media-md) {
+                transform: scale(1.02);
+              }
+              @include grid-media($media-lg) {
+                transform: scale(1.01);
+              }
+            }
+          }
+
+        }
+      }
+
+      &[data-type="social-post"] {
+        .content {
+          line-height: $base-line-height * 0.9;
+
+          p:last-of-type { // social icon that links to the original post
+            text-align: right;
+            font-size: 2em;
+            line-height: 1;
+            margin: modular-scale(-4) 0 0;
+          }
+        }
+      }
+    }
+
+    // Colors
+
+    article {
+      @include material-shadow(shallow);
+      background-color: color(background);
+
+      .date {
+        background-color: color(text);
+        color: color(reverse-text);
+      }
+
+      .content {
+        color: color(text);
+
+        .post-meta .post-category {
+          color: color(brand--dark);
+        }
+        >h3 {
+          color: color(text);
+
+          a {
+            color: color(text);
+
+            @at-root .panel[data-type="posts"] article[data-hover="true"] {
+              @include material-shadow(medium);
+              .content >h3 a {
+                color: color(link);
+                transition: color .25s ease-out;
+              }
+            }
+
+          }
+        }
+      }
+
+      &[data-type="social-post"] {
+        a {
+          .fa {
+            color: color(choco);
+            transition: color .25s ease-in-out;
+          }
+
+          @at-root .panel[data-type="posts"] article[data-hover="true"][data-type="social-post"] .content a {
+            .fa-facebook,
+            .fa-facebook-official,
+            .fa-facebook-square {
+              color: color(facebook);
+            }
+
+            .fa-twitter,
+            .fa-twitter-square {
+              color: color(twitter);
+            }
+
+            .fa-instagram {
+              color: color(instagram);
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+
+  > footer {
+    @include grid-column(12);
+  }
+}

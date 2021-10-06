@@ -1,0 +1,51 @@
+@charset 'UTF-8';
+
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+@keyframes fade-in {
+   0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+   100% {
+     opacity: 1;
+     visibility: visible;
+   }
+ }
+
+@keyframes fade-out {
+  0% {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    display: none;
+  }
+}
+body > header {
+  position: relative;
+  box-shadow: 0 0 10px rgba(0,0,0,.15), 0 3px 3px rgba(0,0,0,.15);
+  transition: box-shadow ease .5s .25s;
+  z-index: 80;
+  @include grid-media($media-md-max) {
+    min-height: em($brand-bar__height);
+  }
+  @include grid-media($media-lg) {
+    min-height: em($brand-bar__height) + em($site-nav__height);
+  }
+
+  .panel-collection {
+    position: relative;
+    margin-top: em($brand-bar__height - 1px);
+  }
+}
+
+@import 'skiplinks',
+'brand-bar',
+'site-navigation';

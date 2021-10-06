@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+@import
+  'panels/accordion'
+, 'panels/common-elements'
+, 'panels/content-width'
+, 'panels/panel-posts-per-row'
+, 'panels/background-image-section'
+, 'panels/call-to-action'
+, 'panels/events'
+, 'panels/facts'
+, 'panels/hero-image'
+, 'panels/highlights'
+, 'panels/image-content'
+, 'panels/interstitial-text'
+, 'panels/position-stmt'
+, 'panels/posts'
+, 'panels/profile'
+, 'panels/search'
+, 'panels/splash-panels'
+, 'panels/subscribe-sr'
+, 'panels/well'
+, 'panels/wyswig'
+, 'panels/panel-themes' // This should always go last in order to inherit the right specificity
+;

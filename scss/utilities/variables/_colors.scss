@@ -1,0 +1,249 @@
+/// This variable is a sass map that overrides our generic color map.
+/// Use this to define your project's color palette.
+///
+/// @type map
+///
+/// @group settings
+///
+/// @name Colors
+///
+/// @property {color} color [null]
+///   The color value retrieved by the color function
+///
+/// @example scss
+///   $colors: (
+///     brand: #8c1515,
+///     text: #333,
+///     link: #ff4136,
+///     link-hover: 82121B,
+///     red: #ff4136,
+///   );
+$colors: (
+  // Homesite Colors
+  brand:                        #8c1515,
+  brand--bright:                #b1040e,
+  brand--dark:                  #820000,
+  link:                         #006CB8,
+  link--active:                 #00548F,
+  background:                   #fff,
+  background--alt:              #f4f4f4,
+  button-background:            #b1040e,
+  button-background--active:    #820000,
+  button-text:                  #fff,
+  button-text--active:          #fff,
+  border:                       #ccc,
+  text:                         #000,
+  text--alt:                    #B1040E,
+  text--light:                  #808080,
+  reverse-text:                 #fff,
+  reverse-text--active:         #fff,
+  //
+  // ------------------------------------
+  // Named Colors
+  // ------------------------------------
+  //
+  bright-blue:                  #006CB8,
+  blue:                         #00548F,
+  brand-red:                    #8c1515,
+  bright-red:                   #B1040E,
+  dark-red:                     #820000,
+  green:                        #009B76,
+  black:                        #000,
+  choco:                        #2F2424,
+  stone:                        #544948,
+  sandstone:                    #F9F6EF,
+  fog:                          #F4F4F4,
+  white:                        #fff,
+  //
+  // ------------------------------------
+  // Homesite Specific colors
+  // ------------------------------------
+  //
+  item-background:              #fff,
+  img-wrapper:                  #444,
+  //
+  // ------------------------------------
+  // Third party colors
+  // ------------------------------------
+  //
+  facebook:                     #3b579d,
+  twitter:                      #1da1f2,
+  instagram:                    #d73676,
+  youtube:                      #cd201f,
+  itunesu:                      #555,
+);
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Panel themes
+
+$theme--white: (
+  background:                   #fff,
+  background--alt:              #f4f4f4,
+  text:                         #000,
+  link:                         #006CB8,
+  link-alt:                     #000,
+  link--gradient:               #000,
+);
+
+$theme--fog: (
+  background:                   #f4f4f4,
+  background--alt:              #fff,
+  link--gradient:               #000,
+);
+
+$theme--sandstone: (
+  background:                   #F9F6EF,
+  background--alt:              #fff,
+  border:                       #ccc7bc,
+  link--gradient:               #000,
+);
+
+$theme--stone: (
+  link:                         #fff,
+  link--active:                 #fff,
+  link--gradient:               #fff,
+  background:                   #544948,
+  background--alt:              #fff,
+  border:                       #736866,
+  text:                         #fff,
+  text--alt:                    #B1040E,
+  reverse-text:                 #000,
+  reverse-text--active:         #B1040E,
+);
+
+$theme--choco: (
+  link:                         #fff,
+  link--active:                 #fff,
+  link--gradient:               #fff,
+  background:                   #2F2424,
+  background--alt:              #fff,
+  border:                       #4c3f3f,
+  text:                         #fff,
+  text--alt:                    #B1040E,
+  reverse-text:                 #000,
+  reverse-text--active:         #B1040E,
+);
+
+$panel-themes: (
+  white:      (selector: '&.theme--white',      palette: $theme--white),
+  fog:        (selector: '&.theme--fog',        palette: $theme--fog),
+  sandstone:  (selector: '&.theme--sandstone',  palette: $theme--sandstone),
+  stone:      (selector: '&.theme--stone',      palette: $theme--stone),
+  choco:      (selector: '&.theme--choco',      palette: $theme--choco),
+);
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Splash image / video themes - also used for #site-navigation when a splash screen is visible
+
+$theme--splash-white: (
+  nav-bg-gradient-1:      transparent 0%,
+  nav-bg-gradient-2:      #FFF 50%,
+  nav-bg-opacity:         .85,
+
+  scroller-bg-color-1:    transparent,
+  scroller-bg-pct-1:      0%,
+  scroller-bg-color-2:    rgba( 255, 255, 255, 1),
+  scroller-bg-pct-2:      45%,
+  scroller-bg-opacity:    .85,
+
+  text:                   map_get( $colors, text ),
+  text--shadow:           rgba( 255, 255, 255, 0.7 ),
+  text--wordmark:         map_get( $colors, brand ),
+);
+
+$theme--splash-choco: (
+  nav-bg-gradient-1:      transparent 0%,
+  nav-bg-gradient-2:      rgba(2, 2, 2, 1) 75%,
+  nav-bg-opacity:         .75,
+
+  scroller-bg-color-1:    transparent,
+  scroller-bg-pct-1:      0%,
+  scroller-bg-color-2:    rgba(2, 2, 2, 1),
+  scroller-bg-pct-2:      67%,
+  scroller-bg-opacity:    .6,
+
+  text:                   map_get( $theme--choco, text ),
+  text--shadow:           rgba( 0, 0, 0, 0.7 ),
+  text--wordmark:         map_get( $theme--choco, text ),
+);
+
+$splash-themes: (
+  white: (selector: '&.theme--white', palette: $theme--splash-white),
+  choco: (selector: '&.theme--choco', palette: $theme--splash-choco),
+);
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Themes for featured posts with images as backgrounds
+
+$theme--post-white: (
+        content-gradient:       linear-gradient(180deg,transparent,rgba(255,255,255,.7) 20%,rgba(255,255,255,.9) 50%,rgba(255,255,255,1) 76%),
+    
+        post-category:          map_get( $theme--white, text ),
+        post-title:             map_get( $theme--white, link-alt ),
+        category-shadow:        none, //this override is needed because we default to choco
+);
+
+$theme--post-choco: (
+        content-gradient:       linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.85) 80%),
+
+        post-category:          map_get( $theme--choco, text ),
+        post-title:             map_get( $theme--choco, text ),
+        category-shadow:        rgba(0,0,0,.6) 0 0 2px,
+);
+
+$post-themes: (
+        white: (selector: '&.theme--white', palette: $theme--post-white),
+        choco: (selector: '&.theme--choco', palette: $theme--post-choco),
+        none: (selector: '&', palette: $theme--post-choco), //default to choco theme
+);
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Alert themes
+
+$theme--alert-dark: (
+  background:     #2F2424,
+  text:           #fff,
+  heading:        #fff,
+  link:           #7FDBFF,
+  link--active:   tint( #7FDBFF, 35%),
+  icon:           #eaab00,
+  button:         #fff,
+);
+
+$theme--announce-dark: (
+  background:     map_get( $theme--alert-dark, background ),
+  text:           map_get( $theme--alert-dark, text ),
+  heading:        map_get( $theme--alert-dark, heading ),
+  link:           map_get( $theme--alert-dark, link ),
+  link--active:   map_get( $theme--alert-dark, link--active ),
+  icon:           #00B98D,
+  button:         map_get( $theme--alert-dark, button ),
+);
+
+$theme--alert-light: (
+  background:     #fff,
+  text:           #2E2D29,
+  heading:        #820000,
+  link:           map_get( $colors, link ),
+  link--active:   map_get( $colors, link--active ),
+  icon:           #820000,
+  button:         #2E2D29,
+);
+
+$theme--announce-light: (
+  background:     #F9F6EF,
+  text:           map_get( $theme--alert-light, text ),
+  heading:        #2E2D29,
+  link:           map_get( $theme--alert-light, link ),
+  link--active:   map_get( $theme--alert-light, link--active ),
+  icon:           #009B76,
+  button:         map_get( $theme--alert-light, button ),
+);
+
+$alert-themes: (
+  alert-dark:     (selector: '&.theme--alert-dark',     palette: $theme--alert-dark),
+  announce-dark:  (selector: '&.theme--announce-dark',  palette: $theme--announce-dark),
+  alert-light:    (selector: '&.theme--alert-light',    palette: $theme--alert-light),
+  announce-light: (selector: '&.theme--announce-light', palette: $theme--announce-light),
+);

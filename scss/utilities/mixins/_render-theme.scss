@@ -1,0 +1,8 @@
+@mixin render-theme($palette, $selector: '&') {
+  $_default-color-palette: $colors;
+  $colors: map-merge($colors, $palette) !global;
+  #{$selector} {
+    @content;
+  }
+  $colors: $_default-color-palette !global;
+}

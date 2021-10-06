@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.widget_alert {
+  position: fixed;
+  $gutter: _retrieve-neat-setting($neat-grid, gutter);
+  padding: $gutter $gutter $gutter/2;
+  font-weight: 300;
+  opacity: 0;
+  visibility: hidden;
+  top: em($brand-bar__height);
+
+  @include grid-media($media-lg) {
+    top: em($brand-bar__height) + em($site-nav__height) - em(1px);
+  }
+
+  @at-root body.alert & {
+    animation-duration: .3s;
+    animation-timing-function: ease-in-out;
+    animation-direction: default;
+    animation-name: fade-in;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  width: 100%;
+
+  @include material_shadow(medium);
+
+  figure {
+    &[data-style="compact"] {
+      padding-right: 2em;
+      > * {
+        display: inline-block;
+      }
+      h2 {
+        margin-right: 0.25em;
+      }
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: modular-scale(1);
+      font-weight: 600;
+      .fa {
+        margin-right: 0.5em;
+      }
+    }
+    a.jump-link {
+      padding-left: 0.75em;
+    }
+  }
+
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    @include button($dismiss-button--default, (padding: '.75em 1em'));
+    text-align: right;
+    background-color: inherit;
+    color: color(text);
+  }
+
+  @include color-themes($alert-themes) {
+    background-color: color(background);
+    color: color(text);
+    h2 {
+      color: color(heading);
+      .fa {
+        color: color(icon);
+      }
+    }
+    button {
+      color: color(button);
+      background-color: transparent;
+      font-size: modular-scale(1);
+      #{$hocus} {
+        color: color(link);
+      }
+    }
+    a {
+      color: color(link);
+      #{$hocus} {
+        color: color(link--active);
+      }
+    }
+  }
+
+  &[aria-hidden="true"] {
+    display: none;
+  }
+}
+
+body.alert #main {
+  margin-top: 1.45em; // We want some margin top, but not enough to completely clear the body. We many need to do this via JS in the future, but for now this addresses most cases.
+}
+
+body.page-template-homepage.alert #main {
+  margin-top: 0; // but not on home
+}

@@ -1,0 +1,50 @@
+@charset "UTF-8";
+// Generic settings. Configure these variables in _variables.scss
+
+// Skiplinks
+$skiplinks__background-color: color(dark-grey) !default;
+$skiplinks__foreground-color: color(white) !default;
+
+
+#skiplinks {
+  // Map local variables to global names (makes it easier to read)
+  $_bg-color: $skiplinks__background-color;
+  $_fg-color: $skiplinks__foreground-color;
+
+  @extend %hidden-print;
+  position: absolute;
+  left: $small-spacing;
+  top: -500px;
+  background-color: $_bg-color;
+  color: $_fg-color;
+  font-family: $base-font-family;
+  font-size: .75em;
+  font-weight: 400;
+  padding: 0;
+  min-height: 1px;
+  transition-duration: $base-duration;
+  transition-property: top;
+  transition-timing-function: $base-timing;
+  text-decoration: none;
+
+  &,
+  &:hover,
+  &:visited {
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &:active,
+  &:focus {
+    border: $base-border;
+    border-radius: $base-border-radius;
+    position: fixed;
+    width: auto;
+    height: auto;
+    top: $small-spacing;
+    left: $small-spacing;
+    padding: $small-spacing / 2 $small-spacing ;
+  }
+}

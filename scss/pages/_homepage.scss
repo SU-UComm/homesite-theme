@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+.page-template-homepage {
+  #stanford-medicine-links{
+    @include grid-container;
+
+    @include grid-media($media-sm){
+      @include adjust-container-width(4);
+    }
+
+    @include grid-media($media-lg){
+      @include adjust-container-width(4);
+    }
+
+    > * {
+      @include grid-media($media-xs-only){
+        @include grid-column(10);
+        @include grid-push(1);
+        padding: modular-scale(1);
+      }
+
+      @include grid-media($media-md) {
+        padding: modular-scale(1);
+      }
+
+      @include grid-media($media-sm, $media-lg, $media-xl, $media-print) {
+        @include grid-column(1 of 3);
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+}

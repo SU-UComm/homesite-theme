@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+img,
+picture,
+figure {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: none;
+  margin: 0;
+}
+
+picture {
+  display: block;
+  overflow: hidden;
+
+  img {
+    display: block;
+    background-color: shade(color(brand), 30%);
+    background-image: linear-gradient(shade(color(brand), 15%), shade(color(brand), 30%));
+  }
+}
+
+figure {
+  &.alignleft,
+  &.alignright {
+    margin: em(6px) auto modular-scale(0);
+    @include grid-media($media-xs-only) {
+      &.portrait {
+        @include adjust-container-width(-2, $grid-columns: 12);
+      }
+    }
+    @include grid-media($media-sm-only) {
+      @include adjust-container-width(-1, $grid-columns: 9);
+      &.portrait {
+        @include adjust-container-width(-3, $grid-columns: 9);
+      }
+    }
+    @include grid-media($media-md-only) {
+      @include adjust-container-width(-1, $grid-columns: 8);
+
+      &.portrait {
+        @include adjust-container-width(-3, $grid-columns: 8);
+      }
+    }
+  }
+  &.alignright {
+    @include grid-media($media-lg-only) {
+      &.landscape {
+        @include grid-column(4 of 7.5);
+        float: right;
+        margin-right: _adjust-container-margin(1, $grid-collapse: false, $grid-columns: 7.5);
+      }
+      &.portrait {
+        @include grid-column(3 of 7.5);
+        float: right;
+        margin-right: _adjust-container-margin(1, $grid-collapse: false, $grid-columns: 7.5);
+      }
+    }
+    @include grid-media($media-xl) {
+      &.landscape {
+        @include grid-column(4 of 7);
+        float: right;
+        margin-right: _adjust-container-margin(2, $grid-collapse: true, $max-width: true);
+      }
+      &.portrait {
+        @include grid-column(3 of 7);
+        float: right;
+        margin-right: _adjust-container-margin(2, $grid-collapse: true, $max-width: true);
+      }
+    }
+  }
+  &.alignleft {
+    @include grid-media($media-lg-only) {
+      &.landscape {
+        @include grid-column(4 of 7.5);
+        margin-left: _adjust-container-margin(1, $grid-collapse: false, $grid-columns: 7.5);
+        margin-right: _retrieve-neat-setting($neat-grid, gutter);
+      }
+      &.portrait {
+        @include grid-column(3 of 7.5);
+        margin-left: _adjust-container-margin(1, $grid-collapse: false, $grid-columns: 7.5);
+        margin-right: _retrieve-neat-setting($neat-grid, gutter);
+      }
+    }
+    @include grid-media($media-xl) {
+      &.landscape {
+        @include grid-column(4 of 7);
+        margin-left: _adjust-container-margin(1, $grid-collapse: true, $max-width: true);
+        margin-right: _retrieve-neat-setting($neat-grid, gutter);
+      }
+      &.portrait {
+        @include grid-column(3 of 7);
+        margin-left: _adjust-container-margin(1, $grid-collapse: true, $max-width: true);
+        margin-right: _retrieve-neat-setting($neat-grid, gutter);
+      }
+    }
+  }
+  &.aligncenter {
+    margin: modular-scale(2) auto modular-scale(1);
+    @include grid-media($media-lg-only) {
+      @include adjust-container-width(-1, $grid-columns: 7.5);
+    }
+    @include grid-media($media-xl) {
+      @include adjust-container-width(-1, $grid-columns: 7);
+    }
+  }
+  &.alignwide {
+    margin: modular-scale(2) auto modular-scale(1);
+    max-width: none;
+    @include grid-media($media-xs-only) {
+      @include grid-collapse;
+
+      figcaption {
+        @include grid-column(1 of 1);
+      }
+    }
+    @include grid-media($media-sm-only) {
+      @include adjust-container-width(3, $grid-columns: 9);
+    }
+    @include grid-media($media-md-only) {
+      @include adjust-container-width(2, $grid-columns: 8);
+    }
+    @include grid-media($media-lg-only) {
+      @include adjust-container-width(1, $grid-columns: 7.5);
+    }
+    @include grid-media($media-xl) {
+      @include adjust-container-width(1, $grid-columns: 7);
+    }
+  }
+
+  figcaption {
+    @extend small;
+
+    h3 {
+      display: inline;
+      text-transform: uppercase;
+      font-size: inherit;
+      font-weight: 600;
+      line-height: inherit;
+      margin-right: modular-scale(-4);
+    }
+
+    p:first-of-type {
+      display: inline;
+    }
+  }
+}

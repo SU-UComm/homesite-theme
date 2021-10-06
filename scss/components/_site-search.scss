@@ -1,0 +1,267 @@
+@keyframes searchToggle {
+  0% {
+    display: none;
+    margin-top: -10em;
+    z-index: 90;
+  }
+  1% {
+    display: block;
+  }
+  99% {
+    display: block;
+    z-index: 90;
+    @include grid-media($media-md-max) {
+      margin-top: em($brand-bar__height);
+    }
+    @include grid-media($media-lg) {
+      margin-top: em($brand-bar__height + $site-nav__height);
+    }
+  }
+  100% {
+    display: block;
+    z-index: 130;
+  }
+}
+
+// Styles common to both top site search and search panels
+#site-search,
+.panel[data-type="search"] {
+
+  @include anti-aliasing;
+  text-align: center;
+  position: relative;
+
+  > form {
+    @include grid-container;
+    position: relative;
+
+    @include grid-media($media-md) {
+      @include grid-collapse;
+    }
+  }
+}
+
+#search-type,
+#panel-search-type {
+  position: absolute;
+  top: -2.75em;
+
+  @include grid-column(12);
+  margin-bottom: modular-scale(0);
+
+  @include grid-media($media-xs-max) {
+    top: -4em;
+  }
+
+  @include grid-media($media-sm-only) {
+    top: -1em;
+  }
+
+  > * {
+    display: inline;
+    margin-right: modular-scale(0);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  h2 {
+    font-size: modular-scale(1);
+
+    @include grid-media($media-xs-max) {
+      display: block;
+      margin-right: 0;
+    }
+  }
+
+  input + label {
+    margin-left: -#{modular-scale(-2)};
+  }
+
+  input {
+    position: relative;
+    top: em(-2px);
+  }
+}
+
+#search-field,
+#panel-search-field {
+  font-family: "Source Sans Pro", "FontAwesome", "Helvetica Neue", Helvetica, Arial, sans-serif; // include FA to show the magnifying glass icon
+  padding-left: modular-scale(-1);
+
+  @include grid-media($media-md, $media-lg, $media-xl) {
+    @include grid-column(8);
+  }
+}
+
+#search-btn,
+#panel-search-btn {
+  box-shadow: none;
+
+  @include grid-media($media-sm-max) {
+    width: 100%;
+  }
+
+  @include grid-media($media-md, $media-lg, $media-xl) {
+    @include grid-column(4);
+  }
+
+  .fa {
+    margin-right: modular-scale(-7);
+  }
+}
+
+#search-field,
+#panel-search-field,
+#search-btn,
+#panel-search-btn {
+  height: 3em;
+
+  @include grid-media($media-md-only) {
+    @include responsive-fontsize(15px, 18px, $screen-md-min, $screen-md-max);
+  }
+
+  @include grid-media($media-lg-only) {
+    @include responsive-fontsize(16px, 18px, $screen-lg-min, $screen-lg-max);
+  }
+}
+
+#site-search {
+  display: none;
+  animation-duration: .4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: reverse;
+  animation-name: searchToggle;
+  position: relative;
+
+  > p {
+    font-weight: 600;
+
+    a {
+      font-weight: 400;
+      margin-left: .5em;
+      white-space: nowrap;
+
+      @include grid-media($media-xs-max) {
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  #search-btn {
+    margin-bottom: modular-scale(0);
+  }
+
+  &[aria-expanded="true"] {
+    @include responsive-container($content-container);
+    @include material-shadow(medium);
+    display: block;
+    position: fixed;
+    animation-direction: normal;
+    top: 0;
+    width: 100%;
+    background-color: color(white);
+
+    @include grid-media($media-md-max) {
+      margin-top: em($brand-bar__height);
+      $_gutter: em(_retrieve-neat-setting($neat-grid, gutter));
+      padding-top: $_gutter * 3.5;
+      padding-bottom: $_gutter;
+    }
+    @include grid-media($media-lg-only, $media-xl) {
+      margin-top: em($brand-bar__height + $site-nav__height - 2);
+      $_gutter: em(_retrieve-neat-setting($neat-grid, gutter));
+      padding-top: $_gutter * 2.5;
+      padding-bottom: $_gutter / 2;
+    }
+  }
+
+  .page-template-search & {
+    &, &[aria-expanded="true"] {
+      @include grid-media($media-md-max) {
+        margin-top: em($brand-bar__height);
+      }
+
+      @include grid-media($media-lg) {
+        margin-top: em($brand-bar__height + $site-nav__height);
+      }
+
+      display: block;
+      position: static;
+
+      @include responsive-container($content-container);
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        padding-top: 4.5em;
+        padding-bottom: 2.5em;
+      }
+
+      background-color: color(background--alt);
+    }
+  }
+}
+
+#site-search[aria-expanded="true"],
+.page-template-search #site-search,
+.panel[data-type="search"] {
+
+  @include grid-media($media-md-only) {
+    $_gutter: em(_retrieve-neat-setting($neat-grid, gutter));
+    padding-left: $_gutter;
+    padding-right: $_gutter;
+
+    > form {
+      @include grid-column(10);
+      @include grid-push(1);
+
+      + p {
+        clear: both;
+      }
+    }
+  }
+}
+
+
+#search-overlay {
+  @extend %modal-overlay;
+}
+
+#search-wrapper.splash {
+  #site-search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+    background-color: transparent;
+    box-shadow: none;
+    color: color(white);
+
+    @include grid-media($media-md) {
+      padding: {
+        top: 3em;
+      }
+    }
+
+    a {
+      color: color(white);
+    }
+  }
+
+  #search-overlay {
+    position: absolute;
+    opacity: .7;
+    top: 0;
+  }
+}
+
+// Styles for pages with splash parallax panel
+.splash-parallax {
+  #site-search[aria-expanded="true"] {
+
+    @include grid-media($media-lg) {
+      transition: top 0.26s ease-out;
+    }
+  }
+}

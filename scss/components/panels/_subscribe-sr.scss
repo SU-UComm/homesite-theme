@@ -1,0 +1,193 @@
+.panel[data-type="subscribe-sr"] {
+
+  header {
+    h2 {
+      font-size: modular-scale(2);
+    }
+  }
+
+  text-align: center;
+  form {
+    @include grid-container;
+
+    margin-top: .75em;
+
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    overflow: visible;
+
+    label {
+      cursor: text;
+      display: block;
+      color: transparent;
+      background-color: transparent;
+      width: 100%;
+      height: auto;
+      margin-bottom: 0;
+      font-weight: 400;
+      text-align: left;
+      padding-left: 1.175em;
+      position: absolute;
+        top: 25%;
+        left: 0;
+      transition: color .5s ease, top .5s ease;
+      backface-visibility: hidden;
+
+      span {
+        margin-right: 1.0625em;
+        cursor: default;
+      }
+    }
+
+    &[data-focus="true"] {
+      label {
+        background-color: transparent;
+        color: color(stone);
+        top: -66.666%;
+
+        span {
+          color: tint(color(stone), 40%);
+          cursor: default;
+          transition: color .5s ease;
+        }
+        &:hover {
+          span {
+            color: color(stone);
+          }
+        }
+      }
+    }
+
+    &[data-focus="true"] .input-wrapper > span {
+      color: color(stone);
+    }
+
+    .input-wrapper {
+      box-sizing: border-box;
+      cursor: text;
+      display: block;
+      float: left;
+      font-style: italic;
+      position: relative;
+      width: 100%;
+      background-color: transparent;
+      overflow: visible;
+
+      > span {
+        position: absolute;
+        left: .75em;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+        font-size: modular-scale(1);
+        color: tint(color(stone),60%);
+        cursor: default;
+        transition: color .5s ease;
+      }
+
+      &:hover {
+        > span {
+          color: color(stone);
+        }
+      }
+
+      @include grid-media($media-sm-max) {
+        margin-bottom: $_gutter;
+      }
+
+      @include grid-media($media-md-only) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        width: 450px;
+        margin: {
+          left: 0;
+          right: $_gutter / 2;
+        }
+      }
+
+      @include grid-media($media-lg) {
+        width: 475px;
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        margin: {
+          left: 0;
+          right: $_gutter / 2;
+        }
+      }
+      @include grid-media($media-xl) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        width: 500px;
+        margin: {
+          left: 0;
+          right: $_gutter / 2;
+        }
+      }
+    }
+
+    [type="email"] {
+      background-color: transparent;
+      display: block;
+      font-size: 1em;
+      padding: em(12px) em($_gutter * 2) em(12px) 3em;
+      width: 100%;
+      margin: 0;
+
+      &::placeholder {
+        transition: color .5s ease;
+        font-style: italic;
+      }
+
+      &:focus::placeholder {
+        color:transparent;
+      }
+    }
+
+    [type="submit"] {
+      @include hs_button($form-button);
+      width: 100%;
+      font-size: modular-scale(1);
+      float: left;
+      margin-bottom: 0;
+
+      @include grid-media($media-xs-only) {
+        font-size: 1.125em;
+      }
+
+      @include grid-media($media-md) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        width: auto;
+        margin: {
+          left: 0;
+          right: 0;
+        }
+
+        padding-left: $_gutter;
+        padding-right: $_gutter;
+      }
+
+      @include grid-media($media-lg) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        margin: {
+          left: 0;
+          right: 0;
+        }
+
+        padding-left: $_gutter;
+        padding-right: $_gutter;
+      }
+      @include grid-media($media-xl) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        margin: {
+          left: 0;
+          right: 0;
+        }
+
+        padding-left: $_gutter;
+        padding-right: $_gutter;
+      }
+    }
+  }
+
+}

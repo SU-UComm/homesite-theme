@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+.page-template-emergency-page {
+  > header {
+    min-height: em($brand-bar__height);
+  }
+
+
+  main, #main {
+    position: relative;
+    min-height: calc(100vh - #{em($brand-bar__height)});
+    background-color: transparent;
+    padding-bottom: 4em;
+
+    .entry-content {
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        padding: $_gutter;
+        margin: ($brand-bar__height + $_gutter) auto;
+        width: 100%;
+        max-width: 1024px - ($_gutter * 2);
+      }
+
+      @include grid-media($media-md-max) {
+        $_gutter: _retrieve-neat-setting($media-lg-only, gutter);
+        width: auto;
+        max-width: none;
+        margin: $_gutter;
+        padding: $_gutter;
+      }
+      background-color: white;
+    }
+  }
+
+  .bg-wrapper {
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: color(black);
+  }
+
+  .bg-img {
+    @include bg-img;
+    opacity: .5;
+  }
+
+  .alert-icon {
+    color: color(brand);
+    text-align: center;
+    font-size: modular-scale(4);
+    display: block;
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: .75em;
+    font-weight: 700;
+    font-size: modular-scale(4);
+
+    @include grid-media($media-md-max) {
+      font-size: modular-scale(3);
+      letter-spacing: -.75px;
+    }
+    @include grid-media($media-xs-only) {
+      font-size: modular-scale(2);
+      letter-spacing: -.5px;
+    }
+    @include grid-media($media-lg) {
+      letter-spacing: -1.45px;
+    }
+  }
+
+  .post-meta {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: modular-scale(0);
+    color: color(brand);
+  }
+}

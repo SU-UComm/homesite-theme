@@ -1,0 +1,198 @@
+// Define default, unbranded settings for global variables as fallbacks.
+
+#footer__global-footer {
+  // Map local variables to global variables
+  background-color: color(brand);
+  color: color(reverse-text);
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include responsive-container($full-container);
+
+  @include grid-media($media-md-max) {
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+    padding-top: em($_gutter);
+    padding-bottom: em($_gutter / 1.25);
+  }
+
+  @include grid-media($media-lg-only, $media-xl, $media-print) {
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+    padding-top: em($_gutter / 1.5);
+    padding-bottom: em($_gutter / 1.5);
+  }
+  @include grid-media($media-md-max, $media-lg-only, $media-xl) {
+    @include grid-collapse;
+  }
+
+  a {
+    color: color(reverse-text);
+    text-decoration: none;
+
+    #{$hocus} {
+      color: color(reverse-text--active);
+      text-decoration: underline;
+    }
+  }
+
+  #global-footer__brand {
+    display: block;
+    white-space: normal;
+    font-size: 1.8em;
+    text-align: center;
+
+    .su-brand {
+      display: inline-block;
+      width: 120px;
+      line-height: .75;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: -.25em;
+      padding-top: .25em;
+      padding-bottom: .25em;
+
+      @include on-event {
+        text-decoration: none;
+      }
+    }
+
+    @include grid-media($media-sm-max) {
+      @include grid-container;
+      font-size: 2em;
+    }
+
+    @include grid-media($media-md-only, $media-lg-only, $media-xl) {
+      float: left;
+      margin-left: _retrieve-neat-setting($neat-grid, gutter) * 1.5;
+    }
+  }
+
+
+  #global-footer__nav {
+    @include grid-container;
+    color: color(reverse-text);
+    display: block;
+    @include font-size(17px);
+
+    @include grid-media($media-xs-only) {
+      max-width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+    }
+
+    ul {
+      @extend ul.plain;
+      font-weight: 600;
+      margin-bottom: .25em;
+
+      @include grid-media($media-xs-only) {
+        @include grid-column(6);
+        margin-bottom: .5em;
+      }
+
+      @include grid-media($media-sm-only) {
+        margin-bottom: .5em;
+      }
+
+      li {
+        padding-top: .25em;
+        padding-bottom: .25em;
+        margin-bottom: 0;
+        @include grid-media($media-sm) {
+          display: inline-block;
+        }
+
+        @include grid-media($media-sm-only) {
+          padding-top: .125em;
+          padding-bottom: .125em;
+        }
+
+        @include grid-media($media-md) {
+          padding-top: 0;
+          padding-bottom: 0;
+        }
+
+        &:last-child {
+          a {
+            margin-right: 0;
+          }
+        }
+      }
+
+      &#global-policy-links {
+        @include grid-media($media-sm) {
+          font-size: 1.4rem;
+          font-weight: 400;
+          margin-bottom: em(.3333em, 17px);
+        }
+
+        @include grid-media($media-md) {
+          font-size: 1.5rem;
+          margin-bottom: 0.5em;
+        }
+
+        @include grid-media($media-lg) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    @include grid-media($media-sm-only) {
+      @include grid-column(12);
+      text-align: center;
+      margin-bottom: em(.5em, 17px);
+    }
+
+    @include grid-media($media-md-only, $media-lg-only, $media-xl) {
+      float: left;
+      $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+      padding-top: .125em;
+      margin-left: $_gutter * 1.5;
+      width: calc(100% - 120px - #{$_gutter * 3});
+    }
+
+    @include grid-media($media-md) {
+      padding-bottom: 0;
+    }
+
+    a {
+      display: inline-block;
+      margin-right: 1em;
+
+      @include grid-media($media-xs-only) {
+        display: block;
+        width: 150px;
+        margin: 0 auto;
+      }
+
+      @include grid-media($media-lg) {
+        margin-right: 2.8rem;
+      }
+    }
+  }
+
+  #global-footer__info {
+    display: block;
+    float: left;
+
+    @include grid-media($media-sm-max) {
+      text-align: center;
+      @include grid-column(12);
+    }
+
+    @include grid-media($media-md-only, $media-lg-only, $media-xl) {
+      $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+      margin-left: $_gutter * 1.5;
+      width: calc(100% - 120px - #{$_gutter * 3});
+    }
+
+    .vcard {
+      font-size: 1.34rem;
+      @include grid-media($media-md) {
+        font-size: em(15px);
+      }
+    }
+  }
+
+}

@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+.panel {
+  @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter) * 1.25;
+    padding-top: $_gutter;
+    padding-bottom: $_gutter;
+  }
+
+  header {
+    > .fa {
+      @include header-icon();
+    }
+    > h2 {
+      margin-top: 0;
+    }
+    > *:last-child {
+      margin-bottom: 0;
+    }
+    @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+      $_gutter: _retrieve-neat-setting($neat-grid, gutter) * .75;
+      padding-bottom: $_gutter;
+    }
+  }
+
+  footer {
+    @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+      $_gutter: _retrieve-neat-setting($neat-grid, gutter) * .75;
+      padding-top: $_gutter;
+    }
+  }
+
+  a.jump-link {
+    transition: color ease .3s;
+    text-decoration: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.panel-collection > [data-type="wysiwyg"]:first-child,
+.panel-collection > section[data-type="section"]:first-child > [data-type="wysiwyg"]:first-child {
+  @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+    padding-top: 0;
+    padding-bottom: $_gutter;
+  }
+}
+
+.page-template-landing-page .panel-collection > section[data-type="section"]:first-child > header,
+.page-template-default .panel-collection > section[data-type="section"]:first-child > header {
+  @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+    $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+    margin-top: ( $_gutter * -1 ) + ( $_gutter * -1.25 );
+  }
+}
+
+.page-template-homepage .panel-collection > section[data-type="section"]:first-child > header {
+  @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+    margin-top: 0;
+  }
+}
+
+section[data-type="section"],
+section[data-type="section-bg"] {
+  @include grid-container;
+
+  > header {
+    $_header-container: (
+        xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: null, max-width: false, grid-collapse: false ),
+        sm:     ( columns: 10,  grid-media: $media-sm-only, v-space: null, max-width: false, grid-collapse: false ),
+        md:     ( columns: 10,  grid-media: $media-md-only, v-space: null, max-width: false, grid-collapse: false ),
+        lg:     ( columns: 8,   grid-media: $media-lg-only, v-space: null, max-width: 1400px, grid-collapse: false ),
+        xl:     ( columns: 7,   grid-media: $media-xl,      v-space: null, max-width: true,  grid-collapse: false ),
+        print:  ( columns: 9,   grid-media: $media-print,   v-space: null, max-width: false,  grid-collapse: false ),
+    );
+
+    @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+      padding-top: _retrieve-neat-setting($neat-grid, gutter);
+    }
+
+    @include responsive-container($_header-container);
+
+    > h2 {
+      font-weight: 900;
+      line-height: $heading-line-height;
+      text-align: center;
+
+      letter-spacing: -.25px;
+
+      @include grid-media($media-sm) {
+        letter-spacing: -.65px;
+      }
+      @include grid-media($media-lg) {
+        letter-spacing: -.85px;
+
+        @at-root .page-template-homepage & {
+          font-size: modular-scale(5);
+        }
+      }
+    }
+
+    p {
+      font-size: modular-scale(1);
+      text-align: center;
+
+      @include grid-media($media-sm) {
+        font-size: modular-scale(2);
+      }
+
+      @include grid-media($media-print) {
+        font-size: modular-scale(2);
+      }
+    }
+
+    h2 + p {
+      margin-top: .333333em;
+    }
+
+    :first-child {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    :last-child {
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        margin-bottom: _retrieve-neat-setting($neat-grid, gutter);
+      }
+    }
+  }
+
+  .panel {
+    > header {
+      > h2 {
+        margin-bottom: $small-spacing;
+        text-align: center;
+      }
+      p:last-child {
+        margin-bottom: $small-spacing;
+      }
+    }
+
+    > footer {
+      @include grid-container;
+   
+      > :last-child {
+       margin-bottom: 0;
+      }
+    }
+
+    &:first-of-type {
+      padding-top: 0;
+    }
+  }
+
+}
+
+.blur {
+  -webkit-filter: blur(4px);
+  filter: blur(4px);
+}

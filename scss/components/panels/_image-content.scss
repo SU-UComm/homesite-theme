@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+.panel[data-type="image-content"] {
+	> section {
+    $full-container: (
+        sm:     ( columns: 12,  grid-media: $media-sm-max,  v-space: $base-padding, max-width: false, grid-collapse: false ),
+        md:     ( columns: 12,  grid-media: $media-md-only, v-space: $base-padding, max-width: false, grid-collapse: true ),
+        lg:     ( columns: 12,  grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: true ),
+        xl:     ( columns: 12,  grid-media: $media-xl,      v-space: $base-padding, max-width: true,  grid-collapse: true ),
+        print:  ( columns: 12,  grid-media: $media-print,   v-space: $base-padding, max-width: false, grid-collapse: true ),
+    );
+		@include responsive-container( $full-container );
+
+		figure {
+			position: relative;
+			z-index: 1;
+
+			picture {
+				@include ar-container(3, 2, vertical);
+				box-shadow: material-shadow(flat);
+			}
+
+      figcaption {
+        padding-top: modular-scale(-4);
+      }
+
+			@include grid-media($media-sm-max) {
+				$_gutter: _retrieve-neat-setting($neat-grid, gutter);
+				margin: $_gutter * 1.5;
+
+				&:first-child {
+					margin-top: 0;
+				}
+				&:last-child {
+					margin-bottom: $_gutter;
+				}
+			}
+		}
+
+		.content {
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        padding: _retrieve-neat-setting($neat-grid, gutter) * 2;
+      }
+
+			:first-child {
+				margin-top: 0;
+			}
+
+      h3 {
+        font-size: modular-scale(1);
+      }
+
+			@include grid-media($media-sm-max) {
+				$_margin: _retrieve-neat-setting($neat-grid, gutter);
+				&:first-child {
+					margin-bottom: -$_margin * 2;
+					padding-bottom: $_margin * 2;
+				}
+				&:last-child {
+					margin-top: -$_margin * 3; // Default value, approx 1 line caption. Javascript takes care of the rest.
+					padding-top: $_margin * 3; // Default value, approx 1 line caption. Javascript takes care of the rest.
+				}
+			}
+		}
+
+		@include grid-media($media-md-only, $media-lg-only, $media-xl) {
+      $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+      $_margin: $_gutter * 2;
+
+			figure {
+				margin-top: $_margin;
+				@include grid-column(6);
+				&:first-child {
+					figcaption {
+						padding-right: $_margin * 2;
+					}
+				}
+				&:last-child {
+          margin-left: -$_margin;
+
+					figcaption {
+						padding-left: $_margin * 2;
+						text-align: right;
+					}
+				}
+			}
+
+			.content {
+				width: calc(50% + #{$_gutter * 1.5});
+        display: block;
+        float: left;
+
+				&:first-child {
+					padding-right: $_margin * 1.75;
+          margin-left: $_gutter;
+				}
+				&:last-child {
+					padding-left: $_margin * 1.75;
+          margin-left: -$_margin;
+				}
+			}
+
+			> :last-child {
+
+				//@include grid-push(-1);
+			}
+		}
+	}
+
+	@include color-themes($panel-themes) {
+		background-color: color(background);
+		.content {
+			color: color(black);
+			background-color: color(background--alt);
+			#{$all-headlines} {
+				color: color(black);
+			}
+			a {
+				color: color(bright-blue);
+				#{$hocus} {
+					color: color(blue);
+				}
+			}
+		}
+		figure:first-child {
+			@include grid-media($media-sm-max) {
+				figcaption {
+					color: color(black);
+				}
+			}
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the footer of the site/application.
+// -----------------------------------------------------------------------------
+
+body > footer {
+  position: relative;
+  background-color: color(background);
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+@import 'pre-footer',
+'fat-footer',
+'global-footer';

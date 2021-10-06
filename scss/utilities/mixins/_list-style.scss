@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+@mixin list-style($style) {
+  @if $style == plain {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}

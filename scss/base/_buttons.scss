@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+////
+/// Button base styles.
+/// @group base|buttons
+////
+
+/// @description Primary Button Styles.
+/// @require {mixin} button
+/// @require {map} $primary-button
+.button--primary {
+  @include hs_button($primary-button);
+}
+
+/// Secondary Button Styles.
+/// @require {mixin} button
+/// @require {map} $secondary-button
+.button--secondary {
+  @include hs_button($hs_secondary-button);
+}
+
+/// Apply all button styles.
+/// @require {mixin} button
+/// @require {map} $base-button
+#{$all-buttons} {
+  @include hs_button($base-button);
+}

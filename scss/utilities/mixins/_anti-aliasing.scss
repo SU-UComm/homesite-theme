@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+// Updated font anti-aliasing
+@mixin anti-aliasing() {
+
+    @supports (-webkit-font-smoothing: antialiased) {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @supports (-moz-osx-font-smoothing: grayscale) {
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }

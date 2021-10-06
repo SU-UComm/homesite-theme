@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+.panel[data-type="events"] {
+  @include grid-container;
+
+  header {
+    @include grid-column(1 of 1);
+  }
+
+  .events {
+    @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+      margin-bottom: _retrieve-neat-setting($neat-grid, gutter) * -1;
+    }
+  }
+
+  figure {
+    position: relative;
+    backface-visibility: hidden;
+    transition: box-shadow ease-in .3s;
+
+    .date {
+      position: relative;
+      @include material-shadow(shallow);
+      width: em(70px);
+      height: em(70px);
+      line-height: 1.1;
+      float: left;
+      font-weight: 400;
+      margin-bottom: em(-2.5rem);
+      top: em(-3.5rem);
+      text-align: center;
+      padding-top: em(15px);
+
+      @supports (display: flex) {
+        padding-top: 0;
+        @include flex-container((flex-direction: row, justify-content: center, align-items: center, align-content: center));
+      }
+
+
+      @include grid-media($media-sm-max) {
+        overflow: hidden;
+        position: absolute;
+        margin-left: 0;
+        left: 0;
+        height: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        padding-top: 1em;
+        padding-bottom: 1em;
+        box-shadow: none;
+
+        @supports (display: flex) {
+          height: 100%;
+          top: 0;
+          transform: none;
+        }
+      }
+
+      .month {
+        display: block;
+        font-weight: 400;
+        text-transform: uppercase;
+        font-size: modular-scale(-1);
+        margin-bottom: 0;
+        width: 100%;
+      }
+
+      .day {
+        display: block;
+        font-weight: 600;
+        font-size: modular-scale(1);
+        margin-bottom: 0;
+        width: 100%;
+      }
+
+      @include grid-media($media-md-only, $media-lg-only, $media-xl) {
+        margin-left: _retrieve-neat-setting($neat-grid, gutter) / 1.25;
+      }
+
+
+    }
+
+    .content {
+      clear: left;
+      width: 100%;
+      > :last-child {
+        margin-bottom: 0;
+      }
+
+      > h3 {
+        @include font-size(modular-scale(1, $ratio: 1.125));
+        margin-top: 0;
+        margin-bottom: modular-scale(-5);
+        a {
+          text-decoration: none;
+          transition: color ease-out .3s;
+        }
+      }
+
+      > p {
+        margin-bottom: modular-scale(-5);
+      }
+
+      > time {
+        display: block;
+      }
+
+      :nth-child(2) {
+        clear: left;
+      }
+
+      .tag {
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: modular-scale(0);
+        margin-bottom: modular-scale(-5);
+      }
+
+      @include grid-media($media-sm-max) {
+        display: block;
+        clear: none;
+        width: calc(100% - #{em(70px)});
+        margin-left: em(70px);
+        float: right;
+        height: 100%;
+      }
+
+      @include grid-media($media-md) {
+        display: inline-block;
+        margin-top: modular-scale(-1) * -1;
+      }
+
+      @include grid-media($media-md-max, $media-lg-only, $media-xl) {
+        padding: _retrieve-neat-setting($neat-grid, gutter) / 1.25;
+      }
+    }
+
+    .img-wrapper {
+      display: block;
+      line-height: 0;
+      margin-bottom: 0;
+      overflow: hidden;
+      padding: 0;
+      width: 100%;
+      height: auto;
+      background-color: color(dark-grey);
+
+      @include grid-media($media-sm-max) {
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+        min-width: calc(100% + 1px);
+        max-width: none;
+        transform: scale(1);
+        transition: all ease-in .3s;
+        backface-visibility: hidden;
+
+        @include grid-media($media-sm-only) {
+          display: none;
+        }
+      }
+
+      @at-root .panel[data-type="events"] figure[data-hover="true"] > .img-wrapper {
+        img {
+          transform: scale(1.04);
+          transition: all ease-out .3s;
+        }
+      }
+
+    }
+
+    @at-root .panel[data-type="events"] figure[data-hover="true"] {
+      transition: box-shadow ease-out .3s;
+      @include material-shadow(medium);
+    }
+  }
+
+
+  // Event card colors (independent of theme)
+  figure {
+    @include material-shadow(shallow);
+    background-color: color(white);
+
+    .date {
+      background-color: color(choco);
+      color: color(reverse-text);
+    }
+
+    .content {
+      color: color(text);
+      @include grid-media($media-sm-max) {
+        background-color: color(white);
+      }
+
+      .tag {
+        color: color(brand--dark);
+      }
+      >h3 {
+        color: color(text);
+
+        a {
+          color: color(text);
+
+          #{$hocus} {
+            color: color(link);
+          }
+
+          @at-root .panel[data-type="events"] figure[data-hover="true"] .content >h3 a {
+              color: color(link);
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.theme--choco .panel[data-type="events"],
+.theme--choco.panel[data-type="events"] {
+  figure {
+    .date {
+      @include grid-media($media-sm-max) {
+        background-color: color(stone);
+      }
+    }
+  }
+}

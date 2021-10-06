@@ -1,0 +1,327 @@
+@charset "UTF-8";
+$brand-bar__font-size:    2em !default;
+$brand-bar__font-family:  $heading-font-family !default;
+$brand-bar__height:       4.8rem !default;
+
+#brand-bar {
+  $_font-family: $brand-bar__font-family !default;
+  $_height: $brand-bar__height !default;
+
+  $brand-bar-container: (
+      md: (columns: 12, grid-media: $media-md-max, v-space: null, max-width: false, grid-collapse: true),
+      lg: (columns: 12, grid-media: $media-lg-only, v-space: null, max-width: false, grid-collapse: true),
+      xl: (columns: 12, grid-media: $media-xl, v-space: null, max-width: true, grid-collapse: true),
+      print: (columns: 12, grid-media: $media-print, v-space: null, max-width: false, grid-collapse: true),
+  );
+
+  @include responsive-container($brand-bar-container);
+  background-color: color(bright-red);
+  font-family: $_font-family;
+  line-height: 1;
+  height: em($_height);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  text-align: right;
+  backface-visibility: hidden;
+
+  @include grid-media($media-md-max) {
+    box-shadow: material-shadow(shallow);
+  }
+
+  @include grid-media($media-lg) {
+    @supports (display: flex) {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  #header--wordmark {
+    color: color(reverse-text);
+    display: inline-block;
+    float: left;
+    font-size: em(28px);
+    font-weight: 400;
+    line-height: $heading-line-height;
+    margin-left: _retrieve-neat-setting($neat-grid, gutter);
+    height: min-content;
+    text-decoration: none;
+    transition: all ease .5s;
+    position: relative;
+
+    @include grid-media($media-sm-max) {
+      font-size: em(26px, 16px);
+      top: em(7px, 26px);
+    }
+
+    @include grid-media($media-xs-mobile-nav) {
+      font-size: em(24px);
+      top: em(11px, 24px);
+    }
+
+    @include grid-media($media-md-only) {
+      top: .8rem;
+    }
+
+    @include grid-media($media-lg) {
+      top: .8rem;
+      @supports (display:flex) {
+        margin-right: auto;
+      }
+    }
+
+    @include grid-media($media-lg-only, $media-xl) {
+      margin-left: _retrieve-neat-setting($neat-grid, gutter);
+    }
+
+    &.fade-out {
+      animation-duration: .3s;
+      animation-timing-function: ease-in-out;
+      animation-direction: default;
+      animation-name: fade-out;
+      visibility: hidden;
+    }
+
+    &.fade-in {
+      animation-duration: .3s;
+      animation-timing-function: ease-in-out;
+      animation-direction: default;
+      animation-name: fade-in;
+      visibility: visible;
+    }
+
+    #{$hocus} {
+      color: color(reverse-text);
+      font-weight: 400;
+    }
+  }
+
+  #gateway {
+    display: none;
+
+    a {
+      @include anti-aliasing;
+      display: inline-block;
+      text-decoration: none;
+      color: color(reverse-text);
+      font-weight: 400;
+      padding: em(10px) .75em;
+      transition: background-color .3s ease-out;
+      outline-offset: -4px;
+
+      @include on-event {
+        background-color: color(dark-red);
+        color: color(background--alt);
+        text-decoration: none;
+        transition: background-color .3s ease-out;
+      }
+    }
+
+    @include grid-media($media-lg) {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: -4px;
+      @supports (display: flex) {
+        margin-right: 0px;
+      }
+
+      ul {
+        @include list-style(plain);
+      }
+      li {
+        display: inline-block;
+        margin-bottom: 0;
+        > a {
+          height: em($_height);
+          line-height: 1.6;
+        }
+      }
+    }
+
+    #header-search:before {
+      @extend .fa;
+      @extend .fa-search;
+      margin-right: .25em;
+    }
+
+  }
+
+  #menu-toggle,
+  #search-toggle {
+    position: relative;
+    vertical-align: middle;
+    box-shadow: none;
+    height: 100%;
+    min-width: em(100px);
+    transition: background-color .3s ease-out;
+    outline-offset: -4px;
+
+    &::before {
+      @extend .fa;
+      margin-right: modular-scale(-3);
+    }
+
+    &[aria-expanded="true"] {
+      background-color: color(button-background--active);
+      &::before {
+        content: quote($fa-var-close);
+      }
+    }
+
+    @include grid-media($media-sm-only) {
+      font-size: modular-scale(1);
+    }
+  }
+
+  #menu-toggle {
+
+    @include anti-aliasing;
+
+    &::before {
+      content: quote($fa-var-bars);
+    }
+
+    width: em(114px);
+
+    @include grid-media($media-lg) {
+      display: none;
+      width: em(120px);
+    }
+  }
+
+  #search-toggle {
+
+    @include anti-aliasing;
+
+    &::before {
+      content: quote($fa-var-search);
+    }
+
+    width: em(114px);
+
+    @include grid-media($media-lg-only) {
+      line-height: 1.6; // same line-height as gateway nav to make text line up
+    }
+
+    @include grid-media($media-lg) {
+      height: em($brand-bar__height);
+      padding: 0 1em;
+      width: em(120px);
+    }
+
+    @include grid-media($media-xl) {
+      margin-right: .5em;
+      padding: 1px 1em 0; // make text lined up with gateway nav
+    }
+
+    @at-root .page-template-search & {
+      background-color: color(button-background--active);
+    }
+  }
+
+}
+
+.splash-parallax {
+
+  #brand-bar {
+
+    #header--wordmark {
+      transition: none;
+    }
+
+    #search-toggle, #menu-toggle {
+      #{$hocus} {
+        background-color: color(button-background--active);
+      }
+    }
+
+    #search-toggle {
+      background-color: transparent;
+
+      &[aria-expanded="true"] {
+        background-color: color(button-background--active);
+      }
+    }
+
+    // properties shared by both themes
+    &.theme--choco, &.theme--white {
+
+      #gateway a {
+        @extend %fancyhover;
+
+        padding: em(10px) 0;
+        margin: 0 .75em;
+
+        &:after {
+          top: 0;
+          bottom: unset;
+        }
+
+        &:active:after {
+          top: 3px;
+        }
+      }
+
+      @include grid-media($media-lg) {
+
+        #search-toggle {
+
+          #{$hocus}, &[aria-expanded="true"] {
+            background-color: color(brand--bright);
+            color: color(white);
+          }
+
+        }
+
+        #gateway a {
+          #{$hocus} {
+            background-color: transparent;
+            outline-offset: 2px;
+          }
+        }
+
+      }
+    }
+
+    &.theme--choco {
+
+      @include grid-media($media-lg) {
+        background: linear-gradient(0deg, rgba(0, 0, 0, .75), #000);
+
+        #gateway a, #search-toggle {
+          color: #eee;
+        }
+
+        #gateway a:after {
+          background-color: color(white);
+        }
+      }
+
+    }
+
+
+    &.theme--white {
+
+      @include grid-media($media-lg) {
+
+        background: linear-gradient(0deg, rgba(255, 255, 255, .86), #fff);
+
+        #header--wordmark {
+          color: color(black);
+        }
+
+        #gateway a, #search-toggle {
+          color: #000;
+        }
+
+        #gateway a:after {
+          background-color: #000;
+        }
+
+
+      }
+    }
+
+  }
+
+}

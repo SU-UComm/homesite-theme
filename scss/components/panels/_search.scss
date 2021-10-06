@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+.panel[data-type="search"] {
+  padding-top: modular-scale(7);
+  padding-bottom: modular-scale(4);
+
+  @include grid-media($media-sm-only) {
+    padding-top: modular-scale(5);
+  }
+
+  @include grid-media($media-md) {
+    padding-bottom: modular-scale(2);
+  }
+
+  @include grid-media($media-lg) {
+    padding-bottom: modular-scale(3);
+  }
+}

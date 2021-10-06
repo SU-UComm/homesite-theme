@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+.panel[data-type="profile"] {
+  $_base-font-size: _retrieve-decanter-setting(base-font-size);
+
+  // Resolution dependent hack to fix some font flickering issues in Chrome & Safari
+  @include anti-aliasing;
+
+  @include responsive-container((
+              xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+              sm:     ( columns: 9,   grid-media: $media-sm-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+              md:     ( columns: 8,   grid-media: $media-md-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+              lg:     ( columns: 8,   grid-media: $media-lg-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
+              xl:     ( columns: 8,   grid-media: $media-xl,      v-space: $base-padding, max-width: true,  grid-collapse: false ),
+              print:  ( columns: 10,  grid-media: $media-print,   v-space: $base-padding, max-width: false, grid-collapse: false ),
+          ));
+  position: relative;
+  overflow: hidden;
+
+  &[data-bg-img="true"] .bg-img {
+    @include bg-img;
+    transition: all .3s ease-out;
+    opacity: 0.5;
+
+    @supports (filter: blur(15px)) {
+      filter: blur(15px);
+      opacity: 1;
+    }
+  }
+
+  &[data-hide-content="true"] {
+    &[data-bg-img="true"] .bg-img {
+      opacity: 1;
+
+      @supports (filter: blur(15px)) {
+        filter: blur(0);
+      }
+    }
+
+    .content {
+      opacity: 0;
+    }
+  }
+
+  .content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-top: modular-scale(6);
+    padding-bottom: modular-scale(8);
+    transition: all .3s ease-out;
+    opacity: 1;
+
+    > :first-child {
+      margin-top:0;
+    }
+    > :last-child {
+      margin-bottom:0;
+    }
+
+    > h3 {
+      margin-bottom: modular-scale(1);
+      font-size: modular-scale(0);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    > p {
+      font-weight: 400;
+      font-size: modular-scale(2);
+      line-height: 1.35;
+      margin-bottom: modular-scale(-1);
+      transition: font-size .3s ease-out;
+
+      @include grid-media($media-lg) {
+        font-size: modular-scale(3);
+      }
+    }
+
+    img {
+      width: em(200px, $_base-font-size);
+      border-radius: 50%;
+      transition: all ease-out .3s;
+      backface-visibility: hidden;
+      @include material-shadow(shallow);
+      @at-root .panel[data-type="profile"]:hover .attribution img {
+        @include material-shadow(deep);
+      }
+      margin: 0 auto modular-scale(-3);
+    }
+
+    .attribution {
+      font-size: em(18px, $_base-font-size);
+      text-align: center;
+
+      h3 {
+        font-size: modular-scale(1);
+        margin-bottom: 0;
+        margin-top: modular-scale(-2);
+      }
+
+      p {
+        font-size: modular-scale(0);
+        font-weight: 400;
+        margin-bottom: 0;
+        font-style: italic;
+
+        &.jump-link {
+          font-weight: 600;
+          font-style: normal;
+        }
+      }
+    }
+  }
+
+  &[data-bg-img="true"] {
+    @include color-themes($panel-themes) {
+      .content {
+        @if color(reverse-text) {
+          text-shadow: 1px 1px 6px color(reverse-text);
+        }
+      }
+    }
+  }
+}

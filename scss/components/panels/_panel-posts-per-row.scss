@@ -1,0 +1,334 @@
+@charset "UTF-8";
+
+.panel {
+  $_max-posts-per-row: 6;
+
+  // Because of how featured posts are computed, we can't rely on child classes for complex selectors. Bummer.
+  // So, instead we need to be a little more precise in how we target these. It makes me think we should move these
+  // to each panel.
+  @for $_num from 1 through $_max-posts-per-row {
+    // When the first post isn't featured, OR when the panel is a highlight panel
+    //&[data-posts-per-row="#{$_num}"][data-feature-first-post="false"] .grid-container,
+    &[data-posts-per-row="#{$_num}"][data-featured-post="none"] .grid-container,
+    &[data-posts-per-row="#{$_num}"][data-type="highlights"] .grid-container,
+    &[data-posts-per-row="#{$_num}"][data-type="events"] .grid-container,
+    &[data-posts-per-row="#{$_num}"][data-type="multi-column"] .grid-container {
+
+      @include grid-container;
+
+      /*!*/
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        margin-bottom: _retrieve-neat-setting($neat-grid, gutter) * -1;
+      }
+
+      @include grid-media($media-xs-only) {
+        /*!*/
+        @include grid-collapse;
+        @include items-per-row(1);
+      }
+
+      @include grid-media($media-sm-only) {
+        /*!*/
+        @include grid-collapse;
+        @if ($_num == 1) {
+          @include items-per-row(1);
+        } @else {
+          @include flex-items-per-row(2);
+          @include nth-omega(2n)
+        }
+      }
+
+      @include grid-media($media-md-only) {
+        /*!*/
+        @include grid-collapse;
+        @if $_num == 1 {
+          @include items-per-row(1);
+        } @else if ($_num == 2) {
+          @include flex-items-per-row(2);
+        } @else if ($_num == 3) {
+          @include flex-items-per-row(3);
+          // Multi-column panel reset on MD breakpoints
+          @at-root [data-width="content"][data-posts-per-row="3"][data-type="multi-column"] .grid-container {
+            /*!*/
+            // Reset omega behavior
+            > :nth-of-type(3n) { margin-right: 0; }
+            > :nth-of-type(3n+1) {clear: none; }
+            // New column width
+            @include flex-items-per-row(2);
+          }
+        } @else if ($_num == 4) {
+          /*!*/
+          @include flex-items-per-row(2);
+          @include adjust-container-width(-3, $grid-collapse: true);
+        } @else {
+          /*!*/
+          @include flex-items-per-row(3);
+          @include adjust-container-width(-3, $grid-collapse: true);
+        }
+      }
+
+      @include grid-media($media-lg-only) {
+        /*!*/
+        @include grid-collapse;
+        @include flex-items-per-row($_num);
+      }
+
+      @include grid-media($media-xl) {
+        /*!*/
+        @include grid-collapse;
+        @include flex-items-per-row($_num);
+      }
+
+      @include grid-media($media-print) {
+        /*!*/
+        @include grid-collapse;
+        @include flex-items-per-row($_num);
+      }
+    }
+
+
+    // Common settings for both 1) 1st post is featured 2) both 1st and last posts are featured
+    &[data-posts-per-row="#{$_num}"][data-featured-post="first"] .grid-container,
+    &[data-posts-per-row="#{$_num}"][data-featured-post="first-last"] .grid-container {
+      /*!*/
+      @include flex-container((children: 'article', align-items: stretch));
+
+      @include grid-media($media-md-max, $media-lg-only, $media-xl, $media-print) {
+        margin-bottom: _retrieve-neat-setting($neat-grid, gutter) * -1;
+      }
+
+      @include grid-media($media-xs-only) {
+        /*!*/
+        $_gutter: _retrieve-neat-setting($media-xs-only, gutter);
+        @include grid-collapse;
+
+        article {
+          @include grid-column(1 of 1);
+          @include omega;
+
+          margin-bottom: $_gutter;
+        }
+
+      }
+
+      @include grid-media($media-sm-only) {
+        /*!*/
+        $_gutter: _retrieve-neat-setting($media-sm-only, gutter);
+        @include grid-collapse;
+
+        article {
+          margin-bottom: $_gutter;
+
+          /*
+          @if $_num == 1 {
+            @include grid-column(1 of 1);
+            @include omega;
+          } @else if ($_num == 2) {
+            @include grid-column(1 of 2);
+            @include nth-omega(2n + 1);
+          } @else if ($_num == 3) {
+            @include grid-column(1 of 3);
+            @include nth-omega(3n + 1);
+          } @else if ($_num == 4) {
+            @include grid-column(1 of 2);
+            @include nth-omega(2n + 1);
+          } @else if ($_num == 5) {
+            @include grid-column(1 of 4);
+            @include nth-omega('4n + 1')
+          } @else {
+            @include grid-column(1 of 3);
+            @include nth-omega('3n + 1')
+          }
+          */
+          @if $_num == 1 {
+            @include grid-column(1 of 1);
+            @include omega;
+          } @else {
+            @include grid-column(1 of 2);
+            @include nth-omega('2n + 1')
+          }
+
+
+
+          &:first-child {
+            /*!*/
+            @include grid-column(1 of 1);
+            @include omega;
+          }
+
+
+        }
+
+      }
+
+      @include grid-media($media-md-only) {
+        /*!*/
+        $_gutter: _retrieve-neat-setting($media-md-only, gutter);
+        @include grid-collapse;
+
+        article {
+          margin-bottom: $_gutter;
+
+          &:first-child {
+            @if $_num <= 3 {
+              @include grid-column(1 of 1);
+              @include omega;
+            } @else {
+              @include grid-column(2 of 3);
+            }
+          }
+
+          @if $_num == 1 {
+            @include grid-column(1 of 1);
+            @include nth-omega('1n');
+          } @else if ($_num == 2) {
+            @include grid-column(1 of 2);
+            @include nth-omega('2n+1');
+          } @else if ($_num == 3) {
+            @include grid-column(1 of 3);
+            @include nth-omega('3n+1');
+          } @else if ($_num == 4) {
+            @include grid-column(1 of 3);
+            @include nth-omega('3n+2');
+            &:first-child + article {
+              @include omega;
+            }
+          } @else if ($_num == 5) {
+            @include grid-column(1 of 3);
+            @include nth-omega('3n+2');
+            &:first-child + article {
+              @include omega;
+            }
+          }@else {
+            @include grid-column(1 of 4);
+            @include nth-omega('4n+2');
+            &:first-child + article {
+              @include omega;
+            }
+          }
+
+        }
+
+      }
+
+
+      // maybe can condense $media-lg-only, $media-xl into just $media-lg - save for later
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        @include grid-collapse;
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        article {
+          &:first-child {
+            padding: 0;
+            position: relative;
+
+            > div {
+              position: absolute;
+              display: block;
+              // padding: modular-scale(1);
+              backface-visibility: hidden;
+            }
+            // How we position the text
+            &[data-text-loc-v="top"] > div {
+              top: $_gutter;
+            }
+            &[data-text-loc-v="bottom"] > div {
+              bottom: $_gutter;
+            }
+            &[data-text-loc-h="left"] > div {
+              left: $_gutter;
+            }
+            &[data-text-loc-h="right"] > div {
+              right: $_gutter;
+            }
+            &[data-text-loc-v="center"] > div {
+              top: 50%;
+              transform: translate3d(0, -50%, 0);
+            }
+            &[data-text-loc-h="center"] > div {
+              left: 50%;
+              transform: translate3d(-50%, 0, 0);
+            }
+            &[data-text-loc-v="center"][data-text-loc-h="center"] > div {
+              left: 50%;
+              top: 50%;
+              transform: translate3d(-50%, -50%, 0);
+            }
+          }
+
+        }
+      }
+
+      @include grid-media($media-xl) {
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+        @include grid-collapse;
+        font-size: em(17px, _retrieve-decanter-setting(base-font-size));
+      }
+
+    }
+
+
+
+    &[data-posts-per-row="#{$_num}"][data-featured-post="first"] .grid-container {
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        @include grid-collapse;
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        article {
+          @include grid-column(1 of $_num);
+          @include nth-omega('#{$_num}n+1');
+          margin-bottom: $_gutter;
+
+          &:first-child {
+            @include grid-column(1 of 1);
+            margin-right: $_gutter;
+
+            > div {
+              background-color: color(background);
+              width: calc(35% - #{$_gutter * 1.5});
+              @include material-shadow(shallow);
+            }
+
+          }
+        }
+      }
+    } //end of settings for data-featured-post="first"
+
+
+    // When the first AND last posts are featured, sm and up breakpoints
+    &[data-posts-per-row="#{$_num}"][data-featured-post="first-last"] .grid-container {
+      /*!*/
+
+      @include grid-media($media-sm, $media-print) {
+        @include grid-collapse;
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+      }
+
+
+      // first-last, lg breakpoint and up
+      @include grid-media($media-lg-only, $media-xl, $media-print) {
+        @include grid-collapse;
+        $_gutter: _retrieve-neat-setting($neat-grid, gutter);
+
+        article {
+          @include grid-column(1 of $_num);
+          @include nth-omega('#{$_num}n - 1'); // clear row after every 3 items when max posts is 4
+          margin-bottom: $_gutter;
+
+          &:first-child, &:last-child {
+            @include grid-column(2 of $_num);
+            padding: 0;
+            position: relative;
+          }
+
+          &:last-child {
+            margin-right: $_gutter;
+          }
+
+        }
+      }
+
+    }
+  }
+}

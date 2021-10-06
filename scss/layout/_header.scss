@@ -1,0 +1,125 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+
+body > header {
+  $_height: $brand-bar__height + $site-nav__height;
+  $_margin: $brand-bar__height;
+
+  position: relative;
+  height: $_height;
+
+  @at-root body.home > header {
+    height: 100vh;
+  }
+
+  @at-root body.home.admin-bar > header {
+    height: calc(100vh - #{$adminbar__height});
+  }
+
+  .su-brand {
+    color: color(reverse-text);
+    display: inline-block;
+    @include font-size(28px);
+    font-weight: 400;
+    line-height: $heading-line-height;
+    position: absolute;
+    text-decoration: none;
+    padding-top: 0;
+    top: .7rem;
+    left: $gutter;
+    z-index: 2;
+
+    @include grid-media($media-lg-max) {
+      padding: 0;
+    }
+    @include grid-media($media-xl) {
+      padding: _set-container-padding(12, $max-width: true);
+      float: none;
+      padding-top: 0;
+      padding-right: 0;
+      padding-bottom: 0;
+      margin-right: 0;
+      width: auto;
+    }
+
+    @include on-event {
+      color: color(reverse-text-active);
+      font-weight: 400;
+
+      @at-root body.home > header .su-brand {
+        color: color(reverse-text);
+        width: auto;
+      }
+
+    }
+
+    // On the homepage
+    @at-root body.home > header .su-brand {
+      height: auto;
+      transition: all ease .5s;
+
+      @include grid-media($media-xs-only) {
+        position: fixed;
+        top: 1.2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: em(21px);
+        text-align: center;
+
+        @at-root body.admin-bar > header .su-brand {
+          position: absolute;
+        }
+      }
+
+      @include grid-media($media-sm) {
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 0;
+      }
+
+      @include grid-media($media-sm-only) {
+        @include font-size(modular-scale(7));
+      }
+
+      @include grid-media($media-md-only) {
+        @include font-size(modular-scale(8));
+      }
+
+      @include grid-media($media-lg-only) {
+        @include font-size(modular-scale(9), 18px);
+      }
+      @include grid-media($media-xl) {
+        @include font-size(modular-scale(9), 20px);
+      }
+
+      .stanford {
+        @include grid-media($media-xs-only) {
+          display: none;
+        }
+        @include grid-media($media-sm) {
+          display: block;
+          text-shadow: 0px 0px 50px rgba(0,0,0,0.15);
+        }
+      }
+
+      .stanford-university {
+        @include grid-media($media-xs-only) {
+          display: block;
+          transition-duration: all .25s, font-size 0s;
+
+        }
+        @include grid-media($media-sm) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@import
+'header/skiplinks',
+'header/brand-bar',
+'header/site-navigation';

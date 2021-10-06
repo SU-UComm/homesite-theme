@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+.panel[data-type="hero-image"] {
+
+  @at-root [data-type="section"] & {
+    padding-bottom: 0;
+  }
+
+  figure {
+    @include grid-container;
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: none;
+
+    img {
+      width: 100%;
+      min-height: 5em;
+      @include grid-media($media-lg){
+        display:block;
+        backface-visibility: hidden;
+      }
+    }
+
+    figcaption {
+      @include grid-media($media-lg) {
+        // Resolution dependent hack to fix some font flickering issues in Chrome & Safari, as well as visual weight issues the text is over an image
+        // This is especially important with reversed text.
+        @supports (-webkit-font-smoothing: antialiased) {
+          @media screen and (max-resolution: 119dpi) {
+            -webkit-font-smoothing: antialiased;
+          }
+        }
+
+        position: absolute;
+        padding: modular-scale(0);
+        display: block;
+        width: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1;
+
+        &::before {
+          position: absolute;
+          content: "";
+          height: 140%;
+          left: 0;
+          right: 0;
+          z-index: -1;
+        }
+      }
+
+      > :last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &[data-text-loc-v="top"] {
+      @include grid-media($media-lg) {
+        figcaption {
+          top: -1px;
+
+          &::before {
+            display: block;
+            background: linear-gradient(
+                    to top,
+                    transparent 0%,
+                    rgba(0, 0, 0, 1) 75%);
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: .75;
+          }
+        }
+      }
+    }
+
+    &[data-text-loc-v="bottom"] {
+      @include grid-media($media-lg) {
+        figcaption {
+          bottom: -1px;
+
+          &::before {
+            background: linear-gradient(
+                    to bottom,
+                    transparent 0%,
+                    rgba(0, 0, 0, 1) 75%);
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: .75;
+          }
+        }
+      }
+    }
+
+    &[data-text-display="hover"] {
+      @include grid-media($media-lg) {
+        figcaption {
+          opacity: 0;
+          transition: opacity .25s ease .1s;
+        }
+
+        &[data-hover="true"] figcaption,
+        &[data-focus="true"] figcaption {
+          opacity: 1;
+          transition: opacity .25s ease 0s;
+        }
+      }
+    }
+
+
+
+    &[data-text-loc-h="left"] {
+      figcaption {
+        @include grid-media($media-lg-only) {
+          float: left;
+          padding-right: calc(40% + #{_retrieve-neat-setting($neat-grid, gutter) / 2};
+        }
+        @include grid-media($media-xl) {
+          padding-right: calc(40% + #{_retrieve-neat-setting($neat-grid, gutter) / 2};
+        }
+      }
+    }
+    &[data-text-loc-h="right"] {
+      figcaption {
+        @include grid-media($media-lg-only) {
+          float: right;
+          padding-left: calc(40% + #{_retrieve-neat-setting($neat-grid, gutter) / 2};
+        }
+        @include grid-media($media-xl) {
+          padding-left: calc(40% + #{_retrieve-neat-setting($neat-grid, gutter) / 2};
+        }
+      }
+    }
+  }
+
+  // Colors
+  figure {
+    @include grid-media($media-lg) {
+      @include color-theme($theme--stone) {
+        background-color: color(img-wrapper);
+        figcaption {
+          color: color(text);
+          h3 {
+            color: inherit;
+          }
+          a {
+            color: color(text);
+            text-decoration: underline;
+            #{$hocus} {
+              color: color(text);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// old browser overrides
+.no-cssgradients .panel[data-type="hero-image"] {
+  @include grid-media($media-lg) {
+    figure {
+      figcaption {
+
+      &[data-text-loc-v="top"][data-text-display="hover"] figcaption::before {
+        height: 100%;
+        background-color: color(black);
+      }
+      }
+      &[data-text-loc-v="bottom"][data-text-display="hover"] figcaption::before {
+        height: 100%;
+        background-color: color(black);
+      }
+    }
+  }
+}

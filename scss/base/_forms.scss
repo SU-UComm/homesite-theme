@@ -1,0 +1,15 @@
+@charset "UTF-8";
+////
+/// Base forms overrides
+/// @group base|forms
+////
+
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+#{$all-text-inputs} {
+  font-size: inherit;
+}
