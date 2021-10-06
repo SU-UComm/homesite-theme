@@ -17,6 +17,8 @@ if ( !empty( trim( $html ) ) ) {
       'class'     => 'panel'
     , 'data-type' => esc_attr( $panel->get( 'type' ) )
   ];
+  $slug = empty( $panel_vars[ 'title' ] ) ? $panel->get( 'type' ) . '-' . $index : $panel_vars[ 'title' ];
+  $panel_attrs[ 'id' ] = esc_attr( sanitize_title_with_dashes( $slug, NULL, 'save' ) );
 
   // extra attributes for stand-alone and parent panels - necessary for Live Preview
   if ( $panel->get_depth() == 0 ) {
