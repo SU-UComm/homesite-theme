@@ -151,7 +151,7 @@ jobs:
         run: |
           echo 'Deploying ${{ github.repository }}, ${{ steps.extract_branch.outputs.branch }} branch, to Pantheon'
           git add -Av
-          git commit --allow-empty -m '${{ env.COMMIT_MSG }}'
+          git commit --allow-empty --allow-empty-message -m '${{ env.COMMIT_MSG }}'
           git push origin master
 
       ### Notify Slack
