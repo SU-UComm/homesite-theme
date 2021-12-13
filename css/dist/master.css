@@ -12292,6 +12292,9 @@ body.page-template-sidebar-page section[data-type="section-bg"] {
   .panel[data-type="interstitial-text"] :last-child {
     margin-bottom: 0; }
 
+.panel[data-type="localist"] #lclst_widget_footer {
+  display: none; }
+
 .panel[data-type="position-stmt"] {
   font-weight: 300;
   font-size: 1.5625em;

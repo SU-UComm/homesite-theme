@@ -11,9 +11,9 @@
  */
 
 if ( @$_REQUEST[ 'search_type' ] == 'people' ) {
-  $url = "https://stanford.rimeto.io/search/";
+  $url = "https://stanfordwho.stanford.edu/people?keyword=";
   $url .= urlencode( $_REQUEST[ 'q' ] );
-  if ( wp_redirect( "https://stanford.rimeto.io/search/" . urlencode( $_REQUEST[ 'q' ] ) ) ) {
+  if ( wp_redirect( $url ) ) {
     exit;
   }
 }
