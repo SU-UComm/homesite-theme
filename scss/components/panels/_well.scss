@@ -23,7 +23,8 @@
   // Styles for panels inside wells
   .panel[data-type="posts"],
   .panel[data-type="events"],
-  .panel[data-type="wysiwyg"] {
+  .panel[data-type="wysiwyg"],
+  .panel[data-type="localist"] {
     padding-top: 0;
 
     &[data-width="full"] {
@@ -41,7 +42,8 @@
   }
 
   .panel[data-type="posts"],
-  .panel[data-type="events"] {
+  .panel[data-type="events"],
+  .panel[data-type="localist"] {
     padding-bottom: modular-scale(0);
   }
 

@@ -13455,23 +13455,28 @@ body.page-template-sidebar-page section[data-type="section-bg"] {
     text-align: center; }
   .panel[data-type="well"] .panel[data-type="posts"],
   .panel[data-type="well"] .panel[data-type="events"],
-  .panel[data-type="well"] .panel[data-type="wysiwyg"] {
+  .panel[data-type="well"] .panel[data-type="wysiwyg"],
+  .panel[data-type="well"] .panel[data-type="localist"] {
     padding-top: 0; }
     .panel[data-type="well"] .panel[data-type="posts"][data-width="full"],
     .panel[data-type="well"] .panel[data-type="events"][data-width="full"],
-    .panel[data-type="well"] .panel[data-type="wysiwyg"][data-width="full"] {
+    .panel[data-type="well"] .panel[data-type="wysiwyg"][data-width="full"],
+    .panel[data-type="well"] .panel[data-type="localist"][data-width="full"] {
       padding-left: 0;
       padding-right: 0; }
     .panel[data-type="well"] .panel[data-type="posts"] .content,
     .panel[data-type="well"] .panel[data-type="events"] .content,
-    .panel[data-type="well"] .panel[data-type="wysiwyg"] .content {
+    .panel[data-type="well"] .panel[data-type="wysiwyg"] .content,
+    .panel[data-type="well"] .panel[data-type="localist"] .content {
       padding: 0; }
       .panel[data-type="well"] .panel[data-type="posts"] .content h3,
       .panel[data-type="well"] .panel[data-type="events"] .content h3,
-      .panel[data-type="well"] .panel[data-type="wysiwyg"] .content h3 {
+      .panel[data-type="well"] .panel[data-type="wysiwyg"] .content h3,
+      .panel[data-type="well"] .panel[data-type="localist"] .content h3 {
         font-size: 1.25em; }
   .panel[data-type="well"] .panel[data-type="posts"],
-  .panel[data-type="well"] .panel[data-type="events"] {
+  .panel[data-type="well"] .panel[data-type="events"],
+  .panel[data-type="well"] .panel[data-type="localist"] {
     padding-bottom: 1em; }
   .panel[data-type="well"] .panel[data-type="wysiwyg"] {
     margin-top: -0.4444444444em;
