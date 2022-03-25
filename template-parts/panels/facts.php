@@ -8,7 +8,7 @@ if ( $panel_vars[ 'show_top_rule' ] == 'yes') echo "<hr aria-hidden='true'/>\n";
 <div class="grid-container">
 <?php
 foreach ( $panel_vars[ 'the_facts' ] as $fact ) {
-  $fmt = ( $fact[ 'bold' ] == 'line1' ) ? "<strong>%s</strong>%s\n" : "%s<strong>%s</strong>\n";
+  $fmt = ( $fact[ 'bold' ] == 'line1' ) ? "<strong>%s</strong> %s\n" : "%s <strong>%s</strong>\n";
 ?>
   <figure>
     <?php printf( $fmt, $fact[ 'line1' ], $fact[ 'line2' ] ); ?>
