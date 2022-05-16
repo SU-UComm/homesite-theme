@@ -1,4 +1,8 @@
-### Deploy pantheon branch to Homesite dev environment on Pantheon
+### Deploy pantheon branch to dev environment on Pantheon
+
+## Important: Verify these variables
+##   Line 36: PANTHEON_ENV
+##   Line 39: TARGET_COMPONENT_FOLDER
 
 # Secrets used:
 # - DEV_DEPLOY_REPO - ssh url of Pantheon's repo
@@ -15,6 +19,11 @@ name: Dev Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      message:
+        description: "Message for push to Pantheon\nDefaults to last commit message"
+        type: string
+        default: ''
   push:
     branches:
       - pantheon
@@ -30,17 +39,15 @@ jobs:
       TARGET_COMPONENT_FOLDER: wp-content/themes/homesite17 # where in Pantheon's repo this code should go
       DEPLOY_REPO: ${{ secrets.DEV_DEPLOY_REPO }} # the ssh url of Pantheon's repo
       INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_DEPLOY_WEBHOOK }} # the url of the Slack channel to post updates to
-      COMMIT_MSG: ${{ github.event.head_commit.message }}
 
     steps:
       ### Setup
-
       - name: Extract branch name
         shell: bash
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
 
-      - name: Slack notification
+      - name: Slack notification - start
         uses: tokorom/action-slack-incoming-webhook@v1.1.4
         with:
           blocks: |
@@ -77,23 +84,62 @@ jobs:
                     "text": "*Branch*\n${{ steps.extract_branch.outputs.branch }}"
                   }
                 ]
-              },
+              }
+            ]
+
+      - name: Checkout source repo (github)
+        uses: actions/checkout@v2
+        with:
+          path: ${{ env.SOURCE_REPO_FOLDER }}
+          ref: ${{ github.ref }}
+
+      - name: Get info about last commit
+        id: last_commit
+        shell: bash
+        working-directory: ${{ env.SOURCE_REPO_FOLDER }}
+        run: |
+          echo "##[set-output name=sha;]$( git log -1 --pretty=format:'%h' )"
+          echo "##[set-output name=message;]$( git log -1 --pretty=format:'%s' )"
+
+      ### If no manually entered message, tell Slack about the last commit
+      - name: Slack notification - commit info
+        if: ${{ github.event.inputs.message == '' }}
+        uses: tokorom/action-slack-incoming-webhook@v1.1.4
+        with:
+          blocks: |
+            [
               {
                 "type": "section",
                 "fields": [
                   {
                     "type": "mrkdwn",
-                    "text": "*Commit SHA*\n${{ github.sha }}"
+                    "text": "*Commit SHA*\n${{ steps.last_commit.outputs.sha }}"
                   },
                   {
                     "type": "mrkdwn",
-                    "text": "*Commit Message*\n${{ env.COMMIT_MSG }}"
+                    "text": "*Commit Message*\n${{ steps.last_commit.outputs.message }}"
                   }
                 ]
               }
             ]
 
-      ### Deploy
+      ### If there's a manually entered message, send that to Slack
+      - name: Slack notification - manual message
+        if: ${{ github.event.inputs.message != '' }}
+        uses: tokorom/action-slack-incoming-webhook@v1.1.4
+        with:
+          blocks: |
+            [
+              {
+                "type": "section",
+                "text":  {
+                  "type": "mrkdwn",
+                  "text": "*Message*\n${{ github.event.inputs.message }}"
+                }
+              }
+            ]
+
+      ### Do the deploy
       - name: Install PHP
         uses: shivammathur/setup-php@master
         with:
@@ -120,20 +166,14 @@ jobs:
                 ForwardAgent yes
                 StrictHostKeyChecking no
 
-      - name: Checkout development repo
-        uses: actions/checkout@v2
-        with:
-          path: ${{ env.SOURCE_REPO_FOLDER }}
-          ref: ${{ github.ref }}
-
-      - name: Checkout server repo
+      - name: Checkout target repo (Pantheon)
         run: |
           git clone ${{ env.DEPLOY_REPO }} ${{ env.TARGET_REPO_FOLDER }}
           cd ${{ env.TARGET_REPO_FOLDER }}
           git config user.email "ucomm-devops@stanford.edu"
-          git config user.name "devops"
+          git config user.name "${{ github.actor }}"
 
-      - name: Sync development repo to server repo
+      - name: Sync source repo to target repo
         run: |
           rsync -rpv --delete ${{env.SOURCE_REPO_FOLDER}}/ ${{env.TARGET_REPO_FOLDER}}/${{env.TARGET_COMPONENT_FOLDER}} \
             --exclude=.git \
@@ -146,16 +186,15 @@ jobs:
             --exclude=.editorconfig \
             --exclude=.eslintrc
 
-      - name: Push server repo
+      - name: Push target repo to Pantheon
         working-directory: ${{ env.TARGET_REPO_FOLDER }}
         run: |
-          echo 'Deploying ${{ github.repository }}, ${{ steps.extract_branch.outputs.branch }} branch, to Pantheon'
+          echo 'Deploying ${{ steps.extract_branch.outputs.branch }} branch of ${{ github.repository }} repo to Pantheon'
           git add -Av
-          git commit --allow-empty --allow-empty-message -m '${{ env.COMMIT_MSG }}'
+          git commit --allow-empty --allow-empty-message -m '${{ github.event.inputs.message || steps.last_commit.outputs.message }}'
           git push origin master
 
       ### Notify Slack
-
       - name: Slack - success
         if: ${{ success() }}
         uses: tokorom/action-slack-incoming-webhook@v1.1.4
@@ -165,12 +204,10 @@ jobs:
             [
               {
                 "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Status*\n:white_check_mark: Success"
-                  }
-                ]
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Status*\n:white_check_mark: Success"
+                }
               },
               {
                 "type": "divider"
@@ -185,12 +222,10 @@ jobs:
             [
               {
                 "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Status*\n:x: Failed"
-                  }
-                ]
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Status*\n:x: Failed"
+                }
               },
               {
                 "type": "divider"
@@ -205,12 +240,10 @@ jobs:
             [
               {
                 "type": "section",
-                "fields": [
-                  {
-                    "type": "mrkdwn",
-                    "text": "*Status*\n:stop: Cancelled"
-                  }
-                ]
+                "text": {
+                  "type": "mrkdwn",
+                  "text": "*Status*\n:stop: Cancelled"
+                }
               },
               {
                 "type": "divider"
