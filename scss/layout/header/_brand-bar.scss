@@ -325,3 +325,9 @@ $brand-bar__height:       4.8rem !default;
   }
 
 }
+
+.gateway-nav--label {
+  align-self: center;
+  color: color(background);
+  font-weight: 600;
+}

@@ -15830,6 +15830,11 @@ body > header {
     .splash-parallax #brand-bar.theme--white #gateway a:after {
       background-color: #000; } }
 
+.gateway-nav--label {
+  align-self: center;
+  color: #fff;
+  font-weight: 500; }
+
 #site-navigation {
   position: fixed;
   top: 2.1333333333em;

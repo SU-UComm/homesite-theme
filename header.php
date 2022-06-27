@@ -76,7 +76,7 @@
     <a id="skiplinks" href="#main-content" data-ga-category="Skip links" data-ga-action="header" data-ga-label="Skip to content"><?php esc_html_e( 'Skip to content', 'homesite17' ); ?></a>
     <section id="brand-bar" data-ga-category="Brand bar" data-ga-action="Gateway nav">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="su-brand" rel="home" id="header--wordmark" data-ga-action="Wordmark">Stanford University</a>
-      <span>Information for:</span>
+      <div class="gateway-nav--label">Information for:</div>
       <?php wp_nav_menu( [
           'theme_location'       => 'gateway'
         , 'container'            => 'nav'
