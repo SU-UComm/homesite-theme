@@ -128,9 +128,10 @@ $brand-bar__height:       4.8rem !default;
     }
 
     // COVID Info, last li in #gateway.
+    // The .highlight class is applied in the WordPres menu admin.
     // These are styles for when the homepage scrolls
     // as well as interior pages of the site.
-    .menu-item-14089 {
+    .highlight {
       margin-right: 4px;
 
       a {
@@ -332,9 +333,10 @@ $brand-bar__height:       4.8rem !default;
         }
 
         // COVID Info, last li in #gateway.
+        // The .highlight class is applied in the WordPres menu admin.
         // Styles for the homepage load presentation, before scrolling –
         // the styles change when scrolled – and for interior pages.
-        #gateway .menu-item-14089 {
+        #gateway .highlight {
           a {
             background-color: color(dark-red);
             margin: 0;

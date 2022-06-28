@@ -15709,11 +15709,11 @@ body > header {
     #brand-bar #gateway .gateway-nav--label {
       color: #fff;
       margin-right: 0.75em; }
-    #brand-bar #gateway .menu-item-14089 {
+    #brand-bar #gateway .highlight {
       margin-right: 4px; }
-      #brand-bar #gateway .menu-item-14089 a {
+      #brand-bar #gateway .highlight a {
         background-color: #820000; }
-        #brand-bar #gateway .menu-item-14089 a:hover, #brand-bar #gateway .menu-item-14089 a:active, #brand-bar #gateway .menu-item-14089 a:focus {
+        #brand-bar #gateway .highlight a:hover, #brand-bar #gateway .highlight a:active, #brand-bar #gateway .highlight a:focus {
           background-color: #fff;
           color: #820000; }
     @media only screen and (min-width: 1024px) and (max-width: 1499px) {
@@ -15839,16 +15839,16 @@ body > header {
       color: #eee; }
     .splash-parallax #brand-bar.theme--choco #gateway a:after {
       background-color: #fff; }
-    .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a {
+    .splash-parallax #brand-bar.theme--choco #gateway .highlight a {
       background-color: #820000;
       margin: 0;
       padding: 0.5555555556em 0.75em; }
-      .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a:hover, .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a:active, .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a:focus {
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a:hover, .splash-parallax #brand-bar.theme--choco #gateway .highlight a:active, .splash-parallax #brand-bar.theme--choco #gateway .highlight a:focus {
         background-color: #b1040e; }
-      .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a:after {
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a:after {
         background-color: transparent; } }
     @media only screen and (min-width: 1024px) and (min-width: 1024px) and (max-width: 1499px) {
-      .splash-parallax #brand-bar.theme--choco #gateway .menu-item-14089 a {
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a {
         padding: 0.7111111111em 0.75em; } }
 
 @media only screen and (min-width: 1024px) {
@@ -16045,14 +16045,14 @@ body > header {
             background-color: #fff; }
             #site-navigation #gateway a:hover::after, #site-navigation #gateway a:active::after, #site-navigation #gateway a:focus::after {
               display: none; }
-        #site-navigation #gateway .menu-item-14089 {
+        #site-navigation #gateway .highlight {
           flex: 1 0 100%; }
-          #site-navigation #gateway .menu-item-14089 a {
+          #site-navigation #gateway .highlight a {
             background-color: #b1040e;
             color: #fff;
             margin-top: 0.25em;
             padding: 0.25em 1em; }
-            #site-navigation #gateway .menu-item-14089 a:hover, #site-navigation #gateway .menu-item-14089 a:active, #site-navigation #gateway .menu-item-14089 a:focus {
+            #site-navigation #gateway .highlight a:hover, #site-navigation #gateway .highlight a:active, #site-navigation #gateway .highlight a:focus {
               background-color: #820000; } }
   #site-navigation ul li a {
     color: #000; }
