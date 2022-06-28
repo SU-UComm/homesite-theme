@@ -115,10 +115,35 @@ $brand-bar__height:       4.8rem !default;
         text-decoration: none;
         transition: background-color .3s ease-out;
       }
+
+      @include grid-media($media-lg-only) {
+        padding: em(12.8px) .75em;
+      }
+    }
+
+    // Information for: label, before #gateway nav ul.
+    .gateway-nav--label {
+      color: color(reverse-text);
+    }
+
+    // COVID Info, last li in #gateway.
+    // These are styles for when the homepage scrolls as well as
+    // interior pages of the site.
+    .menu-item-14089 a {
+      background-color: color(dark-red);
+
+      @include on-event {
+        background-color: color(background);
+        color: color(dark-red);
+      }
+    }
+
+    @include grid-media($media-lg-only) {
+      font-size: 1.6rem;
     }
 
     @include grid-media($media-lg) {
-      display: inline-block;
+      display: flex;
       vertical-align: middle;
       margin-right: -4px;
       @supports (display: flex) {
@@ -260,6 +285,10 @@ $brand-bar__height:       4.8rem !default;
         &:active:after {
           top: 3px;
         }
+
+        @include grid-media($media-lg-only) {
+          padding: em(12.8px) 0;
+        }
       }
 
       @include grid-media($media-lg) {
@@ -288,12 +317,35 @@ $brand-bar__height:       4.8rem !default;
       @include grid-media($media-lg) {
         background: linear-gradient(0deg, rgba(0, 0, 0, .75), #000);
 
-        #gateway a, #search-toggle {
+        #gateway a, #search-toggle, .gateway-nav--label {
           color: #eee;
         }
 
         #gateway a:after {
           background-color: color(white);
+        }
+
+        // COVID Info, last li in #gateway.
+        // Styles for the homepage load presentation, before scrolling –
+        // the styles change when scrolled – and for interior pages.
+        #gateway .menu-item-14089 {
+          a {
+            background-color: color(dark-red);
+            margin: 0;
+            padding: em(10px) 0.75em;
+
+            #{$hocus} {
+              background-color: color(button-background);
+            }
+
+            &:after {
+              background-color: transparent;
+            }
+
+            @include grid-media($media-lg-only) {
+              padding: em(12.8px) 0.75em;
+            }
+          }
         }
       }
 
@@ -328,6 +380,5 @@ $brand-bar__height:       4.8rem !default;
 
 .gateway-nav--label {
   align-self: center;
-  color: color(background);
   font-weight: 600;
 }
