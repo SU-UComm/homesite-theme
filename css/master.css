@@ -15707,12 +15707,15 @@ body > header {
         #brand-bar #gateway a {
           padding: 0.7111111111em 0.75em; } }
     #brand-bar #gateway .gateway-nav--label {
-      color: #fff; }
-    #brand-bar #gateway .menu-item-14089 a {
-      background-color: #820000; }
-      #brand-bar #gateway .menu-item-14089 a:hover, #brand-bar #gateway .menu-item-14089 a:active, #brand-bar #gateway .menu-item-14089 a:focus {
-        background-color: #fff;
-        color: #820000; }
+      color: #fff;
+      margin-right: 0.75em; }
+    #brand-bar #gateway .menu-item-14089 {
+      margin-right: 4px; }
+      #brand-bar #gateway .menu-item-14089 a {
+        background-color: #820000; }
+        #brand-bar #gateway .menu-item-14089 a:hover, #brand-bar #gateway .menu-item-14089 a:active, #brand-bar #gateway .menu-item-14089 a:focus {
+          background-color: #fff;
+          color: #820000; }
     @media only screen and (min-width: 1024px) and (max-width: 1499px) {
       #brand-bar #gateway {
         font-size: 1.6rem; } }
@@ -15730,9 +15733,10 @@ body > header {
           padding: 0; }
         #brand-bar #gateway li {
           display: inline-block;
+          height: 100%;
           margin-bottom: 0; }
           #brand-bar #gateway li > a {
-            height: 2.6666666667em;
+            height: 100%;
             line-height: 1.6; } }
     #brand-bar #gateway #header-search:before {
       margin-right: .25em; }
