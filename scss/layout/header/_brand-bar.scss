@@ -124,17 +124,22 @@ $brand-bar__height:       4.8rem !default;
     // Information for: label, before #gateway nav ul.
     .gateway-nav--label {
       color: color(reverse-text);
+      margin-right: 0.75em;
     }
 
     // COVID Info, last li in #gateway.
-    // These are styles for when the homepage scrolls as well as
-    // interior pages of the site.
-    .menu-item-14089 a {
-      background-color: color(dark-red);
+    // These are styles for when the homepage scrolls
+    // as well as interior pages of the site.
+    .menu-item-14089 {
+      margin-right: 4px;
 
-      @include on-event {
-        background-color: color(background);
-        color: color(dark-red);
+      a {
+        background-color: color(dark-red);
+
+        @include on-event {
+          background-color: color(background);
+          color: color(dark-red);
+        }
       }
     }
 
@@ -155,9 +160,10 @@ $brand-bar__height:       4.8rem !default;
       }
       li {
         display: inline-block;
+        height: 100%;
         margin-bottom: 0;
         > a {
-          height: em($_height);
+          height: 100%;
           line-height: 1.6;
         }
       }
@@ -378,6 +384,7 @@ $brand-bar__height:       4.8rem !default;
 
 }
 
+// General styles for the #gateway nav label.
 .gateway-nav--label {
   align-self: center;
   font-weight: 600;
