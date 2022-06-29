@@ -118,7 +118,7 @@
         <li><a href="/site/privacy" title="Privacy and cookie policy">Privacy</a></li>
         <li><a href="https://uit.stanford.edu/security/copyright-infringement" title="Report alleged copyright infringement">Copyright</a></li>
         <li><a href="https://adminguide.stanford.edu/chapter-1/subchapter-5/policy-1-5-4" title="Ownership and use of Stanford trademarks and images">Trademarks</a></li>
-        <li><a href="https://exploredegrees.stanford.edu/nonacademicregulations/nondiscrimination/" title="Non-discrimination policy">Non-Discrimination</a></li>
+        <li><a href="https://studentservices.stanford.edu/more-resources/student-policies/non-academic/non-discrimination" title="Non-discrimination policy">Non-Discrimination</a></li>
         <li><a href="/site/accessibility/" title="Report web accessibility issues">Accessibility</a></li>
       </ul>
     </nav>
