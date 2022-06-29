@@ -15703,9 +15703,25 @@ body > header {
         color: #f4f4f4;
         text-decoration: none;
         transition: background-color .3s ease-out; }
+      @media only screen and (min-width: 1024px) and (max-width: 1499px) {
+        #brand-bar #gateway a {
+          padding: 0.7111111111em 0.75em; } }
+    #brand-bar #gateway .gateway-nav--label {
+      color: #fff;
+      margin-right: 0.75em; }
+    #brand-bar #gateway .highlight {
+      margin-right: 4px; }
+      #brand-bar #gateway .highlight a {
+        background-color: #820000; }
+        #brand-bar #gateway .highlight a:hover, #brand-bar #gateway .highlight a:active, #brand-bar #gateway .highlight a:focus {
+          background-color: #fff;
+          color: #820000; }
+    @media only screen and (min-width: 1024px) and (max-width: 1499px) {
+      #brand-bar #gateway {
+        font-size: 1.6rem; } }
     @media only screen and (min-width: 1024px) {
       #brand-bar #gateway {
-        display: inline-block;
+        display: flex;
         vertical-align: middle;
         margin-right: -4px; }
         @supports (display: flex) {
@@ -15717,9 +15733,10 @@ body > header {
           padding: 0; }
         #brand-bar #gateway li {
           display: inline-block;
+          height: 100%;
           margin-bottom: 0; }
           #brand-bar #gateway li > a {
-            height: 2.6666666667em;
+            height: 100%;
             line-height: 1.6; } }
     #brand-bar #gateway #header-search:before {
       margin-right: .25em; }
@@ -15803,6 +15820,9 @@ body > header {
     bottom: unset; }
   .splash-parallax #brand-bar.theme--choco #gateway a:active:after, .splash-parallax #brand-bar.theme--white #gateway a:active:after {
     top: 3px; }
+  @media only screen and (min-width: 1024px) and (max-width: 1499px) {
+    .splash-parallax #brand-bar.theme--choco #gateway a, .splash-parallax #brand-bar.theme--white #gateway a {
+      padding: 0.7111111111em 0; } }
 
 @media only screen and (min-width: 1024px) {
   .splash-parallax #brand-bar.theme--choco #search-toggle:hover, .splash-parallax #brand-bar.theme--choco #search-toggle:active, .splash-parallax #brand-bar.theme--choco #search-toggle:focus, .splash-parallax #brand-bar.theme--choco #search-toggle[aria-expanded="true"], .splash-parallax #brand-bar.theme--white #search-toggle:hover, .splash-parallax #brand-bar.theme--white #search-toggle:active, .splash-parallax #brand-bar.theme--white #search-toggle:focus, .splash-parallax #brand-bar.theme--white #search-toggle[aria-expanded="true"] {
@@ -15815,10 +15835,21 @@ body > header {
 @media only screen and (min-width: 1024px) {
   .splash-parallax #brand-bar.theme--choco {
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.75), #000); }
-    .splash-parallax #brand-bar.theme--choco #gateway a, .splash-parallax #brand-bar.theme--choco #search-toggle {
+    .splash-parallax #brand-bar.theme--choco #gateway a, .splash-parallax #brand-bar.theme--choco #search-toggle, .splash-parallax #brand-bar.theme--choco .gateway-nav--label {
       color: #eee; }
     .splash-parallax #brand-bar.theme--choco #gateway a:after {
-      background-color: #fff; } }
+      background-color: #fff; }
+    .splash-parallax #brand-bar.theme--choco #gateway .highlight a {
+      background-color: #820000;
+      margin: 0;
+      padding: 0.5555555556em 0.75em; }
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a:hover, .splash-parallax #brand-bar.theme--choco #gateway .highlight a:active, .splash-parallax #brand-bar.theme--choco #gateway .highlight a:focus {
+        background-color: #b1040e; }
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a:after {
+        background-color: transparent; } }
+    @media only screen and (min-width: 1024px) and (min-width: 1024px) and (max-width: 1499px) {
+      .splash-parallax #brand-bar.theme--choco #gateway .highlight a {
+        padding: 0.7111111111em 0.75em; } }
 
 @media only screen and (min-width: 1024px) {
   .splash-parallax #brand-bar.theme--white {
@@ -15829,6 +15860,10 @@ body > header {
       color: #000; }
     .splash-parallax #brand-bar.theme--white #gateway a:after {
       background-color: #000; } }
+
+.gateway-nav--label {
+  align-self: center;
+  font-weight: 600; }
 
 #site-navigation {
   position: fixed;
@@ -15983,6 +16018,8 @@ body > header {
   @media only screen and (max-width: 1023px) {
         #site-navigation #gateway[aria-expanded="true"] {
           display: block; }
+        #site-navigation #gateway .gateway-nav--label {
+          padding-top: .625em; }
         #site-navigation #gateway ul {
           padding: 0;
           display: flex;
@@ -16007,7 +16044,16 @@ body > header {
             color: #B1040E;
             background-color: #fff; }
             #site-navigation #gateway a:hover::after, #site-navigation #gateway a:active::after, #site-navigation #gateway a:focus::after {
-              display: none; } }
+              display: none; }
+        #site-navigation #gateway .highlight {
+          flex: 1 0 100%; }
+          #site-navigation #gateway .highlight a {
+            background-color: #b1040e;
+            color: #fff;
+            margin-top: 0.25em;
+            padding: 0.25em 1em; }
+            #site-navigation #gateway .highlight a:hover, #site-navigation #gateway .highlight a:active, #site-navigation #gateway .highlight a:focus {
+              background-color: #820000; } }
   #site-navigation ul li a {
     color: #000; }
     #site-navigation ul li a:hover, #site-navigation ul li a:active, #site-navigation ul li a:focus {

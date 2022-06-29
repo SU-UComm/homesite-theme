@@ -343,3 +343,18 @@ function homesite17_add_body_classes( $classes ) {
   return $classes;
 }
 add_filter( 'body_class', 'homesite17_add_body_classes', 5, 1 );
+
+/***
+ * Add a label for the gateway nav within the <nav> element
+ * 
+ * @param  string   $nav_menu The HTML content for the navigation menu.
+ * @param  stdClass $args     An object containing wp_nav_menu() arguments.
+ * @return string             HTML with label inserted
+ */
+function homesite17_add_label_to_gateway_nav( $nav_menu, $args ) {
+  if ( $args->container_id == 'gateway' ) {
+    $nav_menu = preg_replace( '/>\w*<ul /', '><div class="gateway-nav--label">Information for:</div><ul ', $nav_menu );
+  }
+  return $nav_menu;
+}
+add_filter( 'wp_nav_menu', 'homesite17_add_label_to_gateway_nav', 10, 2 );
