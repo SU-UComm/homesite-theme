@@ -16288,6 +16288,11 @@ body > footer {
       #footer__pre-footer .social a .fa-apple:active,
       #footer__pre-footer .social a .fa-apple:focus {
         color: #555; }
+      #footer__pre-footer .social a[title="iTunes U"]:hover, #footer__pre-footer .social a[title="iTunes U"]:active, #footer__pre-footer .social a[title="iTunes U"]:focus,
+      #footer__pre-footer .social a .fa-linkedin:hover,
+      #footer__pre-footer .social a .fa-linkedin:active,
+      #footer__pre-footer .social a .fa-linkedin:focus {
+        color: #0072b1; }
     @media only screen and (min-width: 0px) {
       #footer__pre-footer .social {
         width: calc(100% - 40px);
