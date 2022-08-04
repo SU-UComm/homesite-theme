@@ -17,6 +17,7 @@
         hs_social_icon( 'Facebook', 'fa-facebook-square' );
         hs_social_icon( 'Twitter', 'fa-twitter' );
         hs_social_icon( 'Instagram', 'fa-instagram' );
+        hs_social_icon( 'LinkedIn', 'fa-linkedin' );
         hs_social_icon( 'YouTube', 'fa-youtube-play' );
         hs_social_icon( 'iTunes U', 'fa-apple' );
         ?>
