@@ -705,7 +705,7 @@ function hs_weather() {
  * Render an icon link to a social channel, and corresponding screen reader text.
  * Used in the "pre-footer".
  *
- * @param $channel one of: Facebook, Twitter, Instagram, YouTube, iTunes U
+ * @param $channel one of: Facebook, Twitter, Instagram, YouTube, iTunes U, LinkedIn
  * @param $icon Font Awesome icon to display
  */
 function hs_social_icon( $channel, $icon ) {
@@ -715,6 +715,7 @@ function hs_social_icon( $channel, $icon ) {
     , 'Instagram' => 'https://www.instagram.com/stanford/'
     , 'YouTube'   => 'https://www.youtube.com/stanford'
     , 'iTunes U'  => 'https://podcasts.apple.com/us/artist/stanford/1280771285'
+    , 'LinkedIn'  => 'https://www.linkedin.com/school/stanford-university/'
   ];
 ?>
   <li><a title="<?php echo $channel; ?>" class="xsu-link" data-ga-label="<?php echo $channel; ?>" href="<?php echo $channels[ $channel ]; ?>"><span class="fa <?php echo $icon; ?>" aria-hidden="true"></span><span class="sr-only-text"><?php echo $channel; ?></span></a></li>

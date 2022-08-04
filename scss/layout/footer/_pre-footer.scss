@@ -118,6 +118,12 @@ $pre-footer__background-color: color(silver) !default;
           color: color(itunesu);
         }
       }
+      &[title="iTunes U"],
+      .fa-linkedin {
+        #{$hocus} {
+          color: color(linkedin);
+        }
+      }
     }
 
     @include grid-media($media-xs) {
