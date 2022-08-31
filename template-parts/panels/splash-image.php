@@ -39,7 +39,7 @@ if ( $panel_vars[ 'logo' ] != "no-logo" ) {
 
   <?php if (!empty( $panel_vars[ 'video_url'])) { ?>
         <video id="splash-video" class="bg-img" role="region" muted preload="auto" aria-label="decorative video" poster="<?php echo $image_landscape[ 'uri' ]; ?>">
-            <source src="<?php echo $panel_vars[ 'video_url' ]; ?>" type="video/mp4" />
+            <source src="http://homesite.local/wp-content/uploads/2022/08/file_example_MP4_1280_10MG.mp4" type="video/mp4" />
         </video>
       <button aria-label="Pause" type="button" id="splash--pause">
           <i class="fa fa-pause-circle"></i>
