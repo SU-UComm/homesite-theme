@@ -32,7 +32,7 @@
           <h3>Schools</h3>
           <ul>
             <li><a href="https://www.gsb.stanford.edu/">Business</a></li>
-            <li><a href="https://earth.stanford.edu/">Earth, Energy & Environmental Sciences</a></li>
+            <li><a href="https://sustainability.stanford.edu/">Sustainability</a></li>
             <li><a href="https://ed.stanford.edu/">Education</a></li>
             <li><a href="https://engineering.stanford.edu/">Engineering</a></li>
             <li><a href="https://humsci.stanford.edu/">Humanities & Sciences</a></li>
