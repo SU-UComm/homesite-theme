@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 // 0. Decanter vendors
-@import 'vendors/decanter-vendors';
+// @import 'vendors/decanter-vendors';
 
 /*! -----------------------------------------------------------------------------
 // Home Site 2017 Theme
@@ -13,7 +13,7 @@
 // 1. Configuration and helpers
 @import
   'utilities/variables/global-settings'
-, 'utilities/decanter-utilities'
+// , 'utilities/decanter-utilities'
 , 'utilities/variables/variables'
 , 'utilities/mixins/bg-img'
 , 'utilities/mixins/img-effects'
@@ -27,8 +27,8 @@
 
 // 2. Base
 @import
-  'base/decanter-base'
-, 'base/buttons'          //  local override
+  // 'base/decanter-base'
+  'base/buttons'          //  local override
 , 'base/fonts'            //  local override
 , 'base/typography'       //  local override
 , 'base/lists'            //  local override
