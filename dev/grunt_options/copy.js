@@ -63,7 +63,7 @@ module.exports = {
         flatten: true,
         filter: 'isFile',
         src    : [
-          '<%= pkg._npmpath %>/font-awesome/fonts/**',
+          '<%= pkg._themepath %>/dev/decanter/node_modules/font-awesome/fonts/**',
           'dev/fonts-build/fonts/**'
         ],
         dest   : '<%= pkg._themepath %>/fonts/'

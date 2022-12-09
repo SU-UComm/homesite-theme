@@ -26,7 +26,6 @@
     "autoprefixer": "^6.7.2",
     "browser-sync": "^2.18.13",
     "cssnano": "^3.10.0",
-    "decanter": "git://github.com/SU-SWS/decanter.git#homesite17",
     "glob": "^7.1.1",
     "grunt": "^1.0.1",
     "grunt-auto-install": "^0.3.1",
