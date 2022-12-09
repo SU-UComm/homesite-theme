@@ -99,6 +99,7 @@
       <li><a href="https://visit.stanford.edu/">Visiting</a></li>
       <li><a href="https://giving.stanford.edu/">Giving</a></li>
       <li><a href="https://stanfordcareers.stanford.edu/">Careers</a></li>
+      <li><a href="http://facultypositions.stanford.edu/">Faculty Positions</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
   </section>
