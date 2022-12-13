@@ -72,6 +72,14 @@ The following steps need to be performed once to get your local environment up a
 * `nvm use`
 * `npm install`
 
+In December 2022 we embedded the old version/branch of Decanter that is used with this theme instead of pulling it in via NPM because the stale branch would no longer install properly. Before theme can build correctly, you must now install Decanter's dependencies.
+* `cd decanter`
+* `nvm use`
+* `npm install`
+
+Now you should be ready to build from the `dev` directory follwing the steps in Development below.
+
+
 **Note**: While not strictly necessary for theme development, your local site will not funtion
 without the [Stanford Homesite plugin](https://github.com/SU-UComm/homesite-plugin). To install that:
 
