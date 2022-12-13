@@ -72,7 +72,7 @@ The following steps need to be performed once to get your local environment up a
 * `nvm use`
 * `npm install`
 
-In December 2022 we embedded the old version/branch of Decanter that is used with this theme instead of pulling it in via NPM because the stale branch would no longer install properly. Before theme can build correctly, you must now install Decanter's dependencies.
+In December 2022 we embedded the old version/branch of Decanter that is used with this theme instead of pulling it in via NPM because the stale branch would no longer install properly. Before the theme can build correctly you must now install Decanter's dependencies.
 * `cd decanter`
 * `nvm use`
 * `npm install`
