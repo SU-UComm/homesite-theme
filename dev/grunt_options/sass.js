@@ -12,12 +12,12 @@ module.exports = {
 		mode: 'native',
 		options: {
 			includePaths: [
-        	'<%= pkg._npmpath %>/bourbon/core'
+        	'<%= pkg._themepath %>/dev/decanter/node_modules/bourbon/core' // This is in Decanter's node_modules
         , '<%= pkg._npmpath %>/bourbon-neat/core'
-        , '<%= pkg._npmpath %>/decanter/core'
+        , '<%= pkg._themepath %>/dev/decanter/core'
         , '<%= pkg._npmpath %>/neat-omega/core'
         , '<%= pkg._npmpath %>/normalize.css'
-        , '<%= pkg._npmpath %>/font-awesome/scss'
+        , '<%= pkg._themepath %>/dev/decanter/node_modules/font-awesome/scss' // This is in Decanter's node_modules
 			],
       precision: 10,
 			outputStyle: 'nested',
