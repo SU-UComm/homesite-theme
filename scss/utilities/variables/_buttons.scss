@@ -49,6 +49,19 @@ $primary-button: (
     text-decoration--active: none,
 );
 
+$fat-footer-button: (
+    bg-color: inherit,
+    border: 1px solid color(stone),
+    border--active: 1px solid color(bright-red),
+    color: color(stone),
+    font-weight: 600,
+    padding: 0.25em 1em,
+    bg-color--active: inherit,
+    color--active: color(bright-red),
+    material-shadow--active: null,
+    text-decoration--active: none,
+);
+
 $hs_secondary-button: (
     bg-color: inherit,
     border: 1px solid color(stone),
