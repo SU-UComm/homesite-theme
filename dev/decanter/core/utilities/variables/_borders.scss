@@ -1,0 +1,13 @@
+@charset 'UTF-8';
+
+////
+/// Borders
+/// @group _variables|borders
+////
+
+/// Base border radius.
+$base-border-radius: 3px !default;
+
+/// Base Border.
+/// @require color
+$base-border: 1px solid color(border) !default;

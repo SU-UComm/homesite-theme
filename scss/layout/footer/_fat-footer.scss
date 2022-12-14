@@ -75,8 +75,9 @@ $base-delay: null !default;
       }
 
       a {
-        @include hs_button($hs_secondary-button);
+        @include hs_button($fat-footer-button);
         display: block;
+
       }
     }
   }

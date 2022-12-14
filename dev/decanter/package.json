@@ -1,0 +1,36 @@
+{
+  "name": "decanter",
+  "description": "A collection of SCSS patterns for theme development.",
+  "version": "0.1.0-alpha1",
+  "homepage": "https://github.com/su-sws/decanter",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "mixins",
+    "sass",
+    "scss"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/su-sws/decanter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/su-sws/decanter/issues"
+  },
+  "dependencies": {
+    "bourbon": "^5.0.0-beta.7",
+    "bourbon-neat": "^2.0.0",
+    "neat-omega": "^3.0.0",
+    "font-awesome": "~4.7.0",
+    "normalize.css": "^6.0.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-available-tasks": "^0.6.3",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+    "grunt-sass-lint": "^0.2.2",
+    "grunt-sassdoc": "^2.0.2"
+  },
+  "optionalDependencies": {}
+}
