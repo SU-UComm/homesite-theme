@@ -41,7 +41,7 @@ if ( $panel_vars[ 'logo' ] != "no-logo" ) {
         <video id="splash-video" class="bg-img" role="region" muted loop preload="auto" aria-label="decorative video" poster="<?php echo $image_landscape[ 'uri' ]; ?>">
             <source src="<?php echo $panel_vars[ 'video_url' ]; ?>" type="video/mp4" />
         </video>
-      <button aria-label="Pause" type="button" id="splash--pause">
+      <button aria-label="Pause" type="button" id="splash--pause" tabindex="2">
           <i class="fa fa-pause-circle"></i>
       </button>
   <?php } else { ?>
