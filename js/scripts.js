@@ -2966,6 +2966,18 @@ $(document).ready(function(){
   splashPanelInit();
 });
 
+window.onload = addAutoplay();
+var wideVideo  = document.getElementsByClassName("splash-video--wide");
+var mobileVideo = document.getElementById("splash-video--mobile");
+function addAutoplay() {
+  if(window.innerWidth >992){
+    wideVideo.setAttribute("autoplay","");
+  } else {
+    mobileVideo.setAttribute("autoplay","");
+  };
+}
+
+
 /***/ }),
 /* 23 */
 /***/ (function(module, exports, __webpack_require__) {
