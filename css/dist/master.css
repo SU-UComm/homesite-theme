@@ -13160,7 +13160,7 @@ body.page-template-sidebar-page section[data-type="section-bg"] {
   .panel[data-type="splash-image"] #splash--pause {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    right: 20px;
     background-color: rgba(201, 76, 76, 0);
     box-shadow: none; }
     .panel[data-type="splash-image"] #splash--pause:focus {
