@@ -37,18 +37,18 @@ if ( $panel_vars[ 'logo' ] != "no-logo" ) {
 <p id="splash--scroller"><a href="#main-content" data-ga-action="Splash screen scroller"><?php echo $panel_vars[ 'scroll_cta' ]; ?></a></p>
 <?php } ?>
 
-  <?php if (!empty( $panel_vars[ 'video_url'])) { ?>
+  <?php if (!empty( $panel_vars[ 'video_url' ])) { ?>
         <video id="splash-video" class="bg-img splash-video--wide" role="region" muted loop playsinline preload="none" aria-label="decorative video" poster="<?php echo $image_landscape[ 'uri' ]; ?>">
             <source src="<?php echo $panel_vars[ 'video_url' ]; ?>" type="video/mp4" />
         </video>
-        <?php if (!empty( $panel_vars[ 'video_url_mobile'])) { ?>
-          <video id="splash-video" class="bg-img splash-video--mobile" role="region" muted loop playsinline preload="none" aria-label="decorative video" poster="<?php echo $image_landscape[ 'uri' ]; ?>">
-              <source src="<?php echo $panel_vars[ 'video_url_mobile' ]; ?>" type="video/mp4" />
-          </video>
-        <?php } ?>
       <button aria-label="Pause video" type="button" id="splash--pause" tabindex="2">
           <i class="fa fa-pause-circle"></i>
       </button>
+      <!-- <?php ?>
+        <video id="splash-video--mobile" class="bg-img splash-video--mobile" role="region" muted loop playsinline preload="none" aria-label="decorative video" poster="<?php echo $image_landscape[ 'uri' ]; ?>">
+            <source src="<?php echo $panel_vars[ 'mobile_video_url' ]; ?>" type="video/mp4" />
+        </video>
+      <?php ?> -->
   <?php } else { ?>
     <picture aria-hidden="true" tabindex="-1">
       <!--[if IE 9]><video style="display: none;"><![endif]-->
@@ -57,4 +57,3 @@ if ( $panel_vars[ 'logo' ] != "no-logo" ) {
       <img class="bg-img" role="presentation" alt="" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
     </picture>
    <?php } ?>
-
