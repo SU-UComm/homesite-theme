@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 .panel[data-type="position-stmt"] {
-  $base-padding: 3em;
+  $base-padding: 1em;
 
   $content-container: (
       xs:     ( columns: 12,  grid-media: $media-xs-only, v-space: $base-padding, max-width: false, grid-collapse: false ),
@@ -41,8 +41,6 @@
   font-weight: 300;
   font-size: modular-scale(2);
   text-align: center;
-
-  box-shadow: material_shadow(medium);
 
   :first-child {
     margin-top: 0;
