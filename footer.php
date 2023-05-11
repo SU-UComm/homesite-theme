@@ -49,7 +49,6 @@
           <h3>Research</h3>
           <ul>
             <li><a href="/list/research/">Research Centers A&nbsp;<span aria-hidden="true">-</span><span class="sr-only-text"> to </span>&nbsp;Z</a></li>
-            <li><a href="https://interdisciplinary.stanford.edu/">Interdisciplinary Research</a></li>
             <li><a href="http://library.stanford.edu/">Libraries</a></li>
           </ul>
         </div>
