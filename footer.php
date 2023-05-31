@@ -84,7 +84,6 @@
         <div>
           <h3>Resources</h3>
           <ul>
-            <li><a href="/atoz/">A&nbsp;<span aria-hidden="true">-</span><span class="sr-only-text"> to </span>&nbsp;Z Index</a></li>
             <li><a href="https://campus-map.stanford.edu/">Campus Map</a></li>
             <li><a href="https://community.stanford.edu/">Community Engagement</a></li>
             <li><a href="https://stanfordwho.stanford.edu/">Directory</a></li>
@@ -97,7 +96,7 @@
       <li><a href="/admission">Applying</a></li>
       <li><a href="https://visit.stanford.edu/">Visiting</a></li>
       <li><a href="https://giving.stanford.edu/">Giving</a></li>
-      <li><a href="https://stanfordcareers.stanford.edu/">Careers</a></li>
+      <li><a href="https://careersearch.stanford.edu/">Careers</a></li>
       <li><a href="http://facultypositions.stanford.edu/">Faculty Positions</a></li>
       <li><a href="/contact">Contact</a></li>
     </ul>
