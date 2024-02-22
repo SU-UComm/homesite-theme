@@ -108,7 +108,7 @@ function hs_render_panels( $region ) {
  */
 function hs_panel_header( $panel_vars ) {
   $show_title      = @$panel_vars[ 'show_title' ] == 'yes';
-  $show_intro_text = !empty( trim( @$panel_vars[ 'wrapper_text' ][ 'intro' ] ) );
+  $show_intro_text = !empty( trim( strval( @$panel_vars[ 'wrapper_text' ][ 'intro' ] ) ) );
 
   if ( $show_title || $show_intro_text ) {
     echo "<header>\n";
@@ -127,7 +127,7 @@ function hs_panel_header( $panel_vars ) {
  * @param array $panel_vars returned by get_panel_vars()
  */
 function hs_panel_footer( $panel_vars ) {
-  $show_closing_text = !empty( trim( @$panel_vars[ 'wrapper_text' ][ 'closing' ] ) );
+  $show_closing_text = !empty( trim( strval( @$panel_vars[ 'wrapper_text' ][ 'closing' ] ) ) );
 
   if ( $show_closing_text ) {
     echo "<footer>\n";
@@ -170,7 +170,7 @@ function hs_panel_title( $panel_vars ) {
  * @param array $panel_vars returned by get_panel_vars()
  */
 function hs_panel_intro_text( $panel_vars ) {
-  $intro_text = trim( @$panel_vars[ 'wrapper_text' ][ 'intro' ] );
+  $intro_text = trim( strval( @$panel_vars[ 'wrapper_text' ][ 'intro' ] ) );
   if ( !empty( $intro_text ) )  {
     echo wpautop( $intro_text ) . "\n";
   }
@@ -182,7 +182,7 @@ function hs_panel_intro_text( $panel_vars ) {
  * @param array $panel_vars returned by get_panel_vars()
  */
 function hs_panel_closing_text( $panel_vars ) {
-  $closing_text = trim( @$panel_vars[ 'wrapper_text' ][ 'closing' ] );
+  $closing_text = trim( strval( @$panel_vars[ 'wrapper_text' ][ 'closing' ] ) );
   if ( !empty( $closing_text ) ) {
     echo wpautop( $closing_text ) . "\n";
   }
