@@ -110,7 +110,7 @@ function hs_panel_header( $panel_vars ) {
   $show_title      = @$panel_vars[ 'show_title' ] == 'yes';
   $show_intro_text = !empty( trim( strval( @$panel_vars[ 'wrapper_text' ][ 'intro' ] ) ) );
 
-  if ( $show_title || $show_intro_text ) {
+  if ( ! empty ( $show_title ) || ! empty( $show_intro_text ) ) {
     echo "<header>\n";
     hs_panel_icon(       $panel_vars );
     hs_panel_title(      $panel_vars );
@@ -129,7 +129,7 @@ function hs_panel_header( $panel_vars ) {
 function hs_panel_footer( $panel_vars ) {
   $show_closing_text = !empty( trim( strval( @$panel_vars[ 'wrapper_text' ][ 'closing' ] ) ) );
 
-  if ( $show_closing_text ) {
+  if ( ! empty( $show_closing_text ) ) {
     echo "<footer>\n";
     hs_panel_closing_text( $panel_vars );
     echo "</footer>\n";
