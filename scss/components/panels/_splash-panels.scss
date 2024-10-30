@@ -83,18 +83,23 @@
   }
 
   #splash--pause {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    background-color: rgba(201, 76, 76, 0.0);
-    box-shadow: none;
+    display: none;
 
-    &:focus {
-      outline: 1px dotted white;
-    }
+    @include grid-media($media-md) {
+      display: block;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background-color: rgba(201, 76, 76, 0.0);
+      box-shadow: none;
 
-    i {
-      font-size: 2em;
+      &:focus {
+        outline: 1px dotted white;
+      }
+
+      i {
+        font-size: 2em;
+      }
     }
   }
 
@@ -276,5 +281,13 @@
   #menu-overlay,
   #search-overlay {
     z-index: 90;
+  }
+}
+
+#splash-video {
+  display: none;
+
+  @include grid-media($media-md) {
+    display: block;
   }
 }
