@@ -55,10 +55,10 @@ if ( have_posts() ) {
 
     <?php if ( !empty( $content ) ) { ?>
     <section class="entry-content">
-      //// PLACE ACCORDION HERE
+      <!-- PLACE ACCORDION HERE -->
       <?php the_content(); ?>
       <?php hs_render_panels( 'main' ); ?>
-      //// END ACCORDION HERE
+      <!-- END ACCORDION HERE -->
     </section><!-- .entry-content -->
     <?php } ?>
 
