@@ -22,6 +22,8 @@ if ( have_posts() ) {
   the_post();
 
   get_header();
+
+  $content = trim( get_the_content() );
   ?>
 
   <main id="main" class="site-main" role="main">
@@ -52,6 +54,13 @@ if ( have_posts() ) {
         return 1;
       }
     </script>
+
+    <?php if ( !empty( $content ) ) { ?>
+    <section class="entry-content">
+      <?php the_content(); ?>
+      <?php hs_render_panels( 'main' ); ?>
+    </section><!-- .entry-content -->
+    <?php } ?>
 
     <section class="search-results">
       <script>
