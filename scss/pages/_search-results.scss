@@ -103,4 +103,44 @@
       }
     }
   }
+
+  .search-feedback {
+    margin-top: 1em;
+
+    &.closed {
+
+      .form-toggle::after {
+        transform: rotate(-180deg);
+      }
+    }
+
+    form {
+      max-height: 1000px;
+      transition: all 1s;
+
+      &.hidden {
+        max-height: 0;
+        overflow: hidden;
+      }
+    }
+
+    .form-toggle {
+      font-size: modular-scale(1);
+      width: 100%;
+
+      &:after {
+        content: "\f078";
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: .75em;
+        margin-left: 1em;
+        transition: all 0.2s ease-out;
+      }
+    }
+
+    h2 {
+      @include properties($typography__h3--default, $typography__h3);
+      margin-top: 0;
+    }
+  }
 }

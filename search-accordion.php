@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template Name: Search Results - Accordion
  * Template Post Type: page, revision
@@ -10,56 +11,87 @@
  * @package homesite-2017
  */
 
-if ( @$_REQUEST[ 'search_type' ] == 'people' ) {
+if (@$_REQUEST['search_type'] == 'people') {
   $url = "https://stanfordwho.stanford.edu/people?keyword=";
-  $url .= urlencode( $_REQUEST[ 'q' ] );
-  if ( wp_redirect( $url ) ) {
+  $url .= urlencode($_REQUEST['q']);
+  if (wp_redirect($url)) {
     exit;
   }
 }
 
-if ( have_posts() ) {
+if (have_posts()) {
   the_post();
 
   get_header();
 
-  $content = trim( get_the_content() );
-  ?>
+  $content = trim(get_the_content());
+?>
 
   <main id="main" class="site-main" role="main">
     <h1 id="main-content" class="sr-only-element" tabindex="-1">Search Results</h1>
 
     <script type="text/javascript">
+      //// TODO: revisit this JS code in the context of homesite17
       function startstate() {
-        var searchBox = $('#gsc-i-id1')
-            , len = searchBox.val().length;
+        var searchBox = $('#gsc-i-id1'),
+          len = searchBox.val().length;
         searchBox.focus();
         searchBox[0].setSelectionRange(0, len);
       }
 
-      function qs(el,type) {
+      //// TODO: revisit this JS code in the context of homesite17
+      function qs(el, type) {
         var qe = $('#gsc-i-id1').val();
-        if (qe.length > 0){
-          if (type == 'who' || type == 'org'){
-            el.href+= "Search.do?search=";
-            el.href+= qe;
-          }
-          else if (type == 'map'){
-            el.href+="?srch=";
-            el.href+= qe;
+        if (qe.length > 0) {
+          if (type == 'who' || type == 'org') {
+            el.href += "Search.do?search=";
+            el.href += qe;
+          } else if (type == 'map') {
+            el.href += "?srch=";
+            el.href += qe;
           }
         }
         return 1;
       }
     </script>
 
-    <?php if ( !empty( $content ) ) { ?>
-    <section class="entry-content">
-      <!-- PLACE ACCORDION HERE -->
-      <?php the_content(); ?>
-      <?php hs_render_panels( 'main' ); ?>
-      <!-- END ACCORDION HERE -->
-    </section><!-- .entry-content -->
+    <?php if (!empty($content)) { ?>
+      <section class="search-feedback entry-content">
+        <button class="form-toggle">Help us improve your search experience<span class="sr-only-text"> Click to close form</span></button>
+        <?php the_content(); ?>
+        <?php hs_render_panels('main'); ?>
+      </section>
+      <script>
+        const outer = document.querySelector('.search-feedback');
+        const button = document.querySelector('.form-toggle');
+        const srText = document.querySelector('.form-toggle .sr-only-text')
+        const form = document.getElementById('form_search-feedback');
+        // Form is injected when page is loaded. After a delay it hides.
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            // Code to execute after the timeout
+            form.removeAttribute('style');
+            form.classList.add('hidden');
+            outer.classList.add('closed');
+            srText.textContent = "Click to open form"
+          }, 3000); // 3000 milliseconds (3 second) delay
+        });
+
+        function toggleElements() {
+          form.classList.toggle("hidden");
+          outer.classList.toggle("closed");
+          if (srText.textContent === "Click to close form") {
+            srText.textContent = "Click to open form";
+          } else {
+            srText.textContent = "Click to close form";
+          }
+        }
+
+        button.addEventListener("click", function() {
+          toggleElements();
+        });
+      </script>
+      <!-- .entry-content -->
     <?php } ?>
 
     <section class="search-results">
@@ -76,10 +108,9 @@ if ( have_posts() ) {
             }
           }
 
-          var cx   = '006436690873851342600:mwjbvj5v0x0'
-            , gcse = document.createElement('script')
-            , s    = document.getElementsByTagName('script')[0]
-            ;
+          var cx = '006436690873851342600:mwjbvj5v0x0',
+            gcse = document.createElement('script'),
+            s = document.getElementsByTagName('script')[0];
           gcse.type = 'text/javascript';
           gcse.async = true;
           gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//cse.google.com/cse.js?cx=' + cx;
@@ -90,10 +121,12 @@ if ( have_posts() ) {
       <!-- <gcse:search enableAutoComplete="true"></gcse:search> -->
     </section>
 
-  </main><!-- #main -->
+  </main>
 
-  <?php
+  <!-- #main -->
+
+<?php
   get_footer();
 } else {
-  get_template_part( '404' );
+  get_template_part('404');
 }
