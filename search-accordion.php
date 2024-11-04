@@ -66,18 +66,29 @@ if (have_posts()) {
         const button = document.querySelector('.form-toggle');
         const srText = document.querySelector('.form-toggle .sr-only-text')
         const form = document.getElementById('form_search-feedback');
-        // Form is injected when page is loaded. After a delay it hides.
+        const formElements = form.querySelectorAll("input, select, textarea, button");
+
+        // Execute form.timeout on page load.
         window.addEventListener('load', function() {
-          setTimeout(function() {
+          form.timeout = setTimeout(function() {
             // Code to execute after the timeout
             form.removeAttribute('style');
             form.classList.add('hidden');
             outer.classList.add('closed');
             srText.textContent = "Click to open form"
-          }, 3000); // 3000 milliseconds (3 second) delay
+          }, 3000);
         });
 
+        // Clear form.timeout if any form element is focused.
+        formElements.forEach(element => {
+          element.addEventListener("focus", () => {
+            clearTimeout(form.timeout);
+          });
+        });
+
+        // All button click functions.
         function toggleElements() {
+          form.removeAttribute('style');
           form.classList.toggle("hidden");
           outer.classList.toggle("closed");
           if (srText.textContent === "Click to close form") {
@@ -85,7 +96,7 @@ if (have_posts()) {
           } else {
             srText.textContent = "Click to close form";
           }
-        }
+        };
 
         button.addEventListener("click", function() {
           toggleElements();

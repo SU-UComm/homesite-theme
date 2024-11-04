@@ -17404,7 +17404,7 @@ body > footer {
   margin-top: 1em; }
   .page-template-search-accordion .search-feedback.closed .form-toggle::after,
   .page-template-search .search-feedback.closed .form-toggle::after {
-    transform: rotate(-180deg); }
+    transform: rotate(-90deg); }
   .page-template-search-accordion .search-feedback form,
   .page-template-search .search-feedback form {
     max-height: 1000px;
