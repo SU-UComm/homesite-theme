@@ -17402,9 +17402,6 @@ body > footer {
 .page-template-search-accordion .search-feedback,
 .page-template-search .search-feedback {
   margin-top: 1em; }
-  .page-template-search-accordion .search-feedback.closed .form-toggle::after,
-  .page-template-search .search-feedback.closed .form-toggle::after {
-    transform: rotate(-90deg); }
   .page-template-search-accordion .search-feedback form,
   .page-template-search .search-feedback form {
     max-height: 1000px;
@@ -17413,9 +17410,12 @@ body > footer {
     .page-template-search .search-feedback form.hidden {
       max-height: 0;
       overflow: hidden; }
+  .page-template-search-accordion .search-feedback h2,
+  .page-template-search .search-feedback h2 {
+    font-size: 1.25em;
+    margin-bottom: 0; }
   .page-template-search-accordion .search-feedback .form-toggle,
   .page-template-search .search-feedback .form-toggle {
-    font-size: 1.25em;
     width: 100%; }
     .page-template-search-accordion .search-feedback .form-toggle:after,
     .page-template-search .search-feedback .form-toggle:after {
@@ -17425,11 +17425,9 @@ body > footer {
       font-size: .75em;
       margin-left: 1em;
       transition: all 0.2s ease-out; }
-  .page-template-search-accordion .search-feedback h2,
-  .page-template-search .search-feedback h2 {
-    font-size: 1.5625em;
-    margin-bottom: 0.4096em;
-    margin-top: 0; }
+    .page-template-search-accordion .search-feedback .form-toggle[aria-expanded="false"]:after,
+    .page-template-search .search-feedback .form-toggle[aria-expanded="false"]:after {
+      transform: rotate(-90deg); }
 
 body.page-template-sidebar-page #main > header {
   padding: 0; }

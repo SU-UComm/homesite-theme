@@ -107,13 +107,6 @@
   .search-feedback {
     margin-top: 1em;
 
-    &.closed {
-
-      .form-toggle::after {
-        transform: rotate(-90deg);
-      }
-    }
-
     form {
       max-height: 1000px;
       transition: all 1s;
@@ -124,9 +117,13 @@
       }
     }
 
-    .form-toggle {
+    h2 {
       font-size: modular-scale(1);
-      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .form-toggle {
+        width: 100%;
 
       &:after {
         content: "\f078";
@@ -136,11 +133,13 @@
         margin-left: 1em;
         transition: all 0.2s ease-out;
       }
-    }
 
-    h2 {
-      @include properties($typography__h3--default, $typography__h3);
-      margin-top: 0;
+      &[aria-expanded ="false"] {
+
+        &:after {
+          transform: rotate(-90deg);
+        }
+      }
     }
   }
 }

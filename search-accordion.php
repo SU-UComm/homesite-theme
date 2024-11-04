@@ -57,7 +57,9 @@ if (have_posts()) {
 
     <?php if (!empty($content)) { ?>
       <section class="search-feedback entry-content">
-        <button class="form-toggle">Help us improve your search experience<span class="sr-only-text"> Click to close form</span></button>
+        <h2>
+          <button class="form-toggle" aria-expanded="true" aria-controls="form_search-feedback">Help us improve your search experience<span class="sr-only-text">, click to close form</span></button>
+        </h2>
         <?php the_content(); ?>
         <?php hs_render_panels('main'); ?>
       </section>
@@ -69,12 +71,14 @@ if (have_posts()) {
         const formElements = form.querySelectorAll("input, select, textarea, button");
 
         // Execute form.timeout on page load.
+        // form.timeout removes inline styles that force the form to display after 3 seconds.
         window.addEventListener('load', function() {
+
           form.timeout = setTimeout(function() {
             // Code to execute after the timeout
             form.removeAttribute('style');
             form.classList.add('hidden');
-            outer.classList.add('closed');
+            button.setAttribute('aria-expanded', 'false');
             srText.textContent = "Click to open form"
           }, 3000);
         });
@@ -90,7 +94,8 @@ if (have_posts()) {
         function toggleElements() {
           form.removeAttribute('style');
           form.classList.toggle("hidden");
-          outer.classList.toggle("closed");
+          isExpanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', !isExpanded);
           if (srText.textContent === "Click to close form") {
             srText.textContent = "Click to open form";
           } else {
