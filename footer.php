@@ -41,10 +41,10 @@
           </ul>
         </div>
         <div>
-          <h3>Departments</h3>
+          <h3>Academics</h3>
           <ul>
-            <li><a href="/list/academic/">Departments A&nbsp;<span aria-hidden="true">-</span><span class="sr-only-text"> to </span>&nbsp;Z</a></li>
-            <li><a href="/list/interdisc/">Interdisciplinary Programs</a></li>
+            <li><a href="https://majors.stanford.edu/majors">Undergraduate Majors</a></li>
+            <li><a href="https://gradadmissions.stanford.edu/explore-programs">Graduate Programs</a></li>
           </ul>
           <h3>Research</h3>
           <ul>
