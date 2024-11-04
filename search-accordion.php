@@ -69,6 +69,7 @@ if (have_posts()) {
         const srText = document.querySelector('.form-toggle .sr-only-text')
         const form = document.getElementById('form_search-feedback');
         const formElements = form.querySelectorAll("input, select, textarea, button");
+        const submit = document.querySelector('.frm_final_submit');
 
         // Execute form.timeout on page load.
         // form.timeout removes inline styles that force the form to display after 3 seconds.
@@ -77,7 +78,7 @@ if (have_posts()) {
           form.timeout = setTimeout(function() {
             // Code to execute after the timeout
             form.removeAttribute('style');
-            form.classList.add('hidden');
+            form.setAttribute('aria-hidden', 'true')
             button.setAttribute('aria-expanded', 'false');
             srText.textContent = "Click to open form"
           }, 3000);
@@ -93,7 +94,8 @@ if (have_posts()) {
         // All button click functions.
         function toggleElements() {
           form.removeAttribute('style');
-          form.classList.toggle("hidden");
+          formHidden = form.getAttribute('aria-hidden') === 'true';
+          form.setAttribute('aria-hidden', !formHidden);
           isExpanded = button.getAttribute('aria-expanded') === 'true';
           button.setAttribute('aria-expanded', !isExpanded);
           if (srText.textContent === "Click to close form") {
@@ -105,6 +107,10 @@ if (have_posts()) {
 
         button.addEventListener("click", function() {
           toggleElements();
+        });
+
+        submit.addEventListener("click", function() {
+          button.setAttribute("aria-hidden", "true");
         });
       </script>
       <!-- .entry-content -->

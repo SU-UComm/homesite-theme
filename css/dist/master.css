@@ -17406,17 +17406,23 @@ body > footer {
   .page-template-search .search-feedback form {
     max-height: 1000px;
     transition: all 1s; }
-    .page-template-search-accordion .search-feedback form.hidden,
-    .page-template-search .search-feedback form.hidden {
+    .page-template-search-accordion .search-feedback form[aria-hidden="true"],
+    .page-template-search .search-feedback form[aria-hidden="true"] {
       max-height: 0;
       overflow: hidden; }
+    .page-template-search-accordion .search-feedback form .frm_fields_container .form-field:last-of-type,
+    .page-template-search .search-feedback form .frm_fields_container .form-field:last-of-type {
+      margin-bottom: 0; }
   .page-template-search-accordion .search-feedback h2,
   .page-template-search .search-feedback h2 {
     font-size: 1.25em;
     margin-bottom: 0; }
   .page-template-search-accordion .search-feedback .form-toggle,
   .page-template-search .search-feedback .form-toggle {
-    width: 100%; }
+    width: 100%;
+    max-height: 100px;
+    opacity: 100;
+    transition: all 0.2s ease-out 1s; }
     .page-template-search-accordion .search-feedback .form-toggle:after,
     .page-template-search .search-feedback .form-toggle:after {
       content: "\f078";
@@ -17428,6 +17434,10 @@ body > footer {
     .page-template-search-accordion .search-feedback .form-toggle[aria-expanded="false"]:after,
     .page-template-search .search-feedback .form-toggle[aria-expanded="false"]:after {
       transform: rotate(-90deg); }
+    .page-template-search-accordion .search-feedback .form-toggle[aria-hidden="true"],
+    .page-template-search .search-feedback .form-toggle[aria-hidden="true"] {
+      opacity: 0;
+      max-height: 0; }
 
 body.page-template-sidebar-page #main > header {
   padding: 0; }
