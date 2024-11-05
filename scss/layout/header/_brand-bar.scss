@@ -249,6 +249,10 @@ $brand-bar__height:       4.8rem !default;
     @at-root .page-template-search & {
       background-color: color(button-background--active);
     }
+
+    @at-root .page-template-search-accordion & {
+      background-color: color(button-background--active);
+    }
   }
 
 }
