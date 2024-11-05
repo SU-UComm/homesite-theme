@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+.page-template-search-accordion,
 .page-template-search {
   #main, main {
     header {
@@ -99,6 +100,53 @@
       .gsc-table-result {
         margin: 0;
         font-size: inherit;
+      }
+    }
+  }
+
+  .search-feedback {
+    margin-top: 1em;
+
+    form {
+      max-height: 1000px;
+      transition: all 1s;
+
+      &[aria-hidden="true"] {
+        max-height: 0;
+        overflow: hidden;
+      }
+    }
+
+    h2 {
+      font-size: modular-scale(1);
+      margin-bottom: 0;
+    }
+
+    .form-toggle {
+        width: 100%;
+        max-height: 100px;
+        opacity: 100;
+        transition: all 0.2s ease-out 1s;
+
+      &:after {
+        content: "\f078";
+        display: inline-block;
+        font-family: FontAwesome;
+        font-size: .75em;
+        margin-left: 1em;
+        transition: all 0.2s ease-out;
+      }
+
+      &[aria-expanded ="false"] {
+
+        &:after {
+          transform: rotate(-90deg);
+        }
+      }
+
+      &[aria-hidden ="true"] {
+        opacity: 0;
+        max-height: 0;
       }
     }
   }
