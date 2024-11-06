@@ -74,8 +74,10 @@ if (have_posts()) {
 
           // Save the actual search term with the form
           const qsParams = new URLSearchParams(window.location.search);
-          const searchTerm = document.querySelector('input#field_search-param');
-          searchTerm.value = qsParams.get('q');
+          const searchTermField = document.querySelector('input#field_search-param');
+          if ( searchTermField ) {
+            searchTermField.value = qsParams.get('q');
+          }
 
           // Execute form.timeout on page load.
           // form.timeout removes inline styles that force the form to display after 3 seconds.
