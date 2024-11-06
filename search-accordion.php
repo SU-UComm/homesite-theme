@@ -64,54 +64,60 @@ if (have_posts()) {
         <?php hs_render_panels('main'); ?>
       </section>
       <script>
-        const outer = document.querySelector('.search-feedback');
-        const button = document.querySelector('.form-toggle');
-        const srText = document.querySelector('.form-toggle .sr-only-text')
-        const form = document.getElementById('form_search-feedback');
-        const formElements = form.querySelectorAll("input, select, textarea, button");
-        const submit = document.querySelector('.frm_final_submit');
+        (function() {
+          const outer = document.querySelector('.search-feedback');
+          const button = document.querySelector('.form-toggle');
+          const srText = document.querySelector('.form-toggle .sr-only-text')
+          const form = document.getElementById('form_search-feedback');
+          const formElements = form.querySelectorAll("input, select, textarea, button");
+          const submit = document.querySelector('.frm_final_submit');
 
-        // Execute form.timeout on page load.
-        // form.timeout removes inline styles that force the form to display after 3 seconds.
-        window.addEventListener('load', function() {
+          // Save the actual search term with the form
+          const qsParams = new URLSearchParams(window.location.search);
+          const searchTerm = document.querySelector('input#field_search-param');
+          searchTerm.value = qsParams.get('q');
 
-          form.timeout = setTimeout(function() {
-            // Code to execute after the timeout
-            form.removeAttribute('style');
-            form.setAttribute('aria-hidden', 'true')
-            button.setAttribute('aria-expanded', 'false');
-            srText.textContent = "Click to open form"
-          }, 3000);
-        });
-
-        // Clear form.timeout if any form element is focused.
-        formElements.forEach(element => {
-          element.addEventListener("focus", () => {
-            clearTimeout(form.timeout);
+          // Execute form.timeout on page load.
+          // form.timeout removes inline styles that force the form to display after 3 seconds.
+          window.addEventListener('load', function() {
+            form.timeout = setTimeout(function() {
+              // Code to execute after the timeout
+              form.removeAttribute('style');
+              form.setAttribute('aria-hidden', 'true')
+              button.setAttribute('aria-expanded', 'false');
+              srText.textContent = "Click to open form"
+            }, 3000);
           });
-        });
 
-        // All button click functions.
-        function toggleElements() {
-          form.removeAttribute('style');
-          formHidden = form.getAttribute('aria-hidden') === 'true';
-          form.setAttribute('aria-hidden', !formHidden);
-          isExpanded = button.getAttribute('aria-expanded') === 'true';
-          button.setAttribute('aria-expanded', !isExpanded);
-          if (srText.textContent === "Click to close form") {
-            srText.textContent = "Click to open form";
-          } else {
-            srText.textContent = "Click to close form";
-          }
-        };
+          // Clear form.timeout if any form element is focused.
+          formElements.forEach(element => {
+            element.addEventListener("focus", () => {
+              clearTimeout(form.timeout);
+            });
+          });
 
-        button.addEventListener("click", function() {
-          toggleElements();
-        });
+          // All button click functions.
+          function toggleElements() {
+            form.removeAttribute('style');
+            formHidden = form.getAttribute('aria-hidden') === 'true';
+            form.setAttribute('aria-hidden', !formHidden);
+            isExpanded = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', !isExpanded);
+            if (srText.textContent === "Click to close form") {
+              srText.textContent = "Click to open form";
+            } else {
+              srText.textContent = "Click to close form";
+            }
+          };
 
-        submit.addEventListener("click", function() {
-          button.setAttribute("aria-hidden", "true");
-        });
+          button.addEventListener("click", function() {
+            toggleElements();
+          });
+
+          submit.addEventListener("click", function() {
+            button.setAttribute("aria-hidden", "true");
+          });
+        })();
       </script>
       <!-- .entry-content -->
     <?php } ?>
