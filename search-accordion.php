@@ -88,7 +88,7 @@ if (have_posts()) {
               form.setAttribute('aria-hidden', 'true')
               button.setAttribute('aria-expanded', 'false');
               srText.textContent = "Click to open form"
-            }, 3000);
+            }, 1250);
           });
 
           // Clear form.timeout if any form element is focused.
