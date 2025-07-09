@@ -17410,9 +17410,6 @@ body > footer {
     .page-template-search .search-feedback form[aria-hidden="true"] {
       max-height: 0;
       overflow: hidden; }
-    .page-template-search-accordion .search-feedback form .frm_fields_container .form-field:last-of-type,
-    .page-template-search .search-feedback form .frm_fields_container .form-field:last-of-type {
-      margin-bottom: 0; }
   .page-template-search-accordion .search-feedback h2,
   .page-template-search .search-feedback h2 {
     font-size: 1.25em;
