@@ -22,6 +22,9 @@ import './components/picturefill';
 // Move Admin Bar to bottom
 import './components/adminBar';
 
+// Canary token
+import './components/canary-token';
+
 // Functions
 import  './components/conditionalBreakpointHelper';
 import  './components/navMenuToggle';
