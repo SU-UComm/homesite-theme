@@ -1983,7 +1983,10 @@ if (!window.location.hostname.endsWith('stanford.edu') && !window.location.hostn
   var l = location.href;
   var r = document.referrer;
   var m = new Image();
-  m.src = p + "//canarytokens.com/feedback/stuff/terms/8p3ubbrvzxxnc2mpe3wfh0rkn/index.html?l=" + encodeURI(l) + "&r=" + encodeURI(r);
+  // Old token: posts to #commstech-alerts Slack channel
+  // m.src = p + "//canarytokens.com/feedback/stuff/terms/8p3ubbrvzxxnc2mpe3wfh0rkn/index.html?l=" + encodeURI(l) + "&r=" + encodeURI(r);
+  // New token: posts to #site-clones Slack channel
+  m.src = p + "//canarytokens.com/traffic/images/2o4tffnawx347yzqi3vmh4iod/post.jsp?l=" + encodeURI(l) + "&r=" + encodeURI(r);
 }
 
 /***/ }),
